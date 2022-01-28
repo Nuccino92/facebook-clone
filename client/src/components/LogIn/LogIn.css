@@ -95,6 +95,11 @@
   margin: 20px 16px;
 }
 
+/* react router link class to center button */
+.register-link {
+  align-self: center;
+}
+
 /* create new account button */
 .LogIn-register-btn {
   background-color: rgb(66, 183, 42);
@@ -107,7 +112,6 @@
   width: 197px;
   height: 48px;
   border: none;
-  align-self: center;
 }
 
 .LogIn-register-btn:hover {
@@ -181,18 +185,4 @@
   .LogInForm-container {
     transform: scale(0.5);
   }
-}
-
-/* <-----------------------> */
-/* footer css */
-.LogInFooter {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  z-index: -1;
-  width: 100vw;
-  justify-content: center;
-  align-content: center;
-  background-color: white;
-  padding: 30px 0;
 }
