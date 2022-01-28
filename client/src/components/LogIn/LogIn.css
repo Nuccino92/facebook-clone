@@ -1,0 +1,182 @@
+/* log in component container */
+.LogIn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 72px 0 112px 0;
+}
+
+/* left div inside container */
+.LogIn-left {
+  padding-right: 32px;
+  max-width: 530px;
+  margin-right: 20px;
+}
+
+/* header for left div */
+.LogIn-left > h1 {
+  color: rgb(24, 119, 242);
+  font-size: 55px;
+  letter-spacing: -3px;
+  font-weight: 900;
+}
+
+/* writing under header of left div */
+.LogIn-left > p {
+  font-size: 28px;
+}
+
+/* form inside right div */
+.LogIn-form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px 12px 24px 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(0, 0, 0, 0.1) 0px 8px 16px 0px;
+}
+
+/* all input boxes inside form */
+.LogIn-form > input {
+  border: 1px solid rgb(221, 223, 226);
+  border-radius: 6px;
+  color: rgb(29, 33, 41);
+  display: inline-block;
+  font-weight: 400;
+  padding: 14px 16px;
+  width: 364px;
+  height: 52px;
+  outline: none;
+  font-size: 17px;
+  margin: 6px 0;
+}
+
+/* input box focus */
+.LogIn-form > input:focus {
+  border: 1px solid rgb(24, 119, 242);
+}
+
+/* form log in button */
+.LogIn-submit-btn {
+  background-color: rgb(24, 119, 242);
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 0 16px;
+  margin-top: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 48px;
+  border: none;
+}
+
+.LogIn-submit-btn:hover {
+  filter: brightness(0.97);
+}
+
+/* use guest account link */
+.guest-account-link {
+  margin-top: 16px;
+  text-align: center;
+  color: rgb(24, 119, 242);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.guest-account-link:hover {
+  text-decoration: underline;
+}
+
+/* the line under guest account link */
+.LogIn-form-break {
+  border-bottom: 1px solid rgb(218, 221, 225);
+  margin: 20px 16px;
+}
+
+/* create new account button */
+.LogIn-register-btn {
+  background-color: rgb(66, 183, 42);
+  color: white;
+  font-size: 17px;
+  font-weight: bolder;
+  padding: 0 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 197px;
+  height: 48px;
+  border: none;
+  align-self: center;
+}
+
+.LogIn-register-btn:hover {
+  filter: brightness(0.97);
+}
+
+@media (max-width: 1050px) {
+  .LogIn-left {
+    padding-right: 12px;
+    max-width: 368px;
+  }
+  .LogIn-left > p {
+    font-size: 24px;
+  }
+}
+
+/* mainly puts left div on top of right div */
+@media (max-width: 940px) {
+  .LogIn {
+    flex-direction: column;
+    word-wrap: break-word;
+  }
+  .LogIn-left {
+    margin-right: 0;
+    text-align: center;
+  }
+  .LogIn-left > h1 {
+    margin: 20px;
+    font-size: 60px;
+  }
+  .LogIn-left > p {
+    margin-bottom: 20px;
+  }
+}
+/* to fit everything inside of phone screens */
+@media (max-width: 400px) {
+  .LogIn {
+    transform: scale(0.5);
+  }
+}
+
+/* path /login css */
+.LogInForm-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 60vh;
+}
+
+/* the form h1 if on path /login */
+.LogInForm-container > h1 {
+  color: rgb(24, 119, 242);
+  font-size: 50px;
+  letter-spacing: -3px;
+  font-weight: 900;
+}
+
+/* text under header */
+.LogIn-form-header {
+  padding: 14px 0 16px;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(28, 30, 33);
+}
+
+/* to fit everything inside of phone screens */
+@media (max-width: 400px) {
+  .LogInForm-container {
+    transform: scale(0.5);
+  }
+}
