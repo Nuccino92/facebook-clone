@@ -2,4 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: rgb(240, 242, 245);
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(29, 33, 41);
+  opacity: 0.4;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(29, 33, 41);
+  opacity: 0.4;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(29, 33, 41);
+  opacity: 0.4;
 }
