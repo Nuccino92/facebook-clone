@@ -1,0 +1,17 @@
+.Footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  width: 100vw;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+  padding: 30px 0;
+}
+
+@media (max-width: 440px) {
+  .Footer {
+    display: none;
+  }
+}
