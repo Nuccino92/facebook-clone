@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import LogInFooter from "./LogInFooter";
 
 const LogInForm = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ const LogInForm = () => {
         <div className="LogIn-form-break"></div>
         <button className="LogIn-register-btn">Create New Account</button>
       </form>
+      <LogInFooter />
     </div>
   ) : (
     <form className="LogIn-form" onSubmit={handleSubmit}>
