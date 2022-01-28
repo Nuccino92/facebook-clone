@@ -148,6 +148,7 @@
     transform: scale(0.5);
   }
 }
+/* <----------------------------------------> */
 
 /* path /login css */
 .LogInForm-container {
@@ -155,8 +156,8 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
   min-height: 60vh;
+  padding-top: 20px;
 }
 
 /* the form h1 if on path /login */
