@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import LogInFooter from "./LogInFooter";
+import { useLocation, Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const LogInForm = () => {
   const location = useLocation();
@@ -25,9 +25,11 @@ const LogInForm = () => {
         <button className="LogIn-submit-btn">Log In</button>
         <div className="guest-account-link">Use Guest Account</div>
         <div className="LogIn-form-break"></div>
-        <button className="LogIn-register-btn">Create New Account</button>
+        <Link className="register-link" to="/register">
+          <button className="LogIn-register-btn">Create New Account</button>
+        </Link>
       </form>
-      <LogInFooter />
+      <Footer />
     </div>
   ) : (
     <form className="LogIn-form" onSubmit={handleSubmit}>
@@ -36,7 +38,9 @@ const LogInForm = () => {
       <button className="LogIn-submit-btn">Log In</button>
       <div className="guest-account-link">Use Guest Account</div>
       <div className="LogIn-form-break"></div>
-      <button className="LogIn-register-btn">Create New Account</button>
+      <Link className="register-link" to="/register">
+        <button className="LogIn-register-btn">Create New Account</button>
+      </Link>
     </form>
   );
 };

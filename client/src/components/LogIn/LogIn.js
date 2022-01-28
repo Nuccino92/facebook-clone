@@ -1,7 +1,7 @@
 import "./LogIn.css";
 import React from "react";
 import LogInForm from "./LogInForm";
-import LogInFooter from "./LogInFooter";
+import Footer from "../Footer/Footer";
 
 const LogIn = () => {
   return (
@@ -16,7 +16,7 @@ const LogIn = () => {
       <div className="LogIn-right">
         <LogInForm />
       </div>{" "}
-      <LogInFooter />
+      <Footer />
     </div>
   );
 };
