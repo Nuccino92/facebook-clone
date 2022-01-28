@@ -1,0 +1,210 @@
+/* the container for the register page */
+.Register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+/* word facebook above form */
+.Register > h1 {
+  color: rgb(24, 119, 242);
+  font-size: 57px;
+  margin-bottom: 20px;
+  letter-spacing: -3px;
+}
+
+/* container for everything in form */
+.Register-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 432px;
+  padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(0, 0, 0, 0.1) 0px 8px 16px 0px;
+  padding: 16px;
+  color: rgb(28, 30, 33);
+  border-radius: 8px;
+}
+
+/* create new account title */
+.Register-form-container > h3 {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+/* its quick and easy below title */
+.Register-form-container > p {
+  font-size: 15px;
+  font-family: 400;
+  color: rgb(96, 103, 112);
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+/* the border below its quick and easy */
+.Register-form {
+  border-top: 1px solid rgb(218, 221, 225);
+}
+
+/* container for first and last name inputs */
+.Register-form-name-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+/* styling for first and lastname inputs */
+.Register-form-name-container > input {
+  border: 1px solid rgb(204, 208, 213);
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 11px;
+  width: 48%;
+  color: rgb(28, 30, 33);
+  outline: none;
+  margin-bottom: 6px;
+}
+
+/* styling email and password inputs */
+.Register-form > input {
+  border: 1px solid rgb(204, 208, 213);
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 11px;
+  width: 100%;
+  color: rgb(28, 30, 33);
+  outline: none;
+  margin: 6px 0;
+}
+
+/* container for birthday section */
+.Register-form-birthday-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+/* the word birthday */
+.Register-form-birthday-container > label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(96, 103, 112);
+  margin: 6px 0 4px 0;
+}
+
+/* container for the selects */
+.birthday-select-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* each select */
+.birthday-select-container > select {
+  border-radius: 4px;
+  border: 1px solid rgb(204, 208, 213);
+  outline: none;
+  color: rgb(28, 30, 33);
+  font-size: 15px;
+  width: 125px;
+  height: 36px;
+  padding: 3px;
+}
+
+/* container for gender secion */
+.gender-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+/* word gender */
+.gender-container > label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(96, 103, 112);
+  margin: 6px 0 4px 0;
+}
+
+/* container for every gender options */
+.gender-select-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* container for each gender option */
+.gender-select-container > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid rgb(204, 208, 213);
+  outline: none;
+  color: rgb(28, 30, 33);
+  font-size: 15px;
+  width: 125px;
+  height: 36px;
+  padding: 9px;
+  z-index: 1;
+}
+
+/* sign up button */
+.register-submit-btn {
+  background-color: rgb(0, 164, 0);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  height: 36px;
+  width: 194px;
+  padding: 0 32px;
+  margin: 30px 0 22px;
+  align-self: center;
+  border: none;
+}
+
+/* sign up button hover */
+.register-submit-btn:hover {
+  filter: brightness(0.94);
+}
+
+/* react router link  */
+.already-have-account {
+  text-decoration: none;
+  color: rgb(24, 119, 242);
+}
+
+.already-have-account > div {
+  margin-bottom: 10px;
+}
+
+.custom-gender {
+  border: 1px solid rgb(204, 208, 213);
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 11px;
+  width: 100%;
+  color: rgb(28, 30, 33);
+  outline: none;
+  margin-top: 12px;
+}
+
+@media (max-width: 440px) {
+  .Register {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 300px) {
+  .Register {
+    transform: scale(0.6);
+  }
+}
