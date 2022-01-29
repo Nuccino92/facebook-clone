@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogIn from "./components/LogIn/LogIn";
 import LogInForm from "./components/LogIn/LogInForm";
 import { useState } from "react";
-import Register from "./components/register/Register";
+import Register from "./components/Register/Register";
 
 function App() {
   const [user] = useState(false);
