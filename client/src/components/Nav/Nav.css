@@ -1,0 +1,136 @@
+/* navbar component */
+.Nav {
+  display: flex;
+  color: rgb(28, 30, 33);
+  padding: 0px 16px 0 16px;
+  background-color: white;
+  flex-wrap: wrap;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
+}
+
+/* left section of navbar */
+.nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  background-color: white;
+}
+
+/* facebook logo */
+.nav-left > img {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+}
+
+/* container for searchbar */
+.searchbar-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 240px;
+  border-radius: 50px;
+  padding-left: 12px;
+  margin-left: 12px;
+}
+
+/* search icon  */
+.searchbar-container > svg {
+  background: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* search bar */
+.searchbar-container > input {
+  border: none;
+  outline: none;
+  padding: 7px 7px;
+  font-size: 16px;
+  color: rgb(96, 103, 112);
+}
+
+/* middle section container */
+.nav-middle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1;
+  background-color: white;
+  height: 56px;
+}
+
+/* home/profile containers */
+.nav-middle > div {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-bottom: 3px solid blue;
+  width: 112px;
+  cursor: pointer;
+}
+
+/* pictures in home/profile containers */
+.nav-middle > div > svg {
+  height: 28px;
+  width: 28px;
+  background-color: white;
+  color: blue;
+}
+
+/* right section of navbar */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+  background-color: white;
+}
+
+/* profile picture and name container */
+.nav-right-profile-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  padding: 0 12px;
+}
+
+/* profile picture  */
+.nav-right-profile-container > img {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+/* profile name */
+.nav-right-profile-container > div {
+  background-color: white;
+  font-size: 15px;
+  margin-right: 17px;
+  font-weight: 600;
+}
+
+/* container for down arrow */
+.down-arrow-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+/* navbar down arrow */
+.down-arrow-container:hover {
+  filter: brightness(0.95);
+}
