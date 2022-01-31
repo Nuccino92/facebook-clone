@@ -2,8 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(240, 242, 245);
   font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: rgb(240, 242, 245);
 }
 
 ::placeholder {
