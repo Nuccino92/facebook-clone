@@ -1,11 +1,16 @@
 import Nav from "../Nav/Nav";
+import Contacts from "./Contacts/Contacts";
 import "./Homepage.css";
+import SideNav from "./SideNav/SideNav";
+import Timeline from "./Timeline/Timeline";
 
 const Homepage = () => {
   return (
     <div className="Homepage">
       <Nav />
-      <div></div>
+      <SideNav />
+      <Timeline />
+      <Contacts />
     </div>
   );
 };
