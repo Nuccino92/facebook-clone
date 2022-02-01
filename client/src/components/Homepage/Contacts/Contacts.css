@@ -1,0 +1,46 @@
+.Contacts {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.Contacts > ul > h3 {
+  padding: 10px 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(101, 103, 107);
+}
+
+.Contacts > ul > li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(5, 5, 5);
+  padding: 10px 16px;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 1;
+}
+
+/* prevents mouse leave/enter events from triggering inside container */
+.Contacts > ul > li * {
+  pointer-events: none;
+}
+
+.Contacts > ul > li:hover {
+  background-color: rgba(212, 211, 211, 0.418);
+}
+
+.Contacts > ul > li > img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.Contacts > ul > li > p {
+  padding: 12px 0;
+}
