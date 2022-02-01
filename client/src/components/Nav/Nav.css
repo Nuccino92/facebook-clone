@@ -1,5 +1,6 @@
 /* navbar component */
 .Nav {
+  min-width: 100vw;
   display: flex;
   color: rgb(28, 30, 33);
   padding: 0px 16px 0 16px;
