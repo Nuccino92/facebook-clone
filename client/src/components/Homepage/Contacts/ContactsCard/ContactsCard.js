@@ -12,8 +12,10 @@ const ContactsCard = ({ data }) => {
         </div>
         <div>
           {" "}
-          <FaBirthdayCake size={20} style={{ "margin-right": "5px" }} />{" "}
-          Birthday {new Date(data.birthday).toDateString()}
+          <FaBirthdayCake
+            size={20}
+            style={{ marginRight: "5px" }}
+          /> Birthday {new Date(data.birthday).toDateString()}
         </div>
       </div>
     </div>
