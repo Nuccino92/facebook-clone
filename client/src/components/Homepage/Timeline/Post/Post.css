@@ -1,0 +1,108 @@
+/* each Post in Timeline */
+.Post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* post header container profile img, name, created at */
+.Post-header {
+  display: flex;
+  padding: 12px 16px 0;
+  margin-bottom: 12px;
+  margin-top: 4px;
+}
+
+/* header profile picture */
+.Post-header > img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+/* container w/ name and created at */
+.Post-header-right {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* created at */
+.Post-header-right > p {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(101, 103, 107);
+  background-color: white;
+}
+
+/* description under header */
+.Post-desciption {
+  padding: 4px 16px 16px 16px;
+  font-size: 15px;
+  color: rgb(28, 20, 33);
+}
+
+/* post photo container */
+/* .Post-picture {
+    height: 295px;
+    width: 524px;
+  } */
+
+/* post photo  */
+.Post-picture > img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
+
+/* likes/comments under photo */
+.Post-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 16px;
+  padding: 10px 0;
+  font-size: 15px;
+  border-bottom: 1px solid rgb(206, 208, 232);
+  color: rgb(101, 103, 107);
+}
+
+/* each container in Post stats */
+.Post-stats > div {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+/* thumbs up icon */
+.Post-stats > div > img {
+  height: 18px;
+  width: 18px;
+}
+
+.Post-stats > div > span {
+  margin-left: 6px;
+  font-size: 15px;
+}
+
+/* container below stats */
+.Post-interaction {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 4px;
+}
+
+/* each interaction container */
+.Post-interaction > div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 12px;
+  font-size: 15px;
+  color: rgb(101, 103, 107);
+  font-weight: 600;
+  height: 34px;
+}
