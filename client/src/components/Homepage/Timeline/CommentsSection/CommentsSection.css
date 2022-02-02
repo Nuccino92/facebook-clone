@@ -1,0 +1,65 @@
+/* container for all comments */
+.CommentsSection {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 16px;
+}
+
+/* container for writing a comment */
+.CommentsSection-write-comment-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+/* profile image in writing comment container */
+.CommentsSection-write-comment-container > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* input and post button container */
+.CommentsSection-write-comment-container > div {
+  display: flex;
+  width: 100%;
+  background-color: rgb(240, 242, 245);
+  border-radius: 50px;
+}
+
+/* write comment input */
+.CommentsSection-write-comment-container > div > input {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(5, 5, 5);
+  outline: none;
+  border-radius: 20px;
+  background-color: rgb(240, 242, 245);
+  border: none;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+/* post comment button */
+.CommentsSection-write-comment-container > div > button {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: none;
+  border: none;
+}
+
+/* button hover */
+.CommentsSection-write-comment-container > div > button:hover {
+  background-color: rgb(66, 103, 178);
+  color: white;
+}
+
+/* button active */
+.CommentsSection-write-comment-container > div > button:active {
+  color: rgb(31, 50, 87);
+}
