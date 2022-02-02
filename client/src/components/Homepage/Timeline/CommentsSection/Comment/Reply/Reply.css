@@ -1,0 +1,40 @@
+.Reply {
+  display: flex;
+  width: 80%;
+  align-self: center;
+}
+
+.Reply > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.Reply > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(240, 242, 245);
+  border-radius: 15px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.Reply > div > h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+}
+
+.Reply > div > p {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(5, 5, 5);
+  line-height: 20px;
+}
+
+.Reply > div > p > span {
+  font-weight: 600;
+}
