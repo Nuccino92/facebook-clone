@@ -1,0 +1,158 @@
+/* container for each displayed comment */
+.Comment > div {
+  display: flex;
+}
+
+/* profile image for each comment */
+.Comment > div > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* container for rest of comment section */
+.Comment-second {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+/* username and comment  */
+.Comment-second-first {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(240, 242, 245);
+  border-radius: 15px;
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 2px;
+}
+
+/* username */
+.Comment-second-first > h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+  background-color: rgb(240, 242, 245);
+  margin-bottom: 1px;
+}
+
+/* comment */
+.Comment-second-first > p {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(5, 5, 5);
+  background-color: rgb(240, 242, 245);
+  word-break: break-all;
+  line-height: 20px;
+}
+
+/* makes .Comment-second-reply-date & .ReplySection flex */
+.Comment-second-second {
+  display: flex;
+  align-content: center;
+  margin-top: 2px;
+}
+
+/* reply button */
+.Comment-second-second > button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin-right: 11px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(101, 103, 107);
+}
+
+.Comment-second-second > p {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(101, 103, 107);
+}
+
+/* reply section */
+
+/* reply section container  */
+.ReplySection {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 8px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* write comment in reply section container */
+.ReplySection-write-comment-container {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 8px 8px;
+  position: relative;
+  width: 100%;
+}
+
+/* profile picture beside input */
+.ReplySection-write-comment-container > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+/* reply input container */
+.ReplySection-write-comment-container > div {
+  display: flex;
+  width: 100%;
+  background-color: rgb(240, 242, 245);
+  border-radius: 15px;
+}
+
+/* write reply label */
+.ReplySection-write-comment-container > div > label {
+  font-size: 13px;
+  text-align: center;
+  align-self: center;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+  padding-left: 10px;
+}
+
+/* write reply input */
+.ReplySection-write-comment-container > div > input {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(5, 5, 5);
+  outline: none;
+  border-radius: 20px;
+  background-color: rgb(240, 242, 245);
+  border: none;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+/* write reply post button */
+.ReplySection-write-comment-container > div > button {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: none;
+  border: none;
+}
+
+/* write reply post button hover */
+.ReplySection-write-comment-container > div > button:hover {
+  background-color: rgb(66, 103, 178);
+  color: white;
+}
+
+/* write reply post button */
+.ReplySection-write-comment-container > div > button:active {
+  color: rgb(31, 50, 87);
+}
