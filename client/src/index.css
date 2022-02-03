@@ -5,8 +5,10 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-body {
+body,
+html {
   background-color: rgb(240, 242, 245);
+  overflow-x: hidden;
 }
 
 ::placeholder {
