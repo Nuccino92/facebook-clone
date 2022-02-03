@@ -1,9 +1,12 @@
 .SideNav {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   flex: 1;
-  padding: 19px 0;
+}
+
+.SideNav > ul {
+  width: 70%;
 }
 
 .SideNav > ul > li {
@@ -31,4 +34,16 @@
 
 .SideNav > ul > li > p {
   padding: 12px 0;
+}
+
+@media (max-width: 1400px) {
+  .SideNav > ul {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .SideNav {
+    display: none;
+  }
 }
