@@ -297,3 +297,22 @@
     display: none;
   }
 }
+
+@media (max-width: 510px) {
+  .nav-right-profile-container {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .searchbar-container {
+    width: 120px;
+  }
+  .searchbar-container > input {
+    width: 70%;
+    border-radius: 50%;
+  }
+  .searchbar-container > input::placeholder {
+    opacity: 0;
+  }
+}
