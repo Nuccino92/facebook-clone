@@ -1,8 +1,11 @@
 .Contacts {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   flex: 1;
+}
+
+.Contacts > ul {
+  width: 60%;
 }
 
 .Contacts > ul > h3 {
@@ -43,4 +46,25 @@
 
 .Contacts > ul > li > p {
   padding: 12px 0;
+}
+
+@media (max-width: 1600px) {
+  .Contacts > ul {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .Contacts {
+    justify-content: flex-start;
+  }
+  .Contacts > ul {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .Contacts {
+    display: none;
+  }
 }
