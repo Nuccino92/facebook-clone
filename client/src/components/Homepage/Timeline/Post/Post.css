@@ -2,9 +2,11 @@
 .Post {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
   background-color: white;
   border-radius: 8px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 /* post header container profile img, name, created at */
