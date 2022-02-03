@@ -8,9 +8,11 @@ const Homepage = () => {
   return (
     <div className="Homepage">
       <Nav />
-      <SideNav />
-      <Timeline />
-      <Contacts />
+      <div className="Homepage-body">
+        <SideNav />
+        <Timeline />
+        <Contacts />
+      </div>
     </div>
   );
 };
