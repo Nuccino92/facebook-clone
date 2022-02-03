@@ -54,7 +54,7 @@ const Contacts = () => {
     },
   ]);
 
-  const handleMouseOver = (e, user, index) => {
+  const handleMouseOver = (user, index) => {
     setDisplayProfile(true);
     setStateIndex(index);
     setProfileCardData(user);
@@ -68,7 +68,7 @@ const Contacts = () => {
           return (
             <li
               key={index}
-              onMouseOver={(e) => handleMouseOver(e, user, index)}
+              onMouseOver={() => handleMouseOver(user, index)}
               onMouseOut={() => setDisplayProfile(false)}
             >
               {displayProfile && stateIndex === index && (
