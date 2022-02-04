@@ -28,3 +28,8 @@ html {
   color: rgb(29, 33, 41);
   opacity: 0.4;
 }
+
+a {
+  text-decoration: none;
+  color: rgb(29, 33, 41);
+}
