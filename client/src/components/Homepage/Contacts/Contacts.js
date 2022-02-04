@@ -63,26 +63,29 @@ const Contacts = () => {
   return (
     <div className="Contacts">
       <ul>
-        <h3>Contacts</h3>
-        {userData.map((user, index) => {
-          return (
-            <li
-              key={index}
-              onMouseOver={() => handleMouseOver(user, index)}
-              onMouseOut={() => setDisplayProfile(false)}
-            >
-              {displayProfile && stateIndex === index && (
-                <ContactsCard
-                  data={profileCardData}
-                  onMouseOver={() => setDisplayProfile(true)}
-                />
-              )}
-              <img src={user.picture} alt="Profile"></img>
-              <span>{user.firstname}&nbsp;</span>
-              <span> {user.lastname}</span>
-            </li>
-          );
-        })}{" "}
+        <h3>Sponsored</h3>
+        <div className="contacts-container">
+          <h3>Contacts</h3>
+          {userData.map((user, index) => {
+            return (
+              <li
+                key={index}
+                onMouseOver={() => handleMouseOver(user, index)}
+                onMouseOut={() => setDisplayProfile(false)}
+              >
+                {displayProfile && stateIndex === index && (
+                  <ContactsCard
+                    data={profileCardData}
+                    onMouseOver={() => setDisplayProfile(true)}
+                  />
+                )}
+                <img src={user.picture} alt="Profile"></img>
+                <span>{user.firstname}&nbsp;</span>
+                <span> {user.lastname}</span>
+              </li>
+            );
+          })}{" "}
+        </div>
       </ul>
     </div>
   );
