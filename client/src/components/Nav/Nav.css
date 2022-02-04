@@ -64,22 +64,31 @@
   height: 56px;
 }
 
+/* react router links */
+.nav-middle > a {
+  height: 100%;
+  padding: 2px;
+}
+
 /* home/profile containers */
-.nav-middle > div {
+.nav-middle > a > div {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  border-bottom: 3px solid blue;
   width: 112px;
   cursor: pointer;
 }
 
+.nav-middle > a > div:hover {
+  background-color: rgb(240, 242, 245);
+  border-radius: 8px;
+}
+
 /* pictures in home/profile containers */
-.nav-middle > div > svg {
+.nav-middle > a > div > svg {
   height: 28px;
   width: 28px;
-  color: blue;
 }
 
 /* right section of navbar */
@@ -90,8 +99,13 @@
   flex: 1;
 }
 
+.nav-right-profile-container:active {
+  transform: scale(0.96);
+  filter: brightness(0.96);
+}
+
 /* profile picture and name container */
-.nav-right-profile-container {
+.nav-right-profile-container > div {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -100,12 +114,12 @@
   margin-right: 20px;
 }
 
-.nav-right-profile-container:hover {
+.nav-right-profile-container > div:hover {
   background-color: rgb(240, 242, 245);
 }
 
 /* profile picture  */
-.nav-right-profile-container > img {
+.nav-right-profile-container > div > img {
   height: 28px;
   width: 28px;
   border-radius: 50%;
@@ -114,7 +128,7 @@
 }
 
 /* profile name */
-.nav-right-profile-container > div {
+.nav-right-profile-container > div > div {
   font-size: 15px;
   font-weight: 600;
 }
@@ -128,17 +142,23 @@
   padding: 10px;
   border-radius: 50%;
   z-index: 10;
-  background-color: rgb(240, 242, 245);
+  background-color: rgb(225, 225, 226);
+}
+
+/* navbar down arrow */
+.down-arrow-container:active {
+  transform: scale(0.96);
+  filter: brightness(0.87);
 }
 
 .down-arrow {
   pointer-events: none;
 }
 
-/* navbar down arrow */
-.down-arrow-container:hover {
+/* .down-arrow-container:focus {
   filter: brightness(0.95);
-}
+  filter: brightness(0.26);
+} */
 
 /* css for dropdown menu */
 
@@ -167,6 +187,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* for react router links */
+.profile-menu-inner > ul > a > li {
+  display: flex;
+  align-items: center;
+  background-color: white;
 }
 
 /* each li in ul for dropdown menu */

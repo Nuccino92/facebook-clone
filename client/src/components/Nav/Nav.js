@@ -6,9 +6,10 @@ import { BsPersonSquare } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
+  const location = useLocation();
   const [userData] = useState({
     firstname: "Anthony",
     lastname: "Nucci",
@@ -35,18 +36,50 @@ const Nav = () => {
         </div>
       </div>
       <div className="nav-middle">
-        <div>
-          <IoMdHome />
-        </div>
-        <div>
-          <BsPersonSquare />
-        </div>
+        <Link
+          to="/"
+          style={
+            location.pathname === "/"
+              ? { borderBottom: "3px solid rgb(24, 119, 242)" }
+              : { borderBottom: "none" }
+          }
+        >
+          <div>
+            <IoMdHome
+              style={
+                location.pathname === "/"
+                  ? { color: "rgb(24, 119, 242)" }
+                  : { color: "rgb(101, 103, 107)" }
+              }
+            />
+          </div>
+        </Link>
+        <Link
+          to="/profile"
+          style={
+            location.pathname === "/profile"
+              ? { borderBottom: "3px solid rgb(24, 119, 242)" }
+              : { borderBottom: "none" }
+          }
+        >
+          <div>
+            <BsPersonSquare
+              style={
+                location.pathname === "/profile"
+                  ? { color: "rgb(24, 119, 242)" }
+                  : { color: "rgb(101, 103, 107)" }
+              }
+            />
+          </div>
+        </Link>
       </div>
       <div className="nav-right">
-        <div className="nav-right-profile-container">
-          <img src={userData.picture} alt="stop"></img>
-          <div>{userData.firstname}</div>
-        </div>{" "}
+        <Link to="/profile" className="nav-right-profile-container">
+          <div>
+            <img src={userData.picture} alt="stop"></img>
+            <div>{userData.firstname}</div>
+          </div>
+        </Link>
         <div
           onClick={handleMenu}
           id="down-arrow"
@@ -58,13 +91,15 @@ const Nav = () => {
           <div className="profile-menu">
             <div className="profile-menu-inner">
               <ul>
-                <li className="profile-menu-first">
-                  <img src={userData.picture} alt="Profile"></img>
-                  <div>
-                    {userData.firstname} {userData.lastname}
-                    <p>See your profile</p>
-                  </div>
-                </li>
+                <Link to="/profile">
+                  <li className="profile-menu-first">
+                    <img src={userData.picture} alt="Profile"></img>
+                    <div>
+                      {userData.firstname} {userData.lastname}
+                      <p>See your profile</p>
+                    </div>
+                  </li>{" "}
+                </Link>
                 <div></div>
                 <li className="profile-menu-second">
                   <div>

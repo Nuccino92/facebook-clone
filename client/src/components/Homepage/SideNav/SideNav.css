@@ -9,6 +9,33 @@
   width: 70%;
 }
 
+.SideNav > ul > a > li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(28, 30, 33);
+  padding: 10px 16px;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.SideNav > ul > a > li:hover {
+  background-color: rgba(212, 211, 211, 0.418);
+}
+
+.SideNav > ul > a > li > img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.SideNav > ul > a > li > p {
+  padding: 12px 0;
+}
+
 .SideNav > ul > li {
   display: flex;
   align-items: center;

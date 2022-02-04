@@ -4,6 +4,7 @@ import mostRecent from "./SideNavImages/most-recent.png";
 import liked from "./SideNavImages/liked.png";
 import oldest from "./SideNavImages/oldest.png";
 import sendMessage from "./SideNavImages/send-message.png";
+import { Link } from "react-router-dom";
 
 import { useState } from "react";
 const SideNav = () => {
@@ -17,15 +18,17 @@ const SideNav = () => {
   return (
     <div className="SideNav">
       <ul>
-        <li>
-          <img
-            className="SideNav-profile-img"
-            src={userData.picture}
-            alt="Profile"
-          ></img>
-          <span>{userData.firstname}&nbsp;</span>
-          <span>{userData.lastname}</span>
-        </li>
+        <Link to="/profile">
+          <li>
+            <img
+              className="SideNav-profile-img"
+              src={userData.picture}
+              alt="Profile"
+            ></img>
+            <span>{userData.firstname}&nbsp;</span>
+            <span>{userData.lastname}</span>
+          </li>
+        </Link>
         <li>
           <img src={findFriends} alt="Find friends"></img>
           <p>Find Friends</p>
