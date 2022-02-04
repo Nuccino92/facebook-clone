@@ -9,10 +9,6 @@
   min-height: max-content;
 }
 
-/* .Timeline:hover {
-  overflow-y: scroll;
-} */
-
 /* Designing for scroll-bar */
 .Timeline::-webkit-scrollbar {
   width: 6px;

@@ -46,12 +46,6 @@
   color: rgb(28, 20, 33);
 }
 
-/* post photo container */
-/* .Post-picture {
-    height: 295px;
-    width: 524px;
-  } */
-
 /* post photo  */
 .Post-picture > img {
   max-width: 100%;
