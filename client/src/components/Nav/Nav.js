@@ -36,38 +36,36 @@ const Nav = () => {
         </div>
       </div>
       <div className="nav-middle">
-        <Link
-          to="/"
-          style={
-            location.pathname === "/"
-              ? { borderBottom: "3px solid rgb(24, 119, 242)" }
-              : { borderBottom: "none" }
-          }
-        >
-          <div>
+        <Link to="/">
+          <div
+            style={
+              location.pathname === "/"
+                ? { boxShadow: "inset 0 -3px rgb(24, 119, 242)" }
+                : { borderBottom: "none" }
+            }
+          >
             <IoMdHome
               style={
                 location.pathname === "/"
                   ? { color: "rgb(24, 119, 242)" }
-                  : { color: "rgb(101, 103, 107)" }
+                  : null
               }
             />
           </div>
         </Link>
-        <Link
-          to="/profile"
-          style={
-            location.pathname === "/profile"
-              ? { borderBottom: "3px solid rgb(24, 119, 242)" }
-              : { borderBottom: "none" }
-          }
-        >
-          <div>
+        <Link to="/profile">
+          <div
+            style={
+              location.pathname === "/profile"
+                ? { boxShadow: "inset 0 -3px rgb(24, 119, 242)" }
+                : null
+            }
+          >
             <BsPersonSquare
               style={
                 location.pathname === "/profile"
                   ? { color: "rgb(24, 119, 242)" }
-                  : { color: "rgb(101, 103, 107)" }
+                  : null
               }
             />
           </div>
