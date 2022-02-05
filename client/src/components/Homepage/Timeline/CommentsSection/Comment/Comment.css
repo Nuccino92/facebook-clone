@@ -109,16 +109,22 @@
   width: 100%;
   background-color: rgb(240, 242, 245);
   border-radius: 15px;
+  padding: 2px 0 2px 16px;
 }
 
 /* write reply label */
 .ReplySection-write-comment-container > div > label {
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 300;
   text-align: center;
   align-self: center;
   font-weight: 600;
   color: rgb(5, 5, 5);
   padding-left: 10px;
+  background-color: rgba(24, 119, 242, 0.2);
+  padding: 0;
+  margin-right: 5px;
 }
 
 /* write reply input */
