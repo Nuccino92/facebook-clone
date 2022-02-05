@@ -33,3 +33,7 @@ a {
   text-decoration: none;
   color: rgb(29, 33, 41);
 }
+
+li {
+  list-style-type: none;
+}
