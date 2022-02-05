@@ -1,12 +1,18 @@
+/* container for cover picture, profile picture, image/name & edit profile/message buttons */
 .ProfileUpper {
   background-color: white;
-  border: 1px solid black;
-  /* display: flex;
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center; */
+  align-items: center;
+  z-index: 5;
+  position: relative;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.13);
 }
 
+/* container for cover photo */
 .ProfileUpper-first {
   width: 940px;
   height: 340px;
@@ -22,6 +28,7 @@
   );
 }
 
+/* cover photo */
 .ProfileUpper-first > img {
   min-width: 100%;
   min-height: 100%;
@@ -29,25 +36,32 @@
   max-height: 100%;
 }
 
+/* container for profile picture, name and edit/ message buttons */
 .ProfileUpper-second {
   display: flex;
-  /* here */
+  width: 876px;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1.6px solid rgba(0, 0, 0, 0.13);
 }
 
-.ProfileUpper-second > div {
-  border: 1px solid black;
+/* left container inside .ProfileUpper-second */
+.ProfileUpper-second-left {
+  display: flex;
 }
 
-.ProfileUpper-second-first {
+/* profile image container */
+.ProfileUpper-second-left-img-container {
   background-color: white;
   border-radius: 50%;
   width: 168px;
   height: 168px;
-  margin-top: -40px;
+  margin-top: -34px;
   padding-top: 4px;
 }
 
-.ProfileUpper-second-first > img {
+/* profile image */
+.ProfileUpper-second-left > div > img {
   border-radius: 50%;
   width: 168px;
   height: 168px;
@@ -56,6 +70,213 @@
   border-right: 0.4px solid rgb(173, 173, 173);
 }
 
-.ProfileUpper-second-second {
+/* container for name and number of friends */
+.ProfileUpper-second-left-name-container {
   margin: 32px 16px 16px;
+}
+
+/* friends */
+.ProfileUpper-second-left-name-container > p {
+  padding-top: 5px;
+  font-size: 17px;
+  color: rgb(101, 103, 107);
+  font-weight: 600;
+  cursor: pointer;
+  width: max-content;
+}
+
+/* friends hover */
+.ProfileUpper-second-left-name-container > p:hover {
+  border-bottom: 1px solid rgb(101, 103, 107);
+}
+
+/* container for button on the right */
+.ProfileUpper-second-right {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  /* border: 1px solid black; */
+  height: 100%;
+  width: 50%;
+}
+
+/* edit profile button container */
+.edit-profile-btn-container {
+  padding: 9px 12px;
+  background-color: rgb(27, 116, 228);
+  line-height: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  margin-bottom: 14px;
+}
+
+.edit-profile-btn-container:hover {
+  -webkit-filter: brightness(0.95); /* Safari/Chrome */
+  filter: brightness(0.95);
+}
+
+.edit-profile-btn-container:active {
+  transform: scale(0.97);
+  -webkit-filter: brightness(0.88); /* Safari/Chrome */
+  filter: brightness(0.88);
+}
+
+/* pencil inside edit button */
+.edit-profile-btn-container > img {
+  margin-right: 9px;
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+}
+
+/* edit profile button */
+.edit-profile-btn-container > button {
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+}
+
+/* container for visiting profile button set, for lining buttons horizontally */
+.visiting-profile-btn-container {
+  display: flex;
+}
+
+/* check users friends button container */
+.profile-friends-btn-container {
+  padding: 9px 12px;
+  background-color: rgb(228, 230, 235);
+  line-height: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  margin: 0 6px 14px 0;
+}
+
+.profile-friends-btn-container:hover {
+  -webkit-filter: brightness(0.95); /* Safari/Chrome */
+  filter: brightness(0.95);
+}
+.profile-friends-btn-container:active {
+  transform: scale(0.97);
+  -webkit-filter: brightness(0.88); /* Safari/Chrome */
+  filter: brightness(0.88);
+}
+
+/* image beside the word friends */
+.profile-friends-btn-container > img {
+  margin-right: 9px;
+}
+
+.profile-friends-btn-container > button {
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgb(28, 30, 33);
+}
+
+/* message button container */
+.profile-message-btn-container {
+  padding: 9px 12px;
+  background-color: rgb(27, 116, 228);
+  line-height: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  margin-bottom: 14px;
+}
+
+.profile-message-btn-container:hover {
+  -webkit-filter: brightness(0.95); /* Safari/Chrome */
+  filter: brightness(0.95);
+}
+
+.profile-message-btn-container:active {
+  transform: scale(0.97);
+  -webkit-filter: brightness(0.88); /* Safari/Chrome */
+  filter: brightness(0.88);
+}
+
+/* pencil inside edit button */
+.profile-message-btn-container > img {
+  margin-right: 9px;
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+}
+
+/* message button */
+.profile-message-btn-container > button {
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+}
+
+.ProfileUpper-third {
+  width: 876px;
+}
+
+.ProfileUpper-nav {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  color: rgb(101, 103, 107);
+}
+
+.ProfileUpper-nav > li {
+  height: 60px;
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ProfileUpper-nav > li:hover {
+  background-color: rgb(240, 242, 245);
+}
+
+@media (max-width: 900px) {
+  .ProfileUpper-second {
+    flex-direction: column;
+    justify-content: initial;
+  }
+
+  .ProfileUpper-second-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ProfileUpper-second-left > div {
+    align-self: center;
+  }
+
+  .ProfileUpper-second-left-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ProfileUpper-second-right {
+    justify-content: center;
+    align-self: center;
+  }
+  .ProfileUpper-third {
+    display: flex;
+    justify-content: center;
+  }
 }
