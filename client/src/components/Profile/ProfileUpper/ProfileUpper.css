@@ -237,7 +237,7 @@
   color: rgb(101, 103, 107);
 }
 
-.ProfileUpper-nav > li {
+.ProfileUpper-nav > a > li {
   height: 60px;
   display: flex;
   padding: 0 16px;
@@ -278,5 +278,34 @@
   .ProfileUpper-third {
     display: flex;
     justify-content: center;
+  }
+}
+
+/* resizing cover photo */
+@media (max-width: 700px) {
+  .ProfileUpper-first {
+    width: 700px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 500px) {
+  .ProfileUpper-first {
+    width: 500px;
+    height: 185px;
+  }
+}
+
+@media (max-width: 350px) {
+  .ProfileUpper-first {
+    width: 350px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 275px) {
+  .ProfileUpper-first {
+    width: 275px;
+    height: 102px;
   }
 }
