@@ -56,14 +56,14 @@ const Nav = () => {
         <Link to="/profile">
           <div
             style={
-              location.pathname === "/profile"
+              location.pathname !== "/"
                 ? { boxShadow: "inset 0 -3px rgb(24, 119, 242)" }
                 : null
             }
           >
             <BsPersonSquare
               style={
-                location.pathname === "/profile"
+                location.pathname !== "/"
                   ? { color: "rgb(24, 119, 242)" }
                   : null
               }
