@@ -201,11 +201,15 @@
 @media (max-width: 440px) {
   .Register {
     transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
   }
 }
 
 @media (max-width: 300px) {
   .Register {
     transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
   }
 }
