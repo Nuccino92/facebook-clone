@@ -7,7 +7,6 @@ import Timeline from "./Timeline/Timeline";
 const Homepage = () => {
   return (
     <div className="Homepage">
-      <Nav />
       <div className="Homepage-body">
         <SideNav />
         <Timeline />
