@@ -4,7 +4,7 @@ import moment from "moment";
 import { BiLike } from "react-icons/bi";
 import { GoComment } from "react-icons/go";
 import { useState } from "react";
-import CommentsSection from "../CommentsSection/CommentsSection";
+import CommentsSection from "./CommentsSection/CommentsSection";
 
 const Post = ({ p }) => {
   const [comments, setComments] = useState(false);
