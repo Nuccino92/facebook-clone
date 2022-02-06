@@ -3,8 +3,10 @@ import "./ProfileUpper.css";
 import editProfilePicture from "./edit-profile.png";
 import messageButtonPicture from "./message-button.png";
 import profileFriendsPicture from "./profile-friends-btn.png";
+import { Link, useLocation } from "react-router-dom";
 
 const ProfileUpper = ({ myProfile }) => {
+  const location = useLocation();
   const [selectedNav, setSelectedNav] = useState("posts");
   const [user] = useState({
     firstname: "Anthony",
@@ -12,8 +14,8 @@ const ProfileUpper = ({ myProfile }) => {
     picture:
       "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
     profile: {
-      //   coverPhoto:
-      //     "https://images.pexels.com/photos/1323206/pexels-photo-1323206.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      coverPhoto:
+        "https://images.pexels.com/photos/1323206/pexels-photo-1323206.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     },
     friends: [
       {
@@ -92,45 +94,51 @@ const ProfileUpper = ({ myProfile }) => {
       {/* nav under ProfileUpper-second */}
       <div className="ProfileUpper-third">
         <ul className="ProfileUpper-nav">
-          <li
-            onClick={() => setSelectedNav("posts")}
-            style={
-              selectedNav === "posts"
-                ? {
-                    boxShadow: " inset 0 -3px rgb(24, 119, 242)",
-                    color: "rgb(24, 119, 242)",
-                  }
-                : null
-            }
-          >
-            Posts
-          </li>
-          <li
-            onClick={() => setSelectedNav("about")}
-            style={
-              selectedNav === "about"
-                ? {
-                    boxShadow: " inset 0 -3px rgb(24, 119, 242)",
-                    color: "rgb(24, 119, 242)",
-                  }
-                : null
-            }
-          >
-            About
-          </li>
-          <li
-            onClick={() => setSelectedNav("friends")}
-            style={
-              selectedNav === "friends"
-                ? {
-                    boxShadow: " inset 0 -3px rgb(24, 119, 242)",
-                    color: "rgb(24, 119, 242)",
-                  }
-                : null
-            }
-          >
-            Friends
-          </li>
+          <Link to={`/profile`}>
+            <li
+              onClick={() => setSelectedNav("posts")}
+              style={
+                selectedNav === "posts"
+                  ? {
+                      boxShadow: " inset 0 -3px rgb(24, 119, 242)",
+                      color: "rgb(24, 119, 242)",
+                    }
+                  : null
+              }
+            >
+              Posts
+            </li>
+          </Link>
+          <Link to={`/profile/about`}>
+            <li
+              onClick={() => setSelectedNav("about")}
+              style={
+                selectedNav === "about"
+                  ? {
+                      boxShadow: " inset 0 -3px rgb(24, 119, 242)",
+                      color: "rgb(24, 119, 242)",
+                    }
+                  : null
+              }
+            >
+              About
+            </li>
+          </Link>
+          <Link to={`/profile/friends`}>
+            <li
+              onClick={() => setSelectedNav("friends")}
+              style={
+                selectedNav === "friends"
+                  ? {
+                      boxShadow: " inset 0 -3px rgb(24, 119, 242)",
+                      color: "rgb(24, 119, 242)",
+                    }
+                  : null
+              }
+            >
+              Friends
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
