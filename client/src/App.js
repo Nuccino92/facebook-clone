@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import Homepage from "./components/Homepage/Homepage";
 import Profile from "./components/Profile/Profile";
 import Nav from "./components/Nav/Nav";
+import FriendRequests from "./components/FriendRequests/FriendRequests";
 
 function App() {
   const [user] = useState(true);
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<LogInForm />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/*" element={<Profile />} />
+          <Route path="/friends" element={<FriendRequests />} />
         </Routes>
       </div>
     </BrowserRouter>
