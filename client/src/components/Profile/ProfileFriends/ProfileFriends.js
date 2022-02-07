@@ -1,7 +1,12 @@
+import Friends from "../About/Friends/Friends";
 import "./ProfileFriends.css";
 
 const ProfileFriends = () => {
-  return <div>friends</div>;
+  return (
+    <div>
+      <Friends />
+    </div>
+  );
 };
 
 export default ProfileFriends;
