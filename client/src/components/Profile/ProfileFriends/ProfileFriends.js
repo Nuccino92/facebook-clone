@@ -1,9 +1,9 @@
-import Friends from "../About/Friends/Friends";
+import Friends from "../Friends/Friends";
 import "./ProfileFriends.css";
 
 const ProfileFriends = () => {
   return (
-    <div>
+    <div className="ProfileFriends">
       <Friends />
     </div>
   );
