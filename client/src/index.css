@@ -37,3 +37,7 @@ a {
 li {
   list-style-type: none;
 }
+
+input[type="file"] {
+  display: none;
+}
