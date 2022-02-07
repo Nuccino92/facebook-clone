@@ -1,7 +1,7 @@
 import "./Timeline.css";
 
 import { useState } from "react";
-import Post from "./Post/Post";
+import Post from "../../Post/Post";
 
 const Timeline = () => {
   const [post, usePost] = useState([
