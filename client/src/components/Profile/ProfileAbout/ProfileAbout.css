@@ -1,0 +1,7 @@
+.ProfileAbout {
+  width: 940px;
+}
+
+.ProfileAbout > * {
+  min-width: 100%;
+}

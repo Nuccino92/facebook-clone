@@ -1,7 +1,14 @@
 import "./ProfileAbout.css";
-
+import React from "react";
+import About from "../About/About";
+import Friends from "../About/Friends/Friends";
 const ProfileAbout = () => {
-  return <div>about</div>;
+  return (
+    <div className="ProfileAbout">
+      <About />
+      <Friends />
+    </div>
+  );
 };
 
 export default ProfileAbout;
