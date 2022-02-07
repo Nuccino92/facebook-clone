@@ -80,11 +80,12 @@ const Contacts = () => {
                   />
                 )}
                 <img src={user.picture} alt="Profile"></img>
-                <span>{user.firstname}&nbsp;</span>
-                <span> {user.lastname}</span>
+                <span>
+                  {user.firstname} {user.lastname}
+                </span>
               </li>
             );
-          })}{" "}
+          })}
         </div>
       </ul>
     </div>
