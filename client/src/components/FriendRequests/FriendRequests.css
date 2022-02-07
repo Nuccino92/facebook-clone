@@ -1,0 +1,107 @@
+.FriendRequests {
+  padding: 30px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.FriendRequests > h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(5, 5, 5);
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.friend-request-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+.friend-request {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 2px 4px 0;
+  border-radius: 8px;
+  width: max-content;
+  align-self: center;
+}
+
+.friend-request > img {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 225px;
+  height: 225px;
+}
+
+.friend-request > div {
+  padding: 12px;
+}
+
+.friend-request > div > h3 {
+  color: rgb(5, 5, 5);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 28px;
+}
+
+.friend-request-confirm {
+  background-color: rgb(27, 116, 220);
+  color: white;
+}
+
+.friend-request-delete {
+  background-color: rgb(228, 230, 235);
+  color: rgb(5, 5, 5);
+  margin-top: 6px;
+}
+
+.friend-request > div > button {
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  height: 36px;
+  padding: 0 12px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.friend-request > div > button:hover {
+  filter: brightness(0.92);
+  -webkit-filter: brightness(0.92);
+}
+
+.friend-request > div > button:active {
+  transform: scale(0.96);
+  -webkit-transform: scale(0.96);
+}
+
+@media (max-width: 1000px) {
+  .friend-request-grid {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .friend-request-grid {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 530px) {
+  .FriendRequests {
+    transform-origin: top;
+    transform: scale(0.88);
+    -webkit-transform: scale(0.88);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.88);
+    -moz-transform-origin: top;
+  }
+
+  .friend-request-grid {
+    grid-template-columns: auto;
+  }
+}
