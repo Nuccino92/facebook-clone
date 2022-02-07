@@ -157,12 +157,7 @@
   pointer-events: none;
 }
 
-/* .down-arrow-container:focus {
-  filter: brightness(0.95);
-  filter: brightness(0.26);
-} */
-
-/* css for dropdown menu */
+/* -------------- dropdown menu---------------- */
 
 /* dropdown menu */
 .profile-menu {
@@ -188,7 +183,6 @@
 .profile-menu-inner > ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 /* for react router links */
