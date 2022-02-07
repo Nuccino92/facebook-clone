@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Friends.css";
 
 const Friends = () => {
@@ -50,7 +51,9 @@ const Friends = () => {
     <div className="Friends">
       <header>
         <h2>Friends</h2>
-        <div>Friend Requests</div>
+        <Link to="/friends">
+          <div>Friend Requests</div>
+        </Link>
       </header>
       <div className="Friends-list-container">
         {userData.map((user, index) => {
