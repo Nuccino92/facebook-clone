@@ -85,11 +85,12 @@ const Nav = () => {
         >
           <AiFillCaretDown />
         </div>
+        {/* --------------dropdown menu-------------- */}
         {profileMenu && (
           <div className="profile-menu">
             <div className="profile-menu-inner">
               <ul>
-                <Link to="/profile">
+                <Link to="/profile" onClick={() => setProfileMenu(false)}>
                   <li className="profile-menu-first">
                     <img src={userData.picture} alt="Profile"></img>
                     <div>
@@ -99,13 +100,18 @@ const Nav = () => {
                   </li>{" "}
                 </Link>
                 <div></div>
-                <li className="profile-menu-second">
-                  <div>
-                    <FaUserFriends />
-                  </div>
-                  <p>View Friend Requests</p>
-                </li>
-                <li className="profile-menu-third">
+                <Link to="/friends" onClick={() => setProfileMenu(false)}>
+                  <li className="profile-menu-second">
+                    <div>
+                      <FaUserFriends />
+                    </div>
+                    <p>View Friend Requests</p>
+                  </li>
+                </Link>
+                <li
+                  className="profile-menu-third"
+                  onClick={() => setProfileMenu(false)}
+                >
                   <div>
                     <GoSignOut />
                   </div>
