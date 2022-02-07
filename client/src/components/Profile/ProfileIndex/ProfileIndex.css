@@ -1,0 +1,163 @@
+/* container for index */
+.ProfileIndex {
+  width: 940px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* left side containing intro and list of friends */
+.ProfileIndex-left {
+  max-width: 40%;
+  width: 40%;
+  margin-right: 10px;
+}
+
+/* container for create post */
+.ProfileCreatePost-container {
+  background-color: white;
+  padding: 12px 16px 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+/* top and bottom div */
+.ProfileCreatePost-container > div {
+  display: flex;
+  align-items: center;
+}
+
+/* profile image */
+.ProfileCreatePost-container > div > img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* input for post */
+.ProfileCreatePost-container > div > input {
+  background-color: rgb(240, 242, 245);
+  border-radius: 20px;
+  color: rgb(28, 30, 33);
+  height: 40px;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* image upload */
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  color: rgb(101, 103, 107);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* -----------------friends portion------------------ */
+.ProfileIndex-friends {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 20px 16px;
+}
+
+/* contains friends h2 and span link to see all friends */
+.ProfileIndex-friends-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ProfileIndex-friends-header > h2 {
+  color: rgb(5, 5, 5);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.ProfileIndex-friends-header > a > span {
+  color: rgb(33, 111, 219);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/* number of friends */
+.ProfileIndex-friends > p {
+  font-size: 17px;
+  color: rgb(101, 103, 107);
+  font-weight: 400;
+  line-height: 20px;
+  margin: 5px 0 16px;
+}
+
+/* list of friends container */
+.ProfileIndex-friends-list-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* each friend container */
+.ProfileIndex-friends-list {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* each friend profile picture */
+.ProfileIndex-friends-list > img {
+  height: 102px;
+  width: 102px;
+  border-radius: 8px;
+}
+
+/* each friend name */
+.ProfileIndex-friends-list > span {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+/* right side containing create post and each users post */
+.ProfileIndex-right {
+  width: 60%;
+  max-width: 60%;
+}
+
+@media (max-width: 900px) {
+  .ProfileIndex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ProfileIndex > * {
+    min-width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .ProfileIndex {
+    transform-origin: top;
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 400px) {
+  .ProfileIndex {
+    transform-origin: top;
+    transform: scale(0.5);
+  }
+}
