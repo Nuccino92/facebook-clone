@@ -3,11 +3,9 @@ import "./ProfileUpper.css";
 import editProfilePicture from "./edit-profile.png";
 import messageButtonPicture from "./message-button.png";
 import profileFriendsPicture from "./profile-friends-btn.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const ProfileUpper = ({ myProfile }) => {
-  const location = useLocation();
-  const [selectedNav, setSelectedNav] = useState("posts");
+const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
   const [user] = useState({
     firstname: "Anthony",
     lastname: "Nucci",
@@ -96,9 +94,9 @@ const ProfileUpper = ({ myProfile }) => {
         <ul className="ProfileUpper-nav">
           <Link to={`/profile`}>
             <li
-              onClick={() => setSelectedNav("posts")}
+              onClick={() => setSelectedTab("posts")}
               style={
-                selectedNav === "posts"
+                selectedTab === "posts"
                   ? {
                       boxShadow: " inset 0 -3px rgb(24, 119, 242)",
                       color: "rgb(24, 119, 242)",
@@ -111,9 +109,9 @@ const ProfileUpper = ({ myProfile }) => {
           </Link>
           <Link to={`/profile/about`}>
             <li
-              onClick={() => setSelectedNav("about")}
+              onClick={() => setSelectedTab("about")}
               style={
-                selectedNav === "about"
+                selectedTab === "about"
                   ? {
                       boxShadow: " inset 0 -3px rgb(24, 119, 242)",
                       color: "rgb(24, 119, 242)",
@@ -126,9 +124,9 @@ const ProfileUpper = ({ myProfile }) => {
           </Link>
           <Link to={`/profile/friends`}>
             <li
-              onClick={() => setSelectedNav("friends")}
+              onClick={() => setSelectedTab("friends")}
               style={
-                selectedNav === "friends"
+                selectedTab === "friends"
                   ? {
                       boxShadow: " inset 0 -3px rgb(24, 119, 242)",
                       color: "rgb(24, 119, 242)",
