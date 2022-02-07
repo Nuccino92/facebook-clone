@@ -10,6 +10,10 @@
   .ProfileAbout {
     transform: scale(0.8);
     transform-origin: top;
+    -webkit-transform-: scale(0.8);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.8);
+    -moz-transform-origin: top;
   }
 }
 
@@ -17,6 +21,10 @@
   .ProfileAbout {
     transform: scale(0.7);
     transform-origin: top;
+    -webkit-transform-: scale(0.7);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: top;
   }
 }
 
@@ -24,6 +32,10 @@
   .ProfileAbout {
     transform: scale(0.6);
     transform-origin: top;
+    -webkit-transform-: scale(0.6);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.6);
+    -moz-transform-origin: top;
   }
 }
 
@@ -31,6 +43,10 @@
   .ProfileAbout {
     transform: scale(0.5);
     transform-origin: top;
+    -webkit-transform-: scale(0.5);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.5);
+    -moz-transform-origin: top;
   }
 }
 
@@ -38,6 +54,10 @@
   .ProfileAbout {
     transform: scale(0.4);
     transform-origin: top;
+    -webkit-transform-: scale(0.4);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.4);
+    -moz-transform-origin: top;
   }
 }
 
@@ -45,5 +65,9 @@
   .ProfileAbout {
     transform: scale(0.3);
     transform-origin: top;
+    -webkit-transform-: scale(0.3);
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.3);
+    -moz-transform-origin: top;
   }
 }
