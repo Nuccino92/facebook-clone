@@ -20,7 +20,7 @@
   line-height: 24px;
 }
 
-.Friends > header > div {
+.Friends > header > a > div {
   color: rgb(33, 111, 219);
   font-size: 17px;
   font-weight: 400;
