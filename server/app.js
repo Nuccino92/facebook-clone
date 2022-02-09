@@ -6,6 +6,7 @@ import cors from "cors";
 import "./config/passport.js";
 
 import registerRoutes from "./routes/register.js";
+import logInRoutes from "./routes/log-in.js";
 
 const app = express();
 
@@ -30,3 +31,4 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
 app.use("/register", registerRoutes);
+app.use("/log-in", logInRoutes);
