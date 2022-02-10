@@ -2,13 +2,17 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../redux/actions/user";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    bio: "",
     birthday: "",
     gender: "",
   });
@@ -17,7 +21,7 @@ const Register = () => {
   const [currentGender, setCurrentGender] = useState(false);
 
   // seving each selected date into state to convert for user data
-  const [birthday, setBirthday] = useState({
+  const [birthdayData, setBirthdayData] = useState({
     month: "01",
     day: "1",
     year: "2022",
@@ -40,7 +44,7 @@ const Register = () => {
   //handles birthday state
   const handleBirthday = (e) => {
     const { name, value } = e.target;
-    setBirthday((prev) => {
+    setBirthdayData((prev) => {
       return { ...prev, [name]: value };
     });
   };
@@ -51,11 +55,11 @@ const Register = () => {
       return {
         ...prev,
         birthday: new Date(
-          `${birthday.month} ${birthday.day} ${birthday.year}`
-        ),
+          `${birthdayData.month} ${birthdayData.day} ${birthdayData.year}`
+        ).toDateString(),
       };
     });
-  }, [birthday]);
+  }, [birthdayData]);
 
   // set birthday on mount to match selects/avoid using blank selects on each
   useEffect(() => {
@@ -69,7 +73,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    dispatch(createUser(userData));
   };
 
   return (
@@ -82,13 +86,13 @@ const Register = () => {
           <div className="Register-form-name-container">
             <input
               type="text"
-              name="firstname"
+              name="firstName"
               placeholder="First name"
               onChange={handleChange}
             ></input>
             <input
               type="text"
-              name="lastname"
+              name="lastName"
               placeholder="Last name"
               onChange={handleChange}
             ></input>
