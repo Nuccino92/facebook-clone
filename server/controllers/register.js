@@ -1,22 +1,29 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+
 import { generateHash } from "../utils/passwords.js";
 
 export const register_Post = async (req, res) => {
+  // I NEED VALIDATION
+  const { email, password, firstName, lastName, bio, birthday, gender } =
+    req.body;
   try {
     const newUser = new User({
-      email: "emaillls",
-      password: generateHash("password123"),
+      email,
+      password: generateHash(password),
+      friends: [],
+      posts: [],
       profile: [
         {
-          firstName: "Billy",
-          lastName: "Joe",
-          bio: "",
-          birthday: "Jan 9, 1992",
-          gender: "Male",
+          firstName,
+          lastName,
+          bio,
+          birthday,
+          gender,
         },
       ],
     });
+
     await newUser.save().then((user) => {
       jwt.sign(
         {
