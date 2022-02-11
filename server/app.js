@@ -8,6 +8,7 @@ import "./config/passport.js";
 
 import registerRoutes from "./routes/register.js";
 import logInRoutes from "./routes/log-in.js";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 
@@ -35,3 +36,4 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 
 app.use("/register", registerRoutes);
 app.use("/log-in", logInRoutes);
+app.use("/auth", authRoutes);

@@ -45,3 +45,22 @@ passport.use(
     }
   )
 );
+
+passport.use(
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      secretOrKey: secretKey,
+    },
+    async (jwtPayload, cb) => {
+      return await User.findById(jwtPayload.id)
+        .then((user) => {
+          if (user) {
+            return cb(null, user);
+          }
+          return cb(null, false);
+        })
+        .catch((err) => console.log(err));
+    }
+  )
+);
