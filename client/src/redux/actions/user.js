@@ -1,7 +1,13 @@
-import { createUserRequest } from "../../api/user";
+import { createUserRequest } from "../../api/register";
+import { logInRequest } from "../../api/logIn";
 import { returnErrors } from "./errors";
 
-import { REGISTER_FAIL, REGISTER_SUCCESS } from "./types";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS,
+} from "./types";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
@@ -14,11 +20,36 @@ export const createUser = (userData) => async (dispatch) => {
     });
     dispatch(
       returnErrors(
+        // pulled out this way because of express validator
         err.response.data[0].msg,
         err.response.status,
         err.response.data[0].param,
         "REGISTER_FAIL"
       )
     );
+  }
+};
+
+export const logInUser = (userData) => async (dispatch) => {
+  try {
+    const res = await logInRequest(userData);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+    dispatch(returnErrors({}, null, null, "LOGIN_SUCCESS"));
+  } catch (err) {
+    dispatch(
+      returnErrors(
+        err.response.data.message,
+        err.response.status,
+        err.response.data.param,
+        "LOGIN_FAIL"
+      )
+    );
+    dispatch({
+      type: LOGIN_FAIL,
+    });
   }
 };
