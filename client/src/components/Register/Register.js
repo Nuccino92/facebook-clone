@@ -343,7 +343,9 @@ const Register = () => {
               ></input>
             )}
           </div>
-          {error.errors && <FormError message={message} />}
+          {error.errors && (
+            <FormError message={message} location={"register"} />
+          )}
           <button
             className="register-submit-btn"
             onClick={(e) => handleSubmit(e)}
