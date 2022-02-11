@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import passport from "passport";
 
 import "./config/passport.js";
 
@@ -12,6 +13,8 @@ const app = express();
 
 dotenv.config();
 const dbURI = process.env.MONGOOSE_URI;
+
+app.use(passport.initialize());
 
 //handles body requests
 app.use(express.json());
