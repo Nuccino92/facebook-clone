@@ -7,7 +7,7 @@ const registerValidation = [
     .escape()
     .not()
     .isEmpty()
-    .withMessage("please enter a first name")
+    .withMessage("Please enter a first name")
     .bail(),
 
   check("lastName")
@@ -15,7 +15,7 @@ const registerValidation = [
     .escape()
     .not()
     .isEmpty()
-    .withMessage("please enter a last name")
+    .withMessage("Please enter a last name")
     .bail(),
 
   check("email")
@@ -23,38 +23,36 @@ const registerValidation = [
     .escape()
     .not()
     .isEmpty()
-    .withMessage("please enter a valid email")
+    .withMessage("Please enter a valid email")
     .bail()
     .isLength({ min: 2, max: 30 })
-    .withMessage("email must be between 2 and 30 characters")
+    .withMessage("Email must be between 2 and 30 characters")
     .bail()
     .isEmail()
-    .withMessage("invalid email adress")
+    .withMessage("Invalid email adress")
     .bail()
     .custom(async (email) => {
       const existing = await User.findOne({
         email: new RegExp("^" + email + "$", "i"),
       });
       if (existing) {
-        return Promise.reject("email taken");
+        return Promise.reject("Email taken");
       }
     })
-    .withMessage("email already taken")
+    .withMessage("Email already taken")
     .bail(),
-  // .withMessage("email already taken")
-  // .bail(),
 
   check("password")
     .trim()
     .not()
     .isEmpty()
-    .withMessage("please enter a password")
+    .withMessage("Please enter a password")
     .bail()
     .isLength({ min: 5, max: 25 })
-    .withMessage("password must be at least 5 characters")
+    .withMessage("Password must be at least 5 characters")
     .bail()
     .matches(/\d/)
-    .withMessage("password must contain a number")
+    .withMessage("Password must contain a number")
     .bail(),
 
   check("gender")
@@ -62,10 +60,10 @@ const registerValidation = [
     .escape()
     .not()
     .isEmpty()
-    .withMessage("please select a gender")
+    .withMessage("Please select a gender")
     .bail()
     .isLength({ max: 30 })
-    .withMessage("gender is too long")
+    .withMessage("Gender is too long")
     .bail(),
 
   (req, res, next) => {
