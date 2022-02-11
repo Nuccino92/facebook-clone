@@ -1,13 +1,28 @@
-import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logInUser } from "../../redux/actions/user";
 import Footer from "../Footer/Footer";
+import FormError from "../FormError/FormError";
 
 const LogInForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
+
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
+  const [error, setError] = useState({
+    errors: false,
+    message: "",
+    param: "",
+    id: null,
+  });
+
+  const { message, param, id } = useSelector((state) => state.errorReducer);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +32,32 @@ const LogInForm = () => {
         [name]: value,
       };
     });
+    setError({
+      errors: false,
+      message: "",
+      param: "",
+      id: null,
+    });
   };
 
   const handleSubmit = (e) => {
-    console.log(userData);
     e.preventDefault();
+    dispatch(logInUser(userData));
   };
+
+  useEffect(() => {
+    if (id === "LOGIN_FAIL") {
+      setError({
+        errors: true,
+        message: message,
+        param: param,
+        id: id,
+      });
+    }
+    if (id === "LOGIN_SUCCESS") {
+      navigate("/");
+    }
+  }, [id, message, navigate, param]);
 
   return location.pathname === "/login" ? (
     <div className="LogInForm-container">
@@ -42,6 +77,9 @@ const LogInForm = () => {
           placeholder="Password"
           onChange={handleChange}
         ></input>
+        {error.errors && (
+          <FormError message={error.message} location={"login"} />
+        )}
         <button type="submit" className="LogIn-submit-btn">
           Log In
         </button>
@@ -67,6 +105,7 @@ const LogInForm = () => {
         placeholder="Password"
         onChange={handleChange}
       ></input>
+      {error.errors && <FormError message={error.message} location={"login"} />}
       <button className="LogIn-submit-btn">Log In</button>
       <div className="guest-account-link">Use Guest Account</div>
       <div className="LogIn-form-break"></div>
