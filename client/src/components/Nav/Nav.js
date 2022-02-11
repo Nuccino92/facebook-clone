@@ -7,8 +7,11 @@ import { FaUserFriends } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../redux/actions/user";
 
 const Nav = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [userData] = useState({
     firstname: "Anthony",
@@ -108,9 +111,14 @@ const Nav = () => {
                     <p>View Friend Requests</p>
                   </li>
                 </Link>
+
                 <li
                   className="profile-menu-third"
-                  onClick={() => setProfileMenu(false)}
+                  onClick={() => {
+                    setProfileMenu(false);
+                    // logout user
+                    dispatch(logOutUser());
+                  }}
                 >
                   <div>
                     <GoSignOut />
