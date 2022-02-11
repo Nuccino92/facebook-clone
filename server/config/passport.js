@@ -28,11 +28,13 @@ passport.use(
           if (!user) {
             return cb(null, false, {
               message: "Incorrect email or password",
+              param: null,
             });
           }
           if (!compareHash(password, user.password)) {
             return cb(null, false, {
               message: "Incorrect email or password",
+              param: null,
             });
           }
           return cb(null, user, { message: "Logged in successfully" });
