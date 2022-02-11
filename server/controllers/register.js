@@ -4,7 +4,6 @@ import User from "../models/User.js";
 import { generateHash } from "../utils/passwords.js";
 
 export const register_Post = async (req, res) => {
-  // I NEED VALIDATION
   const { email, password, firstName, lastName, bio, birthday, gender } =
     req.body;
   try {
