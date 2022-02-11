@@ -7,7 +7,14 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  USER_LOADING,
+  USER_LOADED,
+  AUTH_ERR,
+  LOGOUT_SUCCESS,
+  CLEAR_ERRORS,
 } from "./types";
+import { authRequest } from "../../api/auth";
+import { tokenConfig } from "../../config/token";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
@@ -51,5 +58,28 @@ export const logInUser = (userData) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL,
     });
+  }
+};
+
+export const loadUser = () => async (dispatch, getState) => {
+  dispatch({ type: USER_LOADING });
+
+  try {
+    const res = await authRequest(tokenConfig(getState));
+    dispatch({ type: USER_LOADED, payload: res.data });
+  } catch (err) {
+    dispatch(
+      returnErrors(err.response.data, err.response.status, "auth", "AUTH_ERR")
+    );
+  }
+  dispatch({ type: AUTH_ERR });
+};
+
+export const logOutUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOGOUT_SUCCESS });
+    dispatch({ type: CLEAR_ERRORS });
+  } catch (err) {
+    console.log(err);
   }
 };
