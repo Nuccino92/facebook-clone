@@ -1,12 +1,14 @@
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import FormError from "../FormError/FormError";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/actions/user";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -16,6 +18,15 @@ const Register = () => {
     birthday: "",
     gender: "",
   });
+
+  const [error, setError] = useState({
+    errors: false,
+    message: "",
+    param: "",
+    id: null,
+  });
+
+  const { message, param, id } = useSelector((state) => state.errorReducer);
 
   // for the custom input to appear
   const [currentGender, setCurrentGender] = useState(false);
@@ -39,6 +50,13 @@ const Register = () => {
         [name]: value,
       };
     });
+
+    setError({
+      errors: false,
+      message: "",
+      param: "",
+      id: null,
+    });
   };
 
   //handles birthday state
@@ -47,7 +65,32 @@ const Register = () => {
     setBirthdayData((prev) => {
       return { ...prev, [name]: value };
     });
+    setError({
+      errors: false,
+      message: "",
+      param: "",
+      id: null,
+    });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createUser(userData));
+  };
+
+  useEffect(() => {
+    if (id === "REGISTER_FAIL") {
+      setError({
+        errors: true,
+        message: message,
+        param: param,
+        id: id,
+      });
+    }
+    if (id === "REGISTER_SUCCESS") {
+      navigate("/");
+    }
+  }, [id, message, navigate, param]);
 
   // everytime birthday state is updated, setUserData birthday to new date w/ those values
   useEffect(() => {
@@ -71,11 +114,6 @@ const Register = () => {
     });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createUser(userData));
-  };
-
   return (
     <div className="Register">
       <h1>facebook</h1>
@@ -89,12 +127,16 @@ const Register = () => {
               name="firstName"
               placeholder="First name"
               onChange={handleChange}
+              style={
+                error.param === "firstName" ? { borderColor: "red" } : null
+              }
             ></input>
             <input
               type="text"
               name="lastName"
               placeholder="Last name"
               onChange={handleChange}
+              style={error.param === "lastName" ? { borderColor: "red" } : null}
             ></input>
           </div>
           <input
@@ -102,12 +144,14 @@ const Register = () => {
             name="email"
             placeholder="Email adress"
             onChange={handleChange}
+            style={error.param === "email" ? { borderColor: "red" } : null}
           ></input>
           <input
             type="password"
             name="password"
             placeholder="New password"
             onChange={handleChange}
+            style={error.param === "password" ? { borderColor: "red" } : null}
           ></input>
           <div className="Register-form-birthday-container">
             <label htmlFor="birthday">Birthday</label>
@@ -249,7 +293,9 @@ const Register = () => {
           <div className="gender-container">
             <label htmlFor="gender">Gender</label>
             <div className="gender-select-container">
-              <div>
+              <div
+                style={error.param === "gender" ? { borderColor: "red" } : null}
+              >
                 <label htmlFor="female">Female</label>
                 <input
                   type="radio"
@@ -260,7 +306,9 @@ const Register = () => {
                   checked={userData.gender === "female"}
                 />
               </div>
-              <div>
+              <div
+                style={error.param === "gender" ? { borderColor: "red" } : null}
+              >
                 <label htmlFor="male">Male</label>
                 <input
                   type="radio"
@@ -271,7 +319,9 @@ const Register = () => {
                   checked={userData.gender === "male"}
                 />
               </div>
-              <div>
+              <div
+                style={error.param === "gender" ? { borderColor: "red" } : null}
+              >
                 <label htmlFor="custom">Custom</label>
                 <input
                   type="radio"
@@ -293,6 +343,7 @@ const Register = () => {
               ></input>
             )}
           </div>
+          {error.errors && <FormError message={message} />}
           <button
             className="register-submit-btn"
             onClick={(e) => handleSubmit(e)}
