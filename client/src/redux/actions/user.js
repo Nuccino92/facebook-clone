@@ -14,7 +14,7 @@ import {
   CLEAR_ERRORS,
 } from "./types";
 import { authRequest } from "../../api/auth";
-import { tokenConfig } from "../../config/token";
+import { tokenConfig, tokenRefreshConfig } from "../../config/token";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
@@ -40,7 +40,6 @@ export const createUser = (userData) => async (dispatch) => {
 export const logInUser = (userData) => async (dispatch) => {
   try {
     const res = await logInRequest(userData);
-
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -62,17 +61,22 @@ export const logInUser = (userData) => async (dispatch) => {
 };
 
 export const loadUser = () => async (dispatch, getState) => {
+  const token = localStorage.getItem("token");
   dispatch({ type: USER_LOADING });
-
   try {
-    const res = await authRequest(tokenConfig(getState));
-    dispatch({ type: USER_LOADED, payload: res.data });
+    if (token !== null) {
+      const res = await authRequest(tokenRefreshConfig(token));
+      dispatch({ type: USER_LOADED, payload: res.data });
+    } else {
+      const res = await authRequest(tokenConfig(getState));
+      dispatch({ type: USER_LOADED, payload: res.data });
+    }
   } catch (err) {
     dispatch(
       returnErrors(err.response.data, err.response.status, "auth", "AUTH_ERR")
     );
+    dispatch({ type: AUTH_ERR });
   }
-  dispatch({ type: AUTH_ERR });
 };
 
 export const logOutUser = () => async (dispatch) => {
