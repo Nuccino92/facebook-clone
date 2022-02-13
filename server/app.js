@@ -9,6 +9,7 @@ import "./config/passport.js";
 import registerRoutes from "./routes/register.js";
 import logInRoutes from "./routes/log-in.js";
 import authRoutes from "./routes/auth.js";
+import postsRoutes from "./routes/posts.js";
 
 const app = express();
 
@@ -16,7 +17,7 @@ dotenv.config();
 const dbURI = process.env.MONGOOSE_URI;
 
 app.use(passport.initialize());
-
+app.use("/uploads", express.static("uploads"));
 //handles body requests
 app.use(express.json());
 
@@ -37,3 +38,4 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 app.use("/register", registerRoutes);
 app.use("/log-in", logInRoutes);
 app.use("/auth", authRoutes);
+app.use("/posts", postsRoutes);
