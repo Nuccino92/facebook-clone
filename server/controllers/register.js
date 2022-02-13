@@ -31,18 +31,13 @@ export const register_Post = async (req, res) => {
         process.env.JWT_SECRET,
         // 24 hours
         { expiresIn: 86400 },
-        (err, token) => {
+        async (err, token) => {
           if (err) throw err;
-          res.status(201).json({
-            token,
-            user: {
-              id: user.id,
-              email: user.email,
-              friends: user.friends,
-              posts: user.posts,
-              profile: user.profile,
-            },
-          });
+          await User.findById(user.id)
+            .select("-password")
+            .then((user) => {
+              res.status(201).json({ token, user });
+            });
         }
       );
     });
