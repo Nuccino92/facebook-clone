@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import passport from "passport";
+import User from "../models/User.js";
 
 export const logIn_Post = async (req, res, next) => {
   const { email, password } = req.body;
@@ -40,16 +41,13 @@ export const logIn_Post = async (req, res, next) => {
         process.env.JWT_SECRET,
         // 24 hours
         { expiresIn: 86400 },
-        (err, token) => {
+        async (err, token) => {
           if (err) throw err;
-          res.status(201).json({
-            token,
-            user: {
-              id: user.id,
-              email: user.email,
-              username: user.username,
-            },
-          });
+          await User.findById(user.id)
+            .select("-password")
+            .then((user) => {
+              res.status(201).json({ token, user });
+            });
         }
       );
     });
