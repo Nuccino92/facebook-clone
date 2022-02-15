@@ -19,7 +19,7 @@ export const posts_Post = async (req, res) => {
       },
       { new: true }
     ).then((user) => {
-      return res.status(201).json({ user, newPost });
+      return res.status(201).json({ user });
     });
   });
 };
