@@ -51,6 +51,9 @@ const User = mongoose.model(
             default:
               "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
           },
+          coverPhoto: {
+            type: String,
+          },
         },
       ],
     },
