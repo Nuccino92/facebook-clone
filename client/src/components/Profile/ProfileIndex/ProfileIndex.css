@@ -61,6 +61,29 @@
   line-height: 20px;
 }
 
+.ProfileCreatePost-container > div > button {
+  background-color: rgb(27, 116, 228);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.ProfileCreatePost-container > div > button:hover {
+  filter: brightness(0.96);
+}
+
+.ProfileCreatePost-container > div > button:active {
+  filter: brightness(0.96);
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.96);
+}
+
 /* -----------------friends portion------------------ */
 .ProfileIndex-friends {
   background-color: white;
