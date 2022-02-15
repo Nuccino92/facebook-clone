@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Friends.css";
+import FriendsDropdown from "./FriendsDropdown/FriendsDropdown";
 
-const Friends = () => {
+const Friends = ({ user, myProfile }) => {
   const [userData] = useState([
     {
       firstname: "Demetrius",
@@ -47,13 +48,16 @@ const Friends = () => {
     },
   ]);
 
+  // console.log(user, myProfile);
   return (
     <div className="Friends">
       <header>
         <h2>Friends</h2>
-        <Link to="/friends">
-          <div>Friend Requests</div>
-        </Link>
+        {myProfile && (
+          <Link to={`/friends/${user._id}`}>
+            <div>Friend Requests</div>
+          </Link>
+        )}
       </header>
       <div className="Friends-list-container">
         {userData.map((user, index) => {
@@ -65,7 +69,11 @@ const Friends = () => {
                   {user.firstname} {user.lastname}
                 </span>
               </div>
-              <button>Add friend</button>
+              {!myProfile ? (
+                <button>Add friend</button>
+              ) : (
+                <FriendsDropdown user={user} />
+              )}
             </div>
           );
         })}{" "}
