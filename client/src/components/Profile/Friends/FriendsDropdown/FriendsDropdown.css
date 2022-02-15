@@ -1,0 +1,15 @@
+.FriendsDropdown {
+  text-align: center;
+}
+
+.FriendsDropdown > button {
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 17px;
+  display: inline-flex;
+  justify-content: center; /* center the content horizontally */
+  align-items: center; /* center the content vertically */
+  align-content: center;
+  background: none;
+  border: none;
+}
