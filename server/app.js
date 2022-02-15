@@ -10,6 +10,7 @@ import registerRoutes from "./routes/register.js";
 import logInRoutes from "./routes/log-in.js";
 import authRoutes from "./routes/auth.js";
 import postsRoutes from "./routes/posts.js";
+import userRoutes from "./routes/user.js";
 
 const app = express();
 
@@ -39,3 +40,4 @@ app.use("/register", registerRoutes);
 app.use("/log-in", logInRoutes);
 app.use("/auth", authRoutes);
 app.use("/posts", postsRoutes);
+app.use("/user/", userRoutes);
