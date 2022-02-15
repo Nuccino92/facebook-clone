@@ -10,6 +10,7 @@ import Nav from "./components/Nav/Nav";
 import FriendRequests from "./components/FriendRequests/FriendRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/actions/user";
+import NotFound from "./components/ErrorPages/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,18 +31,18 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<LogInForm />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile/*" element={<Profile />} />
-            <Route path="/friends" element={<FriendRequests />} />
+            <Route path="/profile/:id/*" element={<Profile />} />
+            <Route path="/friends/*" element={<FriendRequests />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         ) : (
           <Routes>
             <Route path="/" element={<LogIn />} />
             <Route path="/login" element={<LogInForm />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile/*" element={<LogIn />} />
-            <Route path="/friends" element={<LogIn />} />
+            <Route path="/*" element={<LogIn />} />
           </Routes>
-        )}{" "}
+        )}
         {/* spaces content below fixed header */}
       </div>
     </BrowserRouter>
