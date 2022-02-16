@@ -40,4 +40,4 @@ app.use("/register", registerRoutes);
 app.use("/log-in", logInRoutes);
 app.use("/auth", authRoutes);
 app.use("/posts", postsRoutes);
-app.use("/user/", userRoutes);
+app.use("/user", userRoutes);
