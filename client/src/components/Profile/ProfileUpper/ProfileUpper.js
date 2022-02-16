@@ -1,49 +1,21 @@
-import { useState } from "react";
 import "./ProfileUpper.css";
 import editProfilePicture from "./edit-profile.png";
 import messageButtonPicture from "./message-button.png";
 import profileFriendsPicture from "./profile-friends-btn.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
-  const [user] = useState({
-    firstname: "Anthony",
-    lastname: "Nucci",
-    picture:
-      "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-    profile: {
-      coverPhoto:
-        "https://images.pexels.com/photos/1323206/pexels-photo-1323206.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    },
-    friends: [
-      {
-        name: "John",
-        picture:
-          "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      },
-      {
-        name: "Larry",
-        picture:
-          "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      },
-      {
-        name: "Denzel",
-        picture:
-          "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      },
-      {
-        name: "Scottie Barnes",
-        picture:
-          "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      },
-    ],
-  });
+const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
+  const { myProfile, viewedUser } = useSelector(
+    (state) => state.viewedUserReducer
+  );
+
   return (
     <div className="ProfileUpper">
       {/* coverPhoto container */}
       <div className="ProfileUpper-first">
-        {user.profile.coverPhoto && (
-          <img src={user.profile.coverPhoto} alt="Profile cover"></img>
+        {viewedUser.profile[0].coverPhoto && (
+          <img src={viewedUser.profile[0].coverPhoto} alt="Profile cover"></img>
         )}
       </div>
       {/* profile picture,  name/friends & buttons container */}
@@ -51,24 +23,24 @@ const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
         <div className="ProfileUpper-second-left">
           {/* profile image container */}
           <div className="ProfileUpper-second-left-img-container">
-            <img src={user.picture} alt="Profile"></img>
+            <img src={viewedUser.profile[0].profilePicture} alt="Profile"></img>
           </div>
           {/* name/friends container */}
           <div className="ProfileUpper-second-left-name-container">
             <h1>
-              {user.firstname} {user.lastname}
+              {viewedUser.profile[0].firstName} {viewedUser.profile[0].lastName}
             </h1>
             {/* if only 1 friend use singular word */}
-            {user.friends.length === 1 ? (
-              <p>{user.friends.length} Friend</p>
+            {viewedUser.friends.length === 1 ? (
+              <p>{viewedUser.friends.length} Friend</p>
             ) : (
-              <p> {user.friends.length} Friends</p>
+              <p> {viewedUser.friends.length} Friends</p>
             )}
           </div>
         </div>
         {/* buttons to the right of name */}
         <div className="ProfileUpper-second-right">
-          {/* display certain buttons depending on if users profile or not */}
+          {/* display certain buttons depending on if viewedUsers profile or not */}
           {myProfile ? (
             <div className="edit-profile-btn-container">
               <img src={editProfilePicture} alt="pencil"></img>
@@ -92,7 +64,7 @@ const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
       {/* nav under ProfileUpper-second */}
       <div className="ProfileUpper-third">
         <ul className="ProfileUpper-nav">
-          <Link to={`/profile`}>
+          <Link to={`/profile/${viewedUser._id}`}>
             <li
               onClick={() => setSelectedTab("posts")}
               style={
@@ -107,7 +79,7 @@ const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
               Posts
             </li>
           </Link>
-          <Link to={`/profile/about`}>
+          <Link to={`/profile/${viewedUser._id}/about`}>
             <li
               onClick={() => setSelectedTab("about")}
               style={
@@ -122,7 +94,7 @@ const ProfileUpper = ({ myProfile, selectedTab, setSelectedTab }) => {
               About
             </li>
           </Link>
-          <Link to={`/profile/friends`}>
+          <Link to={`/profile/${viewedUser._id}/friends`}>
             <li
               onClick={() => setSelectedTab("friends")}
               style={

@@ -4,23 +4,22 @@ import { useRef, useState } from "react";
 import { FcStackOfPhotos } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import About from "../About/About";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../../redux/actions/post";
 import FormError from "../../FormError/FormError";
 
-const ProfileIndex = ({
-  myProfile,
-  setSelectedTab,
-  user: focusedUser,
-  friendStatus,
-}) => {
+const ProfileIndex = ({ setSelectedTab }) => {
   const dispatch = useDispatch();
 
   const formRef = useRef(null);
 
+  const { myProfile, viewedUser } = useSelector(
+    (state) => state.viewedUserReducer
+  );
+
   const [createPostData, setCreatePostData] = useState({
     content: null,
-    user: focusedUser,
+    user: viewedUser,
     picture: null,
   });
 
@@ -57,7 +56,7 @@ const ProfileIndex = ({
 
       setCreatePostData({
         content: null,
-        user: focusedUser,
+        user: viewedUser,
         picture: null,
       });
     }
@@ -226,25 +225,21 @@ const ProfileIndex = ({
       {/* ---------left side index------------ */}
       <div className="ProfileIndex-left">
         {/* -------------------intro portion-----------------------  */}
-        <About
-          user={focusedUser}
-          friendStatus={friendStatus}
-          myProfile={myProfile}
-        />
+        <About />
         {/* -----------------friends portion------------------ */}
         <div className="ProfileIndex-friends">
           <div className="ProfileIndex-friends-header">
             <h2>Friends</h2>
             <Link
-              to={`/profile/${focusedUser._id}/friends`}
+              to={`/profile/${viewedUser._id}/friends`}
               onClick={() => setSelectedTab("friends")}
             >
               <span>See all friends</span>
             </Link>
           </div>
-          <p>{focusedUser.friends.length} Friends</p>
+          <p>{viewedUser.friends.length} Friends</p>
           <div className="ProfileIndex-friends-list-container">
-            {focusedUser.friends.map((user, index) => {
+            {viewedUser.friends.map((user, index) => {
               return (
                 <div key={index} className="ProfileIndex-friends-list">
                   <img src={user.picture} alt="Profile"></img>

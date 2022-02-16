@@ -1,8 +1,14 @@
 import "./About.css";
 import { BsPersonFill, BsGenderAmbiguous } from "react-icons/bs";
 import { FaBirthdayCake, FaUserFriends } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const About = () => {
+  const { myProfile, viewedUser, friends } = useSelector(
+    (state) => state.viewedUserReducer
+  );
+  const { profile } = viewedUser;
+
   return (
     <div className="About">
       <h2>Intro</h2>
@@ -12,29 +18,36 @@ const About = () => {
             <BsPersonFill size={20} />
             &#160; About me
           </div>
-          <p>this is my bio</p>
+          <p>{profile[0].bio}</p>
         </li>
         <li>
           <div>
             <FaBirthdayCake size={20} />
             &#160; Birthday
           </div>
-          <p>Sat Jan 01 2022 </p>
+
+          <p>{new Date(profile[0].birthday).toDateString()}</p>
         </li>
         <li>
           <div>
             <BsGenderAmbiguous size={20} />
             &#160; Gender
           </div>
-          <p>Male </p>
+          <p>
+            {/* capitalize first letter */}
+            {profile[0].gender.charAt(0).toUpperCase() +
+              profile[0].gender.slice(1)}
+          </p>
         </li>
-        <li>
-          <div>
-            <FaUserFriends size={20} />
-            &#160; Friend Status
-          </div>
-          <p>Not Friends :(</p>
-        </li>
+        {!myProfile && (
+          <li>
+            <div>
+              <FaUserFriends size={20} />
+              &#160; Friend Status
+            </div>
+            <p>{friends ? "Friends :)" : "Not friends :("}</p>
+          </li>
+        )}
       </ul>
     </div>
   );
