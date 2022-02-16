@@ -6,10 +6,28 @@
   cursor: pointer;
   font-weight: 900;
   font-size: 17px;
-  display: inline-flex;
-  justify-content: center; /* center the content horizontally */
-  align-items: center; /* center the content vertically */
-  align-content: center;
   background: none;
   border: none;
+}
+
+.FriendsDropdown-active {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  position: fixed;
+  margin: 75px 0 0 0;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.FriendsDropdown-active > div {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(5, 5, 5);
+  margin: 0 8px;
+  padding: 8px;
+  width: 244px;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
