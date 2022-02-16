@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { getUserRequest } from "../../api/user";
+import { getUserFriendsRequest, getUserRequest } from "../../api/user";
+// import { returnErrors } from "./errors";
 
 import {
   GET_VIEWED_USER,
@@ -7,6 +7,7 @@ import {
   VIEWED_USER_LOADED,
   GET_FRIEND_STATUS,
   MY_PROFILE,
+  GET_FRIENDS_INFO,
 } from "./types";
 
 export const getUser = (id) => async (dispatch) => {
@@ -32,4 +33,15 @@ export const checkFriendStatus = (data) => {
     type: GET_FRIEND_STATUS,
     payload: data,
   };
+};
+
+export const getFriendsInfo = (id, friends) => async (dispatch) => {
+  try {
+    const res = await getUserFriendsRequest(id, friends);
+
+    dispatch({ type: GET_FRIENDS_INFO, payload: res.data });
+  } catch (err) {
+    console.log(err.response);
+    // returnErrors
+  }
 };

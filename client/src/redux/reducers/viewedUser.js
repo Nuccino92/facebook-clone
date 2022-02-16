@@ -4,6 +4,7 @@ import {
   VIEWED_USER_LOADED,
   GET_FRIEND_STATUS,
   MY_PROFILE,
+  GET_FRIENDS_INFO,
 } from "../actions/types";
 
 const initialState = {
@@ -11,8 +12,10 @@ const initialState = {
   viewedUser: null,
   friends: null,
   myProfile: null,
+  friendsInfo: null,
 };
 
+// the user being viewed, this user could the the logged in user as well
 const viewedUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case VIEWED_USER_LOADING: {
@@ -45,6 +48,12 @@ const viewedUserReducer = (state = initialState, action) => {
         friends: action.payload[0].some(
           (friend) => friend === action.payload[1]
         ),
+      };
+    }
+    case GET_FRIENDS_INFO: {
+      return {
+        ...state,
+        friendsInfo: action.payload,
       };
     }
     default:
