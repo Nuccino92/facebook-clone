@@ -7,57 +7,13 @@ import FriendsDropdown from "./FriendsDropdown/FriendsDropdown";
 const Friends = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const { myProfile, viewedUser } = useSelector(
+  const { myProfile, viewedUser, friendsInfo } = useSelector(
     (state) => state.viewedUserReducer
   );
 
   const handleActiveDropdown = (index) => {
     setActiveDropdown(index);
   };
-
-  const [userData] = useState([
-    {
-      firstname: "Demetrius",
-      email: "mauris@protonmail.org",
-      lastname: "Allen Lambert",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Cruz",
-      email: "dis.parturient.montes@aol.couk",
-      lastname: "Bertha",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "George",
-      email: "laoreet.ipsum.curabitur@icloud.ca",
-      lastname: "Margaret",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Warren",
-      email: "accumsan@protonmail.com",
-      lastname: "Pascale",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-
-    {
-      firstname: "Gabriel",
-      email: "vulputate@hotmail.couk",
-      lastname: "Hayes",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-  ]);
 
   return (
     <div className="Friends">
@@ -70,20 +26,23 @@ const Friends = () => {
         )}
       </header>
       <div className="Friends-list-container">
-        {userData.map((user, index) => {
+        {friendsInfo.map((user, index) => {
+          const { profile } = user;
           return (
             <div key={index}>
               <div>
-                <img src={user.picture} alt="Profile"></img>
+                <Link to={`/profile/${user._id}`}>
+                  {" "}
+                  <img src={profile[0].profilePicture} alt="Profile"></img>
+                </Link>
                 <span>
-                  {user.firstname} {user.lastname}
+                  {profile[0].firstName} {profile[0].lastName}
                 </span>
               </div>
               {!myProfile ? (
                 <button>Add friend</button>
               ) : (
                 <FriendsDropdown
-                  user={user}
                   index={index}
                   handleActiveDropdown={handleActiveDropdown}
                   activeDropdown={activeDropdown}
