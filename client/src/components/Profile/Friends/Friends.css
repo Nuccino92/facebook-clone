@@ -48,7 +48,7 @@
   align-items: center;
 }
 
-.Friends-list-container > div > div > img {
+.Friends-list-container > div > div > a > img {
   height: 80px;
   width: 80px;
   border-radius: 8px;
