@@ -12,9 +12,11 @@ export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 //posts
 export const CREATE_POST = "CREATE_POST";
-// focusedUser
+// viewedUser
 export const GET_VIEWED_USER = "GET_VIEWEDEDUSER";
 export const VIEWED_USER_LOADING = "VIEWED_USER_LOADING";
 export const VIEWED_USER_LOADED = "VIEWED_USER_LOADED";
 export const GET_FRIEND_STATUS = "GET_FRIEND_STATUS";
 export const MY_PROFILE = "MY_PROFILE";
+export const GET_FRIENDS_INFO = "GET_FRIENDS_INFO";
+export const GET_POSTS = "GET_POSTS";
