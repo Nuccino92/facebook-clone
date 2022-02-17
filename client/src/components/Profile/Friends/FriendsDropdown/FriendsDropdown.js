@@ -1,20 +1,27 @@
-import { useState } from "react";
 import "./FriendsDropdown.css";
+import { HiOutlineUserRemove } from "react-icons/hi";
 
-const FriendsDropdown = ({ user }) => {
-  const [active, setActive] = useState(false);
-
-  console.log(user);
-
-  const handleChange = () => {
-    setActive((prev) => {
-      return !prev;
-    });
+const FriendsDropdown = ({
+  user,
+  index,
+  activeDropdown,
+  handleActiveDropdown,
+}) => {
+  const handleClick = () => {
+    console.log(user);
   };
 
   return (
     <div className="FriendsDropdown">
-      <button onClick={handleChange}>...</button>
+      <button onClick={() => handleActiveDropdown(index)}>...</button>
+      {activeDropdown === index && (
+        <div className="FriendsDropdown-active" onClick={() => handleClick()}>
+          <div>
+            <HiOutlineUserRemove size={20} style={{ marginRight: "10px" }} />
+            Unfriend
+          </div>
+        </div>
+      )}
     </div>
   );
 };
