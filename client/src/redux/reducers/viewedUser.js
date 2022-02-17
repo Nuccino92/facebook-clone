@@ -5,6 +5,7 @@ import {
   GET_FRIEND_STATUS,
   MY_PROFILE,
   GET_FRIENDS_INFO,
+  GET_POSTS,
 } from "../actions/types";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   viewedUser: null,
   friends: null,
   myProfile: null,
-  friendsInfo: null,
+  friendsInfo: [],
+  postsInfo: [],
 };
 
 // the user being viewed, this user could the the logged in user as well
@@ -54,6 +56,14 @@ const viewedUserReducer = (state = initialState, action) => {
       return {
         ...state,
         friendsInfo: action.payload,
+      };
+    }
+    case GET_POSTS: {
+      return {
+        ...state,
+        postsInfo: action.payload.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        ),
       };
     }
     default:
