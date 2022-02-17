@@ -127,7 +127,8 @@
 /* list of friends container */
 .ProfileIndex-friends-list-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
@@ -152,12 +153,72 @@
   font-size: 13px;
   font-weight: 600;
   line-height: 16px;
+  margin-top: 3px;
 }
 
 /* right side containing create post and each users post */
 .ProfileIndex-right {
   width: 60%;
   max-width: 60%;
+}
+
+.ProfileIndex-post-no-posts {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  background-color: white;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.ProfileIndex-post-no-posts > h1 {
+  margin-bottom: 35px;
+  font-size: 20px;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+.ProfileIndex-post-no-posts > img {
+  border-radius: 5px;
+  border: 2px solid rgb(27, 116, 228);
+  margin-bottom: 20px;
+}
+
+.ProfileIndex-post-container {
+  height: 60vh;
+  max-height: 100%;
+  overflow: auto;
+}
+
+/* Designing for scroll-bar */
+.ProfileIndex-post-container::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+  height: 8px;
+}
+
+/* Handle */
+.ProfileIndex-post-container::-webkit-scrollbar-thumb {
+  background: rgb(24, 119, 242);
+  border-radius: 5px;
+}
+
+/* make the top and bottom shorter to fit inside div */
+.ProfileIndex-post-container::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 70px;
+}
+
+.ProfileIndex-post-container::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 50px;
 }
 
 @media (max-width: 900px) {
