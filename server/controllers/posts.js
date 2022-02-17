@@ -23,3 +23,15 @@ export const posts_Post = async (req, res) => {
     });
   });
 };
+
+export const getPosts_Post = async (req, res) => {
+  const posts = req.body;
+
+  await Promise.all(posts.map(async (post) => await Post.findById(post)))
+    .then((response) => {
+      return res.status(201).json(response);
+    })
+    .catch((err) => {
+      return res.status(400).json({ err });
+    });
+};
