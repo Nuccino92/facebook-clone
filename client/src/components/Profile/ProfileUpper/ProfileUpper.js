@@ -30,12 +30,12 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
             <h1>
               {viewedUser.profile[0].firstName} {viewedUser.profile[0].lastName}
             </h1>
-            {/* if only 1 friend use singular word */}
-            {viewedUser.friends.length === 1 ? (
-              <p>{viewedUser.friends.length} Friend</p>
-            ) : (
-              <p> {viewedUser.friends.length} Friends</p>
-            )}
+            <Link to={`/profile/${viewedUser._id}/friends`}>
+              <p>
+                {viewedUser.friends.length}&nbsp;
+                {viewedUser.friends.length === 1 ? "Friend" : "Friends"}
+              </p>{" "}
+            </Link>
           </div>
         </div>
         {/* buttons to the right of name */}
@@ -48,10 +48,14 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
             </div>
           ) : (
             <div className="visiting-profile-btn-container">
-              <div className="profile-friends-btn-container">
-                <img src={profileFriendsPicture} alt="friend"></img>
-                <button>Friends</button>
-              </div>
+              <Link to={`/profile/${viewedUser._id}/friends`}>
+                {" "}
+                <div className="profile-friends-btn-container">
+                  <img src={profileFriendsPicture} alt="friend"></img>
+
+                  <button>Friends</button>
+                </div>{" "}
+              </Link>
               <div className="profile-message-btn-container">
                 <img src={messageButtonPicture} alt="thunder bolt"></img>
                 <button>Message</button>
