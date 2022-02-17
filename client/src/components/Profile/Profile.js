@@ -17,6 +17,7 @@ import {
   getFriendsInfo,
   getUser,
 } from "../../redux/actions/viewedUser";
+import { getUserPosts } from "../../redux/actions/post";
 
 const Profile = () => {
   const params = useParams();
@@ -30,33 +31,22 @@ const Profile = () => {
   //  identifying which tab is selected
   const [selectedTab, setSelectedTab] = useState("posts");
 
-  // backend api call
+  // grabs the user being viewed
   useEffect(() => {
     dispatch(getUser(params.id));
-  }, [dispatch, params.id]);
+  }, [dispatch, params]);
 
   useEffect(() => {
-    if (viewedUser !== null) {
-      dispatch(getFriendsInfo(viewedUser._id, viewedUser.friends));
-    }
-  }, [dispatch, viewedUser]);
-
-  // checking if the focused user is the current user (if viewing own profile)
-  useEffect(() => {
-    // waiting for dispatch(getUser(params.id))
     if (viewedUser !== null) {
       const data = [viewedUser._id, user._id];
-      dispatch(checkMyProfile(data));
-    }
-  }, [viewedUser, user._id, dispatch]);
+      const friendData = [user.friends, viewedUser._id];
 
-  // if viewedUser is not null check if logged in user is friends
-  useEffect(() => {
-    if (viewedUser !== null) {
-      const data = [user.friends, viewedUser._id];
-      dispatch(checkFriendStatus(data));
+      dispatch(getFriendsInfo(viewedUser._id, viewedUser.friends));
+      dispatch(getUserPosts(viewedUser._id, viewedUser.posts));
+      dispatch(checkMyProfile(data));
+      dispatch(checkFriendStatus(friendData));
     }
-  }, [viewedUser, user.friends, dispatch]);
+  }, [dispatch, user._id, user.friends, viewedUser]);
 
   //making sure nav tab is selected correctly
   useEffect(() => {
