@@ -35,3 +35,42 @@ export const getPosts_Post = async (req, res) => {
       return res.status(400).json({ err });
     });
 };
+
+export const updatePostLikes_Post = async (req, res) => {
+  const { likes, _id: postId } = req.body;
+  const { id } = req.params;
+
+  const found = likes.includes(id);
+
+  if (found) {
+    await Post.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { likes: id },
+      },
+      { new: true }
+    )
+      .then((post) => {
+        return res.status(201).json(post);
+      })
+      .catch((err) => {
+        return res.status(409).json(err);
+      });
+  }
+
+  if (!found) {
+    await Post.findByIdAndUpdate(
+      postId,
+      {
+        $addToSet: { likes: id },
+      },
+      { new: true }
+    )
+      .then((post) => {
+        return res.status(201).json(post);
+      })
+      .catch((err) => {
+        return res.status(409).json(err);
+      });
+  }
+};

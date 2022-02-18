@@ -1,5 +1,9 @@
 import express from "express";
-import { posts_Post, getPosts_Post } from "../controllers/posts.js";
+import {
+  posts_Post,
+  getPosts_Post,
+  updatePostLikes_Post,
+} from "../controllers/posts.js";
 
 const router = express.Router();
 
@@ -26,5 +30,6 @@ const upload = multer({
 
 router.post("/", upload.single("picture"), posts_Post);
 router.post("/:id", getPosts_Post);
+router.post("/like/:id", updatePostLikes_Post);
 
 export default router;
