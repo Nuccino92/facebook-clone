@@ -6,15 +6,28 @@ import { GoComment } from "react-icons/go";
 import { useEffect, useState } from "react";
 import CommentsSection from "./CommentsSection/CommentsSection";
 import { getUserRequest } from "../../api/user";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { updatePostLikesRequest } from "../../api/post";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/actions/viewedUser";
 
 const Post = ({ post }) => {
   const url = "http://localhost:8000/";
+  const params = useParams();
+  const dispatch = useDispatch();
 
   const [comments, setComments] = useState(false);
   // the author of the post w/ their data
   const [postUser, setPostUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [likedPost, setLikedPost] = useState(undefined);
+
+  const { user } = useSelector((state) => state.userReducer);
+
+  const handleLikes = async () => {
+    await updatePostLikesRequest(user._id, post);
+    dispatch(getUser(params.id));
+  };
 
   const handleComments = () => {
     setComments((prev) => {
@@ -31,6 +44,10 @@ const Post = ({ post }) => {
     getUser();
   }, [post]);
 
+  useEffect(() => {
+    post.likes.includes(user._id) ? setLikedPost(true) : setLikedPost(false);
+  }, [post.likes, user._id]);
+
   return loading ? (
     <div>loading</div>
   ) : (
@@ -43,25 +60,30 @@ const Post = ({ post }) => {
               {postUser.profile[0].firstName} {postUser.profile[0].lastName}
             </div>
           </Link>
-
           <p>{moment(new Date(post.createdAt)).fromNow()}</p>
         </div>
       </div>
+
       <div className="Post-desciption">{post.content}</div>
+
       <div className="Post-picture">
         <img src={url + post.picture} alt="Post"></img>
       </div>
 
       <div className="Post-stats">
-        <div>
+        <div onClick={handleLikes}>
           <img src={likesPhoto} alt="likes"></img>
-          <span> {post.likes.length}</span>
+          <span style={likedPost ? { color: "green", fontWeight: 700 } : null}>
+            {" "}
+            {post.likes.length}
+          </span>
         </div>
 
         <div onClick={handleComments}>{post.comments.length} Comments</div>
       </div>
+
       <div className="Post-interaction">
-        <div>
+        <div onClick={handleLikes}>
           <BiLike size={18} />
           &nbsp; LIKE
         </div>
@@ -70,6 +92,7 @@ const Post = ({ post }) => {
           &nbsp; COMMENT
         </div>
       </div>
+
       {comments && <CommentsSection comments={post.comments} post={post} />}
     </div>
   );
