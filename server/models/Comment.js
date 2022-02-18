@@ -13,9 +13,13 @@ const Comment = mongoose.model(
         type: String,
         required: true,
       },
+      commentType: {
+        type: String,
+        required: true,
+      },
       replies: [
         {
-          type: mongoose.Types.ObjectId,
+          type: Object,
           ref: "Comment",
         },
       ],
