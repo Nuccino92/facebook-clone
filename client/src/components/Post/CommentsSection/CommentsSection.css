@@ -20,8 +20,12 @@
   margin-right: 5px;
 }
 
-/* input and post button container */
+/* form  container */
 .CommentsSection-write-comment-container > div {
+  width: 100%;
+}
+
+.CommentsSection-write-comment-container > div > form {
   display: flex;
   width: 100%;
   background-color: rgb(240, 242, 245);
@@ -29,7 +33,7 @@
 }
 
 /* write comment input */
-.CommentsSection-write-comment-container > div > input {
+.CommentsSection-write-comment-container > div > form > input {
   font-size: 15px;
   font-weight: 400;
   color: rgb(5, 5, 5);
@@ -42,7 +46,7 @@
 }
 
 /* post comment button */
-.CommentsSection-write-comment-container > div > button {
+.CommentsSection-write-comment-container > div > form > button {
   font-size: 15px;
   font-weight: 600;
   color: rgb(5, 5, 5);
@@ -54,12 +58,12 @@
 }
 
 /* button hover */
-.CommentsSection-write-comment-container > div > button:hover {
+.CommentsSection-write-comment-container > div > form > button:hover {
   background-color: rgb(66, 103, 178);
   color: white;
 }
 
 /* button active */
-.CommentsSection-write-comment-container > div > button:active {
+.CommentsSection-write-comment-container > div > form > button:active {
   color: rgb(31, 50, 87);
 }
