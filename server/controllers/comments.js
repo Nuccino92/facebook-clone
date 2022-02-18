@@ -1,30 +1,37 @@
-import { response } from "express";
 import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
 
 export const addComment_Post = (req, res) => {
   const { user, content, post } = req.body;
 
-  console.log(user, content, post);
-
-  const newComment = Comment({
-    user,
-    content,
-    replies: [],
-  });
-
-  newComment.save().then(async (response) => {
-    await Post.findByIdAndUpdate(
-      post,
-      {
-        $addToSet: { comments: response._id },
-      },
-      { new: true }
-    ).then((post) => {
-      console.log(post);
-      return res.status(201).json({ post });
+  if (!user || !content || !post) {
+    res.status(400).json({
+      message: "Missing information",
     });
-  });
+  } else {
+    const newComment = Comment({
+      user,
+      content,
+      replies: [],
+      commentType: "COMMENT",
+    });
+
+    newComment.save().then(async (response) => {
+      await Post.findByIdAndUpdate(
+        post,
+        {
+          $addToSet: { comments: response },
+        },
+        { new: true }
+      )
+        .then((post) => {
+          return res.status(201).json({ post });
+        })
+        .catch((err) => {
+          return res.status(404).json({ err });
+        });
+    });
+  }
 };
 
 export const comment_Get = async (req, res) => {
@@ -32,10 +39,36 @@ export const comment_Get = async (req, res) => {
 
   await Comment.findById(id)
     .then((response) => {
-      res.status(201).json(response);
+      return res.status(201).json(response);
     })
     .catch((err) => {
-      console.log(err);
-      res.status(404).json({ err });
+      return res.status(404).json(err.message);
     });
+};
+
+export const addCommentReply_Post = async (req, res) => {
+  const { user, content, comment } = req.body;
+
+  const newComment = Comment({
+    user,
+    content,
+    commentType: "REPLY",
+  });
+
+  newComment.save().then(async (response) => {
+    console.log(response);
+    await Comment.findByIdAndUpdate(
+      comment,
+      {
+        $addToSet: { replies: response },
+      },
+      { new: true }
+    )
+      .then((comment) => {
+        return res.status(201).json({ comment });
+      })
+      .catch((err) => {
+        return res.status(400).json(err);
+      });
+  });
 };
