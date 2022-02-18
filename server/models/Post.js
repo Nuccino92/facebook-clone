@@ -25,7 +25,7 @@ const Post = mongoose.model(
       ],
       comments: [
         {
-          type: mongoose.Types.ObjectId,
+          type: Object,
           ref: "Comment",
         },
       ],
