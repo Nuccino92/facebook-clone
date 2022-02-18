@@ -5,28 +5,22 @@ import liked from "./SideNavImages/liked.png";
 import oldest from "./SideNavImages/oldest.png";
 import sendMessage from "./SideNavImages/send-message.png";
 import { Link } from "react-router-dom";
-
-import { useState } from "react";
+import { useSelector } from "react-redux";
 const SideNav = () => {
-  const [userData] = useState({
-    firstname: "Anthony",
-    lastname: "Nucci",
-    picture:
-      "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-  });
+  const { user } = useSelector((state) => state.userReducer);
 
   return (
     <div className="SideNav">
       <ul>
-        <Link to="/profile">
+        <Link to={`/profile/${user._id}`} state={user}>
           <li>
             <img
               className="SideNav-profile-img"
-              src={userData.picture}
+              src={user.profile[0].profilePicture}
               alt="Profile"
             ></img>
-            <span>{userData.firstname}&nbsp;</span>
-            <span>{userData.lastname}</span>
+            <span>{user.profile[0].firstName}&nbsp;</span>
+            <span>{user.profile[0].lastName}</span>
           </li>
         </Link>
         <li>

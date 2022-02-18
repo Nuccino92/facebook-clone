@@ -6,19 +6,16 @@ import { BsPersonSquare } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../redux/actions/user";
 
 const Nav = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [userData] = useState({
-    firstname: "Anthony",
-    lastname: "Nucci",
-    picture:
-      "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-  });
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.userReducer);
 
   const [profileMenu, setProfileMenu] = useState(false);
 
@@ -56,7 +53,7 @@ const Nav = () => {
             />
           </div>
         </Link>
-        <Link to="/profile">
+        <Link to={`/profile/${user._id}`} state={user}>
           <div
             style={
               location.pathname !== "/"
@@ -75,10 +72,14 @@ const Nav = () => {
         </Link>
       </div>
       <div className="nav-right">
-        <Link to="/profile" className="nav-right-profile-container">
+        <Link
+          to={`/profile/${user._id}`}
+          state={user}
+          className="nav-right-profile-container"
+        >
           <div>
-            <img src={userData.picture} alt="stop"></img>
-            <div>{userData.firstname}</div>
+            <img src={user.profile[0].profilePicture} alt="stop"></img>
+            <div>{user.profile[0].firstName}</div>
           </div>
         </Link>
         <div
@@ -93,17 +94,27 @@ const Nav = () => {
           <div className="profile-menu">
             <div className="profile-menu-inner">
               <ul>
-                <Link to="/profile" onClick={() => setProfileMenu(false)}>
+                <Link
+                  to={`/profile/${user._id}`}
+                  state={user}
+                  onClick={() => setProfileMenu(false)}
+                >
                   <li className="profile-menu-first">
-                    <img src={userData.picture} alt="Profile"></img>
+                    <img
+                      src={user.profile[0].profilePicture}
+                      alt="Profile"
+                    ></img>
                     <div>
-                      {userData.firstname} {userData.lastname}
+                      {user.profile[0].firstName} {user.profile[0].lastName}
                       <p>See your profile</p>
                     </div>
                   </li>{" "}
                 </Link>
                 <div></div>
-                <Link to="/friends" onClick={() => setProfileMenu(false)}>
+                <Link
+                  to={`/friends/${user._id}`}
+                  onClick={() => setProfileMenu(false)}
+                >
                   <li className="profile-menu-second">
                     <div>
                       <FaUserFriends />
@@ -118,6 +129,7 @@ const Nav = () => {
                     setProfileMenu(false);
                     // logout user
                     dispatch(logOutUser());
+                    navigate("/");
                   }}
                 >
                   <div>
