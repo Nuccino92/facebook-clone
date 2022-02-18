@@ -1,5 +1,4 @@
 import { getUserFriendsRequest, getUserRequest } from "../../api/user";
-// import { returnErrors } from "./errors";
 
 import {
   GET_VIEWED_USER,
@@ -38,10 +37,8 @@ export const checkFriendStatus = (data) => {
 export const getFriendsInfo = (id, friends) => async (dispatch) => {
   try {
     const res = await getUserFriendsRequest(id, friends);
-
     dispatch({ type: GET_FRIENDS_INFO, payload: res.data });
   } catch (err) {
     console.log(err.response);
-    // returnErrors
   }
 };
