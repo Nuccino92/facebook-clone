@@ -7,8 +7,9 @@ const ContactsCard = ({ data }) => {
       <img src={data.picture} alt="Profile"></img>
       <div>
         <div>
-          <span>{data.firstname}&nbsp;</span>
-          <span> {data.lastname}</span>
+          <span>
+            {data.firstname} {data.lastname}
+          </span>
         </div>
         <div>
           {" "}
