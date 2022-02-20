@@ -3,35 +3,40 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { getUserRequest } from "../../../../../api/user";
 import "./Reply.css";
+import { useSelector } from "react-redux";
 
 const Reply = ({ reply, userData }) => {
   // user data of author of this reply
-  const [user, setUser] = useState(null);
+  const [commentUser, setCommentUser] = useState(null);
+
+  const { user } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     if (reply !== null) {
       const getUserData = async () => {
         const res = await getUserRequest(reply.user);
-        setUser(res.data.response);
+        setCommentUser(res.data.response);
       };
       getUserData();
     }
   }, [reply]);
 
-  return user === null ? (
+  return commentUser === null ? (
     <></>
   ) : (
     <div className="Reply">
       {" "}
-      <Link to={`/profile/${user._id}`}>
+      <Link to={`/profile/${commentUser._id}`}>
         <img src={userData.profilePicture} alt="Profile"></img>
       </Link>
       <div>
         <div>
           {" "}
-          <Link to={`/profile/${user._id}`}>
+          <Link to={`/profile/${commentUser._id}`}>
             <h4>
-              {user.profile[0].firstName} {user.profile[0].lastName}
+              {commentUser.profile[0].firstName}{" "}
+              {commentUser.profile[0].lastName} &#160;&#160;
+              {commentUser._id === user._id && "(your reply)"}
             </h4>
           </Link>
           <p>
