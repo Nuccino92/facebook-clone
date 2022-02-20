@@ -10,13 +10,17 @@ import { getUserRequest } from "../../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getUser } from "../../../../redux/actions/viewedUser";
+import FormError from "../../../FormError/FormError";
+import { loadUser } from "../../../../redux/actions/user";
 
-const Comment = ({ comment, setRerender }) => {
+const Comment = ({ comment }) => {
   const replyRef = useRef(null);
   const params = useParams();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.userReducer);
+
+  const [errors, setErrors] = useState(false);
 
   const [replies, setReplies] = useState(false);
 
@@ -38,10 +42,11 @@ const Comment = ({ comment, setRerender }) => {
   useEffect(() => {
     const getCommentData = async () => {
       const res = await getCommentRequest(comment._id);
+      if (res.data === null) return;
       setCommentReplies(res.data.replies);
     };
     getCommentData();
-  }, [comment._id, viewedUser]);
+  }, [comment._id, viewedUser, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,14 +56,26 @@ const Comment = ({ comment, setRerender }) => {
         [name]: value,
       };
     });
+    setErrors(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!createReplyData.content) return;
+    // stops user from sending request without content
+    if (!createReplyData.content) {
+      return setErrors(true);
+    }
     addCommentReplyRequest(createReplyData);
-    // rerenders the updates replies
-    dispatch(getUser(params.id));
+
+    // updates viewed user in profile section
+    if (params.id !== undefined) {
+      dispatch(getUser(params.id));
+    }
+
+    // updates active user in homepage
+    if (params.id === undefined) {
+      dispatch(loadUser());
+    }
 
     setCreateReplyData({
       user: user._id,
@@ -100,7 +117,11 @@ const Comment = ({ comment, setRerender }) => {
         <div className="Comment-second">
           <div className="Comment-second-first">
             <Link to={`/profile/${user._id}`}>
-              <h4>{userData.profile[0].firstName}</h4>
+              <h4>
+                {userData.profile[0].firstName} {userData.profile[0].lastName}
+                &#160;&#160;
+                {userData._id === user._id && "(your comment)"}
+              </h4>
             </Link>
             <p>{comment.content}</p>
           </div>
@@ -140,8 +161,11 @@ const Comment = ({ comment, setRerender }) => {
                 ></input>
                 <button onClick={handleSubmit}>Post</button>{" "}
               </form>
-            </div>
+            </div>{" "}
           </div>
+          {errors && (
+            <FormError message={"Reply is empty"} location={"comment"} />
+          )}
         </div>
       )}
     </div>

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCommentRequest } from "../../../api/comment";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../../redux/actions/viewedUser";
+import FormError from "../../FormError/FormError";
+import { loadUser } from "../../../redux/actions/user";
 
 const CommentsSection = ({ post }) => {
   const inputRef = useRef(null);
@@ -12,6 +14,8 @@ const CommentsSection = ({ post }) => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.userReducer);
+
+  const [errors, setErrors] = useState(false);
 
   const [createCommentData, setCreateCommentData] = useState({
     user: user._id,
@@ -27,14 +31,27 @@ const CommentsSection = ({ post }) => {
         [name]: value,
       };
     });
+    setErrors(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!createCommentData.content) return;
+    // stops user from sending request without content
+    if (!createCommentData.content) {
+      return setErrors(true);
+    }
     addCommentRequest(createCommentData);
     // renders the updated comments
-    dispatch(getUser(params.id));
+
+    // updates viewed user in profile section
+    if (params.id !== undefined) {
+      dispatch(getUser(params.id));
+    }
+
+    // updates active user in homepage
+    if (params.id === undefined) {
+      dispatch(loadUser());
+    }
 
     setCreateCommentData({
       user: user._id,
@@ -65,6 +82,9 @@ const CommentsSection = ({ post }) => {
           </form>
         </div>
       </div>
+      {errors && (
+        <FormError message={"Please enter a comment"} location={"comment"} />
+      )}
       {/* map over the post comments and display comment */}
       {post.comments
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
