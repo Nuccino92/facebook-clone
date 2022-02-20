@@ -5,9 +5,28 @@ import liked from "./SideNavImages/liked.png";
 import oldest from "./SideNavImages/oldest.png";
 import sendMessage from "./SideNavImages/send-message.png";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTimeline } from "../../../redux/actions/user";
+
 const SideNav = () => {
-  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const { user, timeline } = useSelector((state) => state.userReducer);
+
+  const handleMostRecent = () => {
+    dispatch(
+      updateTimeline(
+        timeline.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      )
+    );
+  };
+
+  const handleOldest = () => {
+    dispatch(
+      updateTimeline(
+        timeline.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      )
+    );
+  };
 
   return (
     <div className="SideNav">
@@ -23,11 +42,13 @@ const SideNav = () => {
             <span>{user.profile[0].lastName}</span>
           </li>
         </Link>
-        <li>
-          <img src={findFriends} alt="Find friends"></img>
-          <p>Find Friends</p>
-        </li>
-        <li>
+        <Link to={`friends/${user._id}`}>
+          <li>
+            <img src={findFriends} alt="Find friends"></img>
+            <p>Friend Requests</p>
+          </li>{" "}
+        </Link>
+        <li onClick={handleMostRecent}>
           <img src={mostRecent} alt="Most recent"></img>
           <p>Most Recent</p>
         </li>
@@ -35,7 +56,7 @@ const SideNav = () => {
           <img src={liked} alt="Liked"></img>
           <p>Liked</p>
         </li>
-        <li>
+        <li onClick={handleOldest}>
           <img src={oldest} alt="OLdest"></img>
           <p>Oldest</p>
         </li>
