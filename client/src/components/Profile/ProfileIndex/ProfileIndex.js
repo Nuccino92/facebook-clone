@@ -14,13 +14,15 @@ const ProfileIndex = ({ setSelectedTab }) => {
 
   const formRef = useRef(null);
 
+  const { user } = useSelector((state) => state.userReducer);
+
   const { myProfile, viewedUser, friendsInfo, postsInfo } = useSelector(
     (state) => state.viewedUserReducer
   );
 
   const [createPostData, setCreatePostData] = useState({
     content: null,
-    user: viewedUser,
+    user,
     picture: null,
   });
 
@@ -57,7 +59,7 @@ const ProfileIndex = ({ setSelectedTab }) => {
 
       setCreatePostData({
         content: null,
-        user: viewedUser,
+        user,
         picture: null,
       });
     }
