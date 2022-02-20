@@ -15,6 +15,15 @@ const FormError = ({ message, location }) => {
               fontWeight: 600,
               color: "red",
             }
+          : location === "comment"
+          ? {
+              width: "200px",
+              border: "none",
+              backgroundColor: "white",
+              fontWeight: 600,
+              color: "red",
+              alignSelf: "center",
+            }
           : null
       }
     >
