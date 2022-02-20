@@ -12,9 +12,12 @@ import {
   AUTH_ERR,
   LOGOUT_SUCCESS,
   CLEAR_ERRORS,
+  GET_TIMELINE,
+  UPDATE_TIMELINE,
 } from "./types";
 import { authRequest } from "../../api/auth";
 import { tokenConfig, tokenRefreshConfig } from "../../config/token";
+import { getUserTimelineRequest } from "../../api/user";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
@@ -86,4 +89,20 @@ export const logOutUser = () => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const getUserTimeline = (id, friends) => async (dispatch) => {
+  try {
+    const res = await getUserTimelineRequest(id, friends);
+    dispatch({ type: GET_TIMELINE, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateTimeline = (timeline) => {
+  return {
+    type: UPDATE_TIMELINE,
+    payload: timeline,
+  };
 };
