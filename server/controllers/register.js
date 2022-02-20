@@ -11,7 +11,9 @@ export const register_Post = async (req, res) => {
       email,
       password: generateHash(password),
       friends: [],
+      friendRequests: [],
       posts: [],
+      likedPosts: [],
       profile: [
         {
           firstName,
