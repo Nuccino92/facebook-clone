@@ -6,26 +6,32 @@ import oldest from "./SideNavImages/oldest.png";
 import sendMessage from "./SideNavImages/send-message.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTimeline } from "../../../redux/actions/user";
+import { updateTab, updateTimeline } from "../../../redux/actions/user";
+import { getUserPostsRequest } from "../../../api/post";
+import { GET_TIMELINE } from "../../../redux/actions/types";
 
 const SideNav = () => {
   const dispatch = useDispatch();
-  const { user, timeline } = useSelector((state) => state.userReducer);
+  // tab state to only get timeline if tab is on liked, (avoids spamming tab and ugly rerenders)
 
-  const handleMostRecent = () => {
-    dispatch(
-      updateTimeline(
-        timeline.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      )
-    );
+  const { user, timelineTab } = useSelector((state) => state.userReducer);
+
+  const handleMostRecent = async () => {
+    if (timelineTab !== "new") {
+      dispatch(updateTab("new"));
+    }
   };
 
-  const handleOldest = () => {
-    dispatch(
-      updateTimeline(
-        timeline.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      )
-    );
+  const handleOldest = async () => {
+    if (timelineTab !== "old") {
+      dispatch(updateTab("old"));
+    }
+  };
+
+  const handleLiked = async () => {
+    if (timelineTab !== "liked") {
+      dispatch(updateTab("liked"));
+    }
   };
 
   return (
@@ -48,15 +54,37 @@ const SideNav = () => {
             <p>Friend Requests</p>
           </li>{" "}
         </Link>
-        <li onClick={handleMostRecent}>
+        <li
+          onClick={handleMostRecent}
+          style={
+            timelineTab === "new"
+              ? { backgroundColor: "rgba(212, 211, 211, 0.418)" }
+              : null
+          }
+        >
           <img src={mostRecent} alt="Most recent"></img>
           <p>Most Recent</p>
         </li>
-        <li>
+
+        <li
+          onClick={handleLiked}
+          style={
+            timelineTab === "liked"
+              ? { backgroundColor: "rgba(212, 211, 211, 0.418)" }
+              : null
+          }
+        >
           <img src={liked} alt="Liked"></img>
           <p>Liked</p>
         </li>
-        <li onClick={handleOldest}>
+        <li
+          onClick={handleOldest}
+          style={
+            timelineTab === "old"
+              ? { backgroundColor: "rgba(212, 211, 211, 0.418)" }
+              : null
+          }
+        >
           <img src={oldest} alt="OLdest"></img>
           <p>Oldest</p>
         </li>
