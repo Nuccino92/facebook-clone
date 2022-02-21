@@ -7,6 +7,9 @@ import {
   USER_LOADING,
   AUTH_ERR,
   LOGOUT_SUCCESS,
+  GET_TIMELINE,
+  UPDATE_TIMELINE,
+  UPDATE_TAB,
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +17,8 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: null,
+  timeline: [],
+  timelineTab: "new",
 };
 
 const userReducer = (state = initialState, action) => {
@@ -53,6 +58,24 @@ const userReducer = (state = initialState, action) => {
         user: null,
         isAuthenticated: false,
         isLoading: true,
+      };
+
+    case GET_TIMELINE:
+      return {
+        ...state,
+        timeline: action.payload,
+      };
+
+    case UPDATE_TIMELINE:
+      return {
+        ...state,
+        timeline: action.payload,
+      };
+
+    case UPDATE_TAB:
+      return {
+        ...state,
+        timelineTab: action.payload,
       };
 
     default:
