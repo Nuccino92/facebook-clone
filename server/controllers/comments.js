@@ -56,7 +56,6 @@ export const addCommentReply_Post = async (req, res) => {
   });
 
   newComment.save().then(async (response) => {
-    console.log(response);
     await Comment.findByIdAndUpdate(
       comment,
       {
