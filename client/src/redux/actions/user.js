@@ -13,11 +13,13 @@ import {
   LOGOUT_SUCCESS,
   CLEAR_ERRORS,
   GET_TIMELINE,
-  UPDATE_TIMELINE,
+  UPDATE_TAB,
 } from "./types";
 import { authRequest } from "../../api/auth";
 import { tokenConfig, tokenRefreshConfig } from "../../config/token";
 import { getUserTimelineRequest } from "../../api/user";
+
+import { getUserPostsRequest } from "../../api/post";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
@@ -91,18 +93,34 @@ export const logOutUser = () => async (dispatch) => {
   }
 };
 
-export const getUserTimeline = (id, friends) => async (dispatch) => {
-  try {
-    const res = await getUserTimelineRequest(id, friends);
-    dispatch({ type: GET_TIMELINE, payload: res.data });
-  } catch (err) {
-    console.log(err);
-  }
-};
+export const getUserTimeline =
+  (user, friends, timelineTab) => async (dispatch) => {
+    try {
+      const res = await getUserTimelineRequest(user._id, friends);
 
-export const updateTimeline = (timeline) => {
+      const filteredData = async () => {
+        if (timelineTab === "new") {
+          return res.data.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+        } else if (timelineTab === "old") {
+          return res.data.sort(
+            (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+          );
+        } else if (timelineTab === "liked") {
+          const res = await getUserPostsRequest(user, user.likedPosts);
+          return res.data;
+        } else return [];
+      };
+
+      dispatch({ type: GET_TIMELINE, payload: await filteredData() });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+export const updateTab = (selected) => {
   return {
-    type: UPDATE_TIMELINE,
-    payload: timeline,
+    type: UPDATE_TAB,
+    payload: selected,
   };
 };
