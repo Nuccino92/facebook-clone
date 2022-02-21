@@ -8,7 +8,7 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERR = "AUTH_ERROR";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const GET_TIMELINE = "GET_TIMELINE";
-export const UPDATE_TIMELINE = "UPDATE_TIMELINE";
+export const UPDATE_TAB = "UPDATE_TAB";
 // errors
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
