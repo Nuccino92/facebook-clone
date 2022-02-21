@@ -5,11 +5,12 @@ import { BiLike } from "react-icons/bi";
 import { GoComment } from "react-icons/go";
 import { useEffect, useState } from "react";
 import CommentsSection from "./CommentsSection/CommentsSection";
-import { getUserRequest } from "../../api/user";
+import { addLikedPostRequest, getUserRequest } from "../../api/user";
 import { Link, useParams } from "react-router-dom";
 import { updatePostLikesRequest } from "../../api/post";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/actions/viewedUser";
+import { getUserTimeline, loadUser } from "../../redux/actions/user";
 
 const Post = ({ post }) => {
   const url = "http://localhost:8000/";
@@ -21,12 +22,34 @@ const Post = ({ post }) => {
   const [postUser, setPostUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [likedPost, setLikedPost] = useState(undefined);
+  // to make sure that the like button isnt pressed before the api can come back with updated data
+  const [dispatching, setDispatching] = useState(false);
 
-  const { user } = useSelector((state) => state.userReducer);
+  const { user, timelineTab } = useSelector((state) => state.userReducer);
 
   const handleLikes = async () => {
-    await updatePostLikesRequest(user._id, post);
-    dispatch(getUser(params.id));
+    setDispatching(true);
+
+    await updatePostLikesRequest(post._id, post, user);
+    await addLikedPostRequest(user._id, post, user);
+
+    // updates active user in homepage
+    dispatch(loadUser());
+
+    // updates viewed user in profile section
+    if (params.id !== undefined) {
+      dispatch(getUser(params.id));
+      return setTimeout(() => {
+        setDispatching(false);
+      }, 3000);
+    }
+
+    if (params.id === undefined) {
+      dispatch(getUserTimeline(user, user.friends, timelineTab));
+      return setTimeout(() => {
+        setDispatching(false);
+      }, [3000]);
+    }
   };
 
   const handleComments = () => {
@@ -71,9 +94,14 @@ const Post = ({ post }) => {
       </div>
 
       <div className="Post-stats">
-        <div onClick={handleLikes}>
+        <div onClick={() => !dispatching && handleLikes()}>
           <img src={likesPhoto} alt="likes"></img>
-          <span style={likedPost ? { color: "green", fontWeight: 700 } : null}>
+
+          <span
+            style={
+              likedPost ? { color: "rgb(65,236,41)", fontWeight: 700 } : null
+            }
+          >
             {" "}
             {post.likes.length}
           </span>
