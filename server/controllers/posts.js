@@ -37,16 +37,17 @@ export const getPosts_Post = async (req, res) => {
 };
 
 export const updatePostLikes_Post = async (req, res) => {
-  const { likes, _id: postId } = req.body;
-  const { id } = req.params;
+  const { post, userId } = req.body;
 
-  const found = likes.includes(id);
+  const { likes, _id: postId } = post;
+
+  const found = likes.includes(userId);
 
   if (found) {
     await Post.findByIdAndUpdate(
       postId,
       {
-        $pull: { likes: id },
+        $pull: { likes: userId },
       },
       { new: true }
     )
@@ -62,7 +63,7 @@ export const updatePostLikes_Post = async (req, res) => {
     await Post.findByIdAndUpdate(
       postId,
       {
-        $addToSet: { likes: id },
+        $addToSet: { likes: userId },
       },
       { new: true }
     )
