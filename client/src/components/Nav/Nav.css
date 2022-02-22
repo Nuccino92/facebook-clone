@@ -11,6 +11,7 @@
   background-color: white;
   z-index: 10;
   position: fixed;
+  height: 56px;
   top: 0;
 }
 
@@ -20,6 +21,7 @@
   align-items: center;
   justify-content: flex-start;
   flex: 1;
+  margin: 0 auto;
 }
 
 /* facebook logo */
@@ -99,6 +101,8 @@
   justify-content: flex-end;
   align-items: center;
   flex: 1;
+  height: inherit;
+  max-height: inherit;
 }
 
 .nav-right-profile-container:active {
@@ -313,6 +317,49 @@
   font-size: 15px;
   font-weight: 500;
   padding-left: 10px;
+}
+
+/* ------------search bar active------------------- */
+
+.filtered-data-empty {
+  color: rgb(138, 141, 145);
+  font-size: 15px;
+  font-weight: 400;
+  margin: 12px 0;
+}
+
+.nav-left-active {
+  z-index: 10;
+  width: max-content;
+  margin-left: -16px;
+  padding-right: 16px;
+}
+
+.nav-left-active > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 12px 12px 0,
+    rgba(255, 255, 255, 0.5) 0 0 0 0 inset;
+  padding: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white;
+}
+
+.nav-left-backarrow-container {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.nav-left-backarrow-container:hover {
+  background-color: rgb(240, 242, 245);
 }
 
 @media (max-width: 740px) {
