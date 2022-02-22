@@ -1,0 +1,40 @@
+.SearchResult {
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  padding: 8px;
+  width: 304px;
+}
+
+.SearchResult:hover {
+  background-color: rgb(224, 224, 224);
+}
+
+.SearchResult > img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.SearchResult > div {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.SearchResult > div > p {
+  display: flex;
+  width: max-content;
+  font-size: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.SearchResult > div > h6 {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(101, 103, 107);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
