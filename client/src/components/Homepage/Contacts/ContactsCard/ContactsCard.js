@@ -1,14 +1,15 @@
 import "./ContactsCard.css";
 import { FaBirthdayCake } from "react-icons/fa";
 
-const ContactsCard = ({ data }) => {
+const ContactsCard = ({ user }) => {
+  const { profile } = user;
   return (
     <div className="ContactsCard">
-      <img src={data.picture} alt="Profile"></img>
+      <img src={profile[0].profilePicture} alt="Profile"></img>
       <div>
         <div>
           <span>
-            {data.firstname} {data.lastname}
+            {profile[0].firstName} {profile[0].lastName}
           </span>
         </div>
         <div>
@@ -16,7 +17,7 @@ const ContactsCard = ({ data }) => {
           <FaBirthdayCake
             size={20}
             style={{ marginRight: "5px" }}
-          /> Birthday {new Date(data.birthday).toDateString()}
+          /> Birthday {new Date(profile[0].birthday).toDateString()}
         </div>
       </div>
     </div>

@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getUserFriendsRequest } from "../../../api/user";
+// import { useSelector } from "react-redux";
 import "./Contacts.css";
 import ContactsCard from "./ContactsCard/ContactsCard";
 
@@ -7,57 +11,22 @@ const Contacts = () => {
   const [displayProfile, setDisplayProfile] = useState(false);
   // gets index to properly render profile card
   const [stateIndex, setStateIndex] = useState(null);
-  // data over user with mouse event for contacts card
-  const [profileCardData, setProfileCardData] = useState({});
-  // development dummy data
-  const [userData] = useState([
-    {
-      firstname: "Demetrius",
-      email: "mauris@protonmail.org",
-      lastname: "Allen Lambert",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Cruz",
-      email: "dis.parturient.montes@aol.couk",
-      lastname: "Bertha",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "George",
-      email: "laoreet.ipsum.curabitur@icloud.ca",
-      lastname: "Margaret",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Warren",
-      email: "accumsan@protonmail.com",
-      lastname: "Pascale",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
 
-    {
-      firstname: "Gabriel",
-      email: "vulputate@hotmail.couk",
-      lastname: "Hayes",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-  ]);
+  const [userFriends, setUserFriends] = useState([]);
+
+  const { user } = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    const getFriends = async () => {
+      const res = await getUserFriendsRequest(user._id, user.friends);
+      setUserFriends(res.data);
+    };
+    getFriends();
+  }, [user._id, user.friends]);
 
   const handleMouseOver = (user, index) => {
     setDisplayProfile(true);
     setStateIndex(index);
-    setProfileCardData(user);
   };
 
   return (
@@ -66,24 +35,25 @@ const Contacts = () => {
         <h3>Sponsored</h3>
         <div className="contacts-container">
           <h3>Contacts</h3>
-          {userData.map((user, index) => {
+          {userFriends.map((user, index) => {
             return (
-              <li
-                key={index}
-                onMouseOver={() => handleMouseOver(user, index)}
-                onMouseOut={() => setDisplayProfile(false)}
-              >
-                {displayProfile && stateIndex === index && (
-                  <ContactsCard
-                    data={profileCardData}
-                    onMouseOver={() => setDisplayProfile(true)}
-                  />
-                )}
-                <img src={user.picture} alt="Profile"></img>
-                <span>
-                  {user.firstname} {user.lastname}
-                </span>
-              </li>
+              <Link to={`/profile/${user._id}`} key={index}>
+                <li
+                  onMouseOver={() => handleMouseOver(user, index)}
+                  onMouseOut={() => setDisplayProfile(false)}
+                >
+                  {displayProfile && stateIndex === index && (
+                    <ContactsCard
+                      user={user}
+                      onMouseOver={() => setDisplayProfile(true)}
+                    />
+                  )}
+                  <img src={user.profile[0].profilePicture} alt="Profile"></img>
+                  <span>
+                    {user.profile[0].firstName} {user.profile[0].lastName}
+                  </span>
+                </li>{" "}
+              </Link>
             );
           })}
         </div>
