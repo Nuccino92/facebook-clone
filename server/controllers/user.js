@@ -98,3 +98,10 @@ export const userAddLikedPosts_Post = async (req, res) => {
       });
   }
 };
+
+export const getAllUsers_Get = async (req, res) => {
+  const filter = {};
+  const all = await User.find(filter);
+
+  res.json(all);
+};
