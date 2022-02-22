@@ -39,6 +39,44 @@
   margin-top: 50px;
 }
 
+.Timeline-empty {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+.Timeline-empty > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.Timeline-empty > div > p {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.Timeline-empty > div > a {
+  align-self: flex-end;
+}
+
+.Timeline-empty > div > a > button {
+  background-color: rgb(27, 116, 228);
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 16px;
+}
+
+.Timeline-empty > div > a > button:hover {
+  filter: brightness(0.96);
+  -webkit-filter: brightness(0.96);
+}
+
 @media (max-width: 1200px) {
   .Timeline {
     width: 600px;
