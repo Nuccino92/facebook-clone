@@ -27,7 +27,7 @@
   color: rgb(101, 103, 107);
 }
 
-.Contacts > ul > div > li {
+.Contacts > ul > div > a > li {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -41,22 +41,22 @@
 }
 
 /* prevents mouse leave/enter events from triggering inside container */
-.Contacts > ul > div > li * {
+.Contacts > ul > div > a > li * {
   pointer-events: none;
 }
 
-.Contacts > ul > div > li:hover {
+.Contacts > ul > div > a > li:hover {
   background-color: rgba(212, 211, 211, 0.418);
 }
 
-.Contacts > ul > div > li > img {
+.Contacts > ul > div > a > li > img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   margin-right: 12px;
 }
 
-.Contacts > ul > div > li > p {
+.Contacts > ul > div > a > li > p {
   padding: 12px 0;
 }
 
