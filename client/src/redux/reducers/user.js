@@ -8,7 +8,6 @@ import {
   AUTH_ERR,
   LOGOUT_SUCCESS,
   GET_TIMELINE,
-  UPDATE_TIMELINE,
   UPDATE_TAB,
 } from "../actions/types";
 
@@ -61,12 +60,6 @@ const userReducer = (state = initialState, action) => {
       };
 
     case GET_TIMELINE:
-      return {
-        ...state,
-        timeline: action.payload,
-      };
-
-    case UPDATE_TIMELINE:
       return {
         ...state,
         timeline: action.payload,
