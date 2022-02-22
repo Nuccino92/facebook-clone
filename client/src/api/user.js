@@ -10,5 +10,14 @@ export const getUserFriendsRequest = (id, friends) =>
 export const getUserTimelineRequest = (id, friends) =>
   axios.post(url + `timeline/${id}`, friends);
 
-export const addLikedPostRequest = (id, post) =>
-  axios.post(url + `liked/${id}`, post);
+export const addLikedPostRequest = (id, post, user) =>
+  axios({
+    method: "post",
+    url: url + `liked/${id}`,
+    data: {
+      post,
+      user,
+    },
+  });
+
+export const getAllUsers = () => axios.get(url);
