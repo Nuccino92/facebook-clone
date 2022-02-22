@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTimeline, updateTab } from "../../redux/actions/user";
+import { getUserTimeline } from "../../redux/actions/user";
 import Contacts from "./Contacts/Contacts";
 import "./Homepage.css";
 import SideNav from "./SideNav/SideNav";
