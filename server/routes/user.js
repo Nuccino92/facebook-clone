@@ -8,6 +8,7 @@ import {
   userSendFriendRequest_Post,
   rejectFriendRequest_Post,
   acceptFriendRequest_Post,
+  removeFriend_Post,
 } from "../controllers/user.js";
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.post("/liked/:id", userAddLikedPosts_Post);
 router.post("/send-friend-request/:id", userSendFriendRequest_Post);
 router.post("/reject-friend-request/:id", rejectFriendRequest_Post);
 router.post("/accept-friend-request/:id", acceptFriendRequest_Post);
+router.post("/remove-friend/:id", removeFriend_Post);
 
 export default router;

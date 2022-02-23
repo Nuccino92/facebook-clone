@@ -150,14 +150,14 @@ export const rejectFriendRequest_Post = async (req, res) => {
   const { user, rejectedUser } = req.body;
 
   //finds rejected users request
-  const findRejectedUser = user.friendRequests.find((request) => {
+  const findRejectedUserRequest = user.friendRequests.find((request) => {
     return request.type === "sender"
       ? request.recipient._id === rejectedUser._id
       : request.sender._id === rejectedUser._id;
   });
 
   // find users request
-  const findUser = rejectedUser.friendRequests.find((request) => {
+  const findUserRequest = rejectedUser.friendRequests.find((request) => {
     return request.type === "sender"
       ? request.recipient._id === user._id
       : request.sender._id === user._id;
@@ -166,7 +166,7 @@ export const rejectFriendRequest_Post = async (req, res) => {
   const promise1 = await User.findByIdAndUpdate(
     user._id,
     {
-      $pull: { friendRequests: findRejectedUser },
+      $pull: { friendRequests: findRejectedUserRequest },
     },
     {
       new: true,
@@ -176,7 +176,7 @@ export const rejectFriendRequest_Post = async (req, res) => {
   const promise2 = await User.findByIdAndUpdate(
     rejectedUser._id,
     {
-      $pull: { friendRequests: findUser },
+      $pull: { friendRequests: findUserRequest },
     },
     {
       new: true,
@@ -196,14 +196,14 @@ export const acceptFriendRequest_Post = async (req, res) => {
   const { user, acceptedUser } = req.body;
 
   // find accepted users request
-  const findAcceptedUser = user.friendRequests.find((request) => {
+  const findAcceptedUserRequest = user.friendRequests.find((request) => {
     return request.type === "sender"
       ? request.recipient._id === acceptedUser._id
       : request.sender._id === acceptedUser._id;
   });
 
   // finds users request
-  const findUser = acceptedUser.friendRequests.find((request) => {
+  const findUserRequest = acceptedUser.friendRequests.find((request) => {
     return request.type === "sender"
       ? request.recipient._id === user._id
       : request.sender._id === user._id;
@@ -212,7 +212,7 @@ export const acceptFriendRequest_Post = async (req, res) => {
   const promise1 = await User.findByIdAndUpdate(
     user._id,
     {
-      $pull: { friendRequests: findAcceptedUser },
+      $pull: { friendRequests: findAcceptedUserRequest },
       $addToSet: { friends: acceptedUser._id },
     },
     {
@@ -223,13 +223,42 @@ export const acceptFriendRequest_Post = async (req, res) => {
   const promise2 = await User.findByIdAndUpdate(
     acceptedUser._id,
     {
-      $pull: { friendRequests: findUser },
+      $pull: { friendRequests: findUserRequest },
       $addToSet: { friends: user._id },
     },
 
     {
       new: true,
     }
+  );
+
+  await Promise.all([promise1, promise2])
+    .then((response) => {
+      return res.status(201).json(response);
+    })
+    .catch((err) => {
+      return res.status(500).json(err);
+    });
+};
+
+export const removeFriend_Post = async (req, res) => {
+  const { id } = req.params;
+  const { _id: friendId } = req.body;
+
+  const promise1 = await User.findByIdAndUpdate(
+    id,
+    {
+      $pull: { friends: friendId },
+    },
+    { new: true }
+  );
+
+  const promise2 = await User.findByIdAndUpdate(
+    friendId,
+    {
+      $pull: { friends: id },
+    },
+    { new: true }
   );
 
   await Promise.all([promise1, promise2])
