@@ -3,12 +3,64 @@ import editProfilePicture from "./edit-profile.png";
 import messageButtonPicture from "./message-button.png";
 import profileFriendsPicture from "./profile-friends-btn.png";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useEffect, useState } from "react";
+import {
+  acceptFriendRequest,
+  rejectFriendRequest,
+  sendFriendRequest,
+} from "../../../api/user";
+import { loadUser } from "../../../redux/actions/user";
 
 const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
+  const dispatch = useDispatch();
   const { myProfile, viewedUser } = useSelector(
     (state) => state.viewedUserReducer
   );
+
+  const { user } = useSelector((state) => state.userReducer);
+
+  const [friendRequestInfo, setFriendRequestInfo] = useState(null);
+
+  const handleAddFriend = async () => {
+    await sendFriendRequest(viewedUser._id, user, viewedUser).then(() => {
+      dispatch(loadUser());
+    });
+  };
+
+  const handleAcceptFriend = async () => {
+    await acceptFriendRequest(user._id, user, viewedUser).then(() => {
+      dispatch(loadUser());
+    });
+  };
+
+  const handleRejectFriend = async () => {
+    await rejectFriendRequest(user._id, user, viewedUser).then(() => {
+      dispatch(loadUser());
+    });
+  };
+
+  useEffect(() => {
+    if (user.friendRequests.length === 0) {
+      return setFriendRequestInfo(null);
+    }
+
+    user.friendRequests.find((request) => {
+      if (
+        request.type === "sender" &&
+        request.recipient._id === viewedUser._id
+      ) {
+        return setFriendRequestInfo("pending");
+      }
+
+      if (
+        request.type === "recipient" &&
+        request.sender._id === viewedUser._id
+      ) {
+        return setFriendRequestInfo("recieved");
+      } else return setFriendRequestInfo(null);
+    });
+  }, [user.friendRequests, viewedUser._id]);
 
   return (
     <div className="ProfileUpper">
@@ -46,7 +98,28 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
               <img src={editProfilePicture} alt="pencil"></img>
               <button>Edit Profile</button>
             </div>
+          ) : // if user is viewing a non friends profile
+          !user.friends.includes(viewedUser._id) ? (
+            <div className="visiting-profile-btn-container">
+              {" "}
+              <div className="profile-friends-btn-container">
+                <img src={profileFriendsPicture} alt="friend"></img>
+                {/* conditional buttons */}
+                {friendRequestInfo === "pending" ? (
+                  <button onClick={handleRejectFriend}>Cancel Request</button>
+                ) : friendRequestInfo === "recieved" ? (
+                  <button onClick={handleAcceptFriend}>Confirm Request </button>
+                ) : (
+                  <button onClick={handleAddFriend}>Add friend</button>
+                )}
+              </div>{" "}
+              <div className="profile-message-btn-container">
+                <img src={messageButtonPicture} alt="thunder bolt"></img>
+                <button>Message</button>
+              </div>
+            </div>
           ) : (
+            // if user is viewing a friend
             <div className="visiting-profile-btn-container">
               <Link to={`/profile/${viewedUser._id}/friends`}>
                 {" "}

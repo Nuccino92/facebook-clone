@@ -1,69 +1,96 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  acceptFriendRequest,
+  getAllUsers,
+  getUserRequest,
+  rejectFriendRequest,
+} from "../../api/user";
+import { loadUser } from "../../redux/actions/user";
 import "./FriendRequests.css";
 
 const FriendRequests = () => {
-  const [userData] = useState([
-    {
-      firstname: "Demetrius",
-      email: "mauris@protonmail.org",
-      lastname: "Allen Lambert",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Cruz",
-      email: "dis.parturient.montes@aol.couk",
-      lastname: "Bertha",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "George",
-      email: "laoreet.ipsum.curabitur@icloud.ca",
-      lastname: "Margaret",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-    {
-      firstname: "Warren",
-      email: "accumsan@protonmail.com",
-      lastname: "Pascale",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.userReducer);
 
-    {
-      firstname: "Gabriel",
-      email: "vulputate@hotmail.couk",
-      lastname: "Hayes",
-      picture:
-        "https://i.pinimg.com/custom_covers/222x/85498161615209203_1636332751.jpg",
-      birthday: "Sat Jan 01 2022 00:00:00 GMT-0500 (Eastern Standard Time)",
-    },
-  ]);
+  const [listOfUsers, setListOfUsers] = useState([]);
+
+  useEffect(() => {
+    const getList = async () => {
+      const res = await getAllUsers();
+      setListOfUsers(res.data);
+    };
+    getList();
+  }, []);
+
+  console.log(listOfUsers);
+
+  const handleAcceptFriendRequest = async (e, request) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const requestUser = await getUserRequest(request.sender._id);
+
+    await acceptFriendRequest(user._id, user, requestUser.data.response).then(
+      () => {
+        dispatch(loadUser());
+      }
+    );
+  };
+
+  const handleRejectFriendRequest = async (e, request) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const requestUser = await getUserRequest(request.sender._id);
+
+    await rejectFriendRequest(user._id, user, requestUser.data.response).then(
+      () => {
+        dispatch(loadUser());
+      }
+    );
+  };
 
   return (
     <div className="FriendRequests">
       <h1>Friend Requests</h1>
       <div className="friend-request-grid">
-        {userData.map((user, index) => {
-          return (
-            <div className="friend-request" key={index}>
-              <img src={user.picture} alt="Profile"></img>
-              <div>
-                <h3>
-                  {user.firstname} {user.lastname}
-                </h3>
-                <button className="friend-request-confirm">Confirm</button>
-                <button className="friend-request-delete">Delete</button>
-              </div>
-            </div>
-          );
-        })}{" "}
+        {user.friendRequests.length === 0 ? (
+          <h2>No new friend requests</h2>
+        ) : (
+          user.friendRequests.map((request, index) => {
+            return (
+              request.type === "recipient" && (
+                <Link to={`/profile/${request.sender._id}`} key={index}>
+                  <div className="friend-request">
+                    <img
+                      src={request.sender.profile[0].profilePicture}
+                      alt="Profile"
+                    ></img>
+                    <div>
+                      <h3>
+                        {request.sender.profile[0].firstName}{" "}
+                        {request.sender.profile[0].lastName}
+                      </h3>
+                      <button
+                        className="friend-request-confirm"
+                        onClick={(e) => handleAcceptFriendRequest(e, request)}
+                      >
+                        Confirm
+                      </button>
+                      <button
+                        className="friend-request-delete"
+                        onClick={(e) => handleRejectFriendRequest(e, request)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </Link>
+              )
+            );
+          })
+        )}{" "}
       </div>
     </div>
   );
