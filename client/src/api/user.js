@@ -51,3 +51,6 @@ export const rejectFriendRequest = (id, user, rejectedUser) =>
       rejectedUser,
     },
   });
+
+export const removeFromFriendsRequest = (id, friend) =>
+  axios.post(url + `remove-friend/${id}`, friend);
