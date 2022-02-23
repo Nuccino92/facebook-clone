@@ -12,7 +12,6 @@ const Homepage = () => {
   const { user, timelineTab } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
-    if (user.posts.length === 0) return;
     dispatch(getUserTimeline(user, user.friends, timelineTab));
   }, [dispatch, timelineTab, user]);
 
