@@ -18,6 +18,7 @@ const Nav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const inputRef = useRef();
+  const dropdownRef = useRef();
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [listOfUsers, setListOfUsers] = useState([]);
@@ -59,12 +60,25 @@ const Nav = () => {
     isMyInputFocused && inputRef.current.focus();
   }, [isMyInputFocused]);
 
-  const handleMenu = () => {
-    setProfileMenu(!profileMenu);
-  };
+  useEffect(() => {
+    const checkDropdown = (e) => {
+      if (
+        dropdownRef.current &&
+        profileMenu &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setProfileMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", checkDropdown);
+    return () => {
+      document.removeEventListener("mousedown", checkDropdown);
+    };
+  }, [profileMenu]);
 
   return (
     <div className="Nav">
+      {/* -----------------when searchbar is focused------------------ */}
       {isMyInputFocused ? (
         <div className="nav-left nav-left-active">
           <div>
@@ -104,6 +118,7 @@ const Nav = () => {
           </div>
         </div>
       ) : (
+        // --------------------when searchbar is not focused-----------------------
         <div className="nav-left">
           <Link to="/">
             <img src={facebookIcon} alt="Facebook icon homepage button"></img>
@@ -135,6 +150,7 @@ const Nav = () => {
         </div>
       )}
 
+      {/*--------------- nav middle tabs ----------------*/}
       <div className="nav-middle">
         <Link to="/">
           <div
@@ -171,7 +187,10 @@ const Nav = () => {
           </div>
         </Link>
       </div>
+
+      {/* -----------right side nav------------------ */}
       <div className="nav-right">
+        {/* profile picture and name container */}
         <Link
           to={`/profile/${user._id}`}
           state={user}
@@ -182,18 +201,22 @@ const Nav = () => {
             <div>{user.profile[0].firstName}</div>
           </div>
         </Link>
+
+        {/* down arrow */}
         <div
-          onClick={handleMenu}
+          onClick={() => setProfileMenu(true)}
           id="down-arrow"
           className="down-arrow-container"
         >
           <AiFillCaretDown />
         </div>
+
         {/* --------------dropdown menu-------------- */}
         {profileMenu && (
-          <div className="profile-menu">
+          <div className="profile-menu" ref={dropdownRef}>
             <div className="profile-menu-inner">
               <ul>
+                {/* see your profile */}
                 <Link
                   to={`/profile/${user._id}`}
                   state={user}
@@ -211,6 +234,8 @@ const Nav = () => {
                   </li>{" "}
                 </Link>
                 <div></div>
+
+                {/* view friends list item */}
                 <Link
                   to={`/friends/${user._id}`}
                   onClick={() => setProfileMenu(false)}
@@ -223,6 +248,7 @@ const Nav = () => {
                   </li>
                 </Link>
 
+                {/* logout list item */}
                 <li
                   className="profile-menu-third"
                   onClick={() => {
