@@ -1,19 +1,13 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import "./Friends.css";
-import FriendsDropdown from "./FriendsDropdown/FriendsDropdown";
+import FriendsCard from "./FriendsCard/FriendsCard";
 
 const Friends = () => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
   const { myProfile, viewedUser, friendsInfo } = useSelector(
     (state) => state.viewedUserReducer
   );
-
-  const handleActiveDropdown = (index) => {
-    setActiveDropdown(index);
-  };
 
   return (
     <div className="Friends">
@@ -27,29 +21,7 @@ const Friends = () => {
       </header>
       <div className="Friends-list-container">
         {friendsInfo.map((user, index) => {
-          const { profile } = user;
-          return (
-            <div key={index}>
-              <div>
-                <Link to={`/profile/${user._id}`}>
-                  {" "}
-                  <img src={profile[0].profilePicture} alt="Profile"></img>
-                </Link>
-                <span>
-                  {profile[0].firstName} {profile[0].lastName}
-                </span>
-              </div>
-              {!myProfile ? (
-                <button>Add friend</button>
-              ) : (
-                <FriendsDropdown
-                  index={index}
-                  handleActiveDropdown={handleActiveDropdown}
-                  activeDropdown={activeDropdown}
-                />
-              )}
-            </div>
-          );
+          return <FriendsCard friend={user} key={index} />;
         })}{" "}
       </div>
     </div>
