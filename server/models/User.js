@@ -19,12 +19,7 @@ const User = mongoose.model(
           ref: "User",
         },
       ],
-      friendRequests: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "User",
-        },
-      ],
+      friendRequests: [],
       posts: [
         {
           type: mongoose.Types.ObjectId,
