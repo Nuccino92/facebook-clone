@@ -21,3 +21,33 @@ export const addLikedPostRequest = (id, post, user) =>
   });
 
 export const getAllUsers = () => axios.get(url);
+
+export const sendFriendRequest = (id, sender, recipient) =>
+  axios({
+    method: "post",
+    url: url + `send-friend-request/${id}`,
+    data: {
+      sender,
+      recipient,
+    },
+  });
+
+export const acceptFriendRequest = (id, user, acceptedUser) =>
+  axios({
+    method: "post",
+    url: url + `accept-friend-request/${id}`,
+    data: {
+      user,
+      acceptedUser,
+    },
+  });
+
+export const rejectFriendRequest = (id, user, rejectedUser) =>
+  axios({
+    method: "post",
+    url: url + `reject-friend-request/${id}`,
+    data: {
+      user,
+      rejectedUser,
+    },
+  });
