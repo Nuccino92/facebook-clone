@@ -118,6 +118,8 @@ export const getUserTimeline =
       console.log(err);
     }
   };
+
+// for filtering the timeline
 export const updateTab = (selected) => {
   return {
     type: UPDATE_TAB,
