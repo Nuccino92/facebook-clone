@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.FriendsDropdown:hover {
+  filter: brightness(0.96);
+  -webkit-filter: brightness(0.96);
+}
+
 .FriendsDropdown > button {
   cursor: pointer;
   font-weight: 900;
