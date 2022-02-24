@@ -1,0 +1,172 @@
+.EditProfile {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(244, 244, 244, 0.8);
+  position: fixed;
+}
+
+/* modal content */
+.EditProfile-content {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px o, rgba(0, 0, 0, 0.1) 0 2px 4px 0,
+    rgba(255, 255, 255, 0.5) 0 0 0 1px inset;
+  border-radius: 8px;
+  color: rgb(28, 30, 33);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  z-index: 100;
+  text-align: center;
+}
+
+/* top of the modal content */
+.modal-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* edit profile  */
+.modal-header > h1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* close button */
+.EditProfile-close {
+  height: 36px;
+  width: 36px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgb(228, 230, 235);
+  cursor: pointer;
+  margin-right: 11px;
+}
+
+.EditProfile-close:hover {
+  filter: brightness(0.95);
+  -webkit-filter: brightness(0.95);
+}
+
+/* each category container */
+.EditProfile-content > div {
+  width: 100%;
+}
+
+/* category container header */
+.EditProfile-content > div > header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 16px 4px 16px;
+  align-items: center;
+}
+
+/* category container header title */
+.EditProfile-content > div > header > h3 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* add/edit button in each category */
+.EditProfile-content > div > header > button {
+  cursor: pointer;
+  color: rgb(33, 111, 219);
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 17px;
+  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 4px;
+  padding: 4px 11px;
+  margin-right: -5px;
+}
+
+.EditProfile-content > div > header > button:hover {
+  background-color: rgb(228, 230, 235);
+}
+
+/* profile picture  */
+.EditProfile-profile-picture > img {
+  height: 168px;
+  width: 168px;
+  border-radius: 50%;
+}
+
+/* cover photo image/div */
+.EditProfile-cover-photo > div {
+  padding: 16px 16px 0;
+}
+
+.EditProfile-cover-photo-image {
+  width: 500px;
+  height: 185px;
+  margin: 0 auto;
+}
+
+/* div in place of cover photo if user doesn't have one */
+.cover-photo-placeholder {
+  background-color: rgb(228, 230, 235);
+}
+
+/* bio display */
+.EditProfile-bio > p {
+  font-size: 17px;
+  font-weight: 400;
+  color: rgb(101, 103, 107);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.EditProfile-save {
+  width: 100%;
+  padding: 20px;
+}
+
+.EditProfile-save > button {
+  color: rgb(24, 119, 242);
+  background-color: rgb(231, 243, 255);
+  cursor: pointer;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 6px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 9px;
+}
+
+.EditProfile-save > button:hover {
+  filter: brightness(0.94);
+  -webkit-filter: brightness(0.94);
+}
+
+.EditProfile-save > button:active {
+  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+  -moz-transform: scale(0.98);
+}
