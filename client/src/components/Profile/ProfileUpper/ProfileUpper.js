@@ -4,13 +4,14 @@ import messageButtonPicture from "./message-button.png";
 import profileFriendsPicture from "./profile-friends-btn.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   acceptFriendRequest,
   rejectFriendRequest,
   sendFriendRequest,
 } from "../../../api/user";
 import { loadUser } from "../../../redux/actions/user";
+import EditProfile from "./EditProfile/EditProfile";
 
 const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
   const { user } = useSelector((state) => state.userReducer);
 
   const [friendRequestInfo, setFriendRequestInfo] = useState(null);
+
+  const [editModal, setEditModal] = useState(false);
 
   const handleAddFriend = async () => {
     await sendFriendRequest(viewedUser._id, user, viewedUser).then(() => {
@@ -96,7 +99,7 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
           {myProfile ? (
             <div className="edit-profile-btn-container">
               <img src={editProfilePicture} alt="pencil"></img>
-              <button>Edit Profile</button>
+              <button onClick={() => setEditModal(true)}>Edit Profile</button>
             </div>
           ) : // if user is viewing a non friends profile
           !user.friends.includes(viewedUser._id) ? (
@@ -188,6 +191,8 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
           </Link>
         </ul>
       </div>
+      {/* edit profile modal */}
+      {editModal && <EditProfile setEditModal={setEditModal} />}
     </div>
   );
 };
