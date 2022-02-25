@@ -1,11 +1,18 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { FiUpload } from "react-icons/fi";
 
-const CoverPhotoModal = ({ setCoverPhotoModal }) => {
+const CoverPhotoModal = ({ setCoverPhotoModal, handleChange }) => {
   const handleModal = (e) => {
     e.target.className.includes("CoverPhotoModal" || "cheese") &&
       setCoverPhotoModal(false);
   };
+
+  const awaitClose = () => {
+    setTimeout(() => {
+      setCoverPhotoModal(false);
+    }, 350);
+  };
+
   return (
     <div className="OptionsModals CoverPhotoModal" onClick={handleModal}>
       <div className="modal-content">
@@ -19,12 +26,22 @@ const CoverPhotoModal = ({ setCoverPhotoModal }) => {
           </div>
         </header>
         <div className="modal-content-body">
-          <div>
+          <input
+            name="coverPhoto"
+            type="file"
+            id="coverPhoto"
+            accept="image/*"
+            onChange={(e) => {
+              handleChange(e);
+              awaitClose();
+            }}
+          />
+          <label htmlFor="coverPhoto">
             <div>
               <FiUpload size={24} style={{ pointerEvents: "none" }} />
             </div>
             <span>Upload Photo</span>
-          </div>
+          </label>
         </div>
       </div>
     </div>
