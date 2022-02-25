@@ -21,6 +21,7 @@ export const register_Post = async (req, res) => {
           bio,
           birthday,
           gender,
+          coverPhoto: "",
         },
       ],
     });
