@@ -269,3 +269,43 @@ export const removeFriend_Post = async (req, res) => {
       return res.status(500).json(err);
     });
 };
+
+export const updateUser_Post = async (req, res) => {
+  const url = "http://localhost:8000/";
+
+  const { id } = req.params;
+  const { bio } = req.body;
+
+  const profilePicture = req.files["profilePicture"];
+  const coverPhoto = req.files["coverPhoto"];
+
+  const user = await User.findById(id);
+
+  // console.log(coverPicture[0].path);
+
+  const promise1 =
+    profilePicture !== undefined &&
+    user.updateOne({
+      $set: { "profile.0.profilePicture": url + profilePicture[0].path },
+    });
+
+  const promise2 =
+    coverPhoto !== undefined &&
+    user.updateOne({
+      $set: { "profile.0.coverPhoto": url + coverPhoto[0].path },
+    });
+
+  const promise3 =
+    bio !== user.profile[0].bio &&
+    user.updateOne({
+      $set: { "profile.0.bio": bio },
+    });
+
+  await Promise.all([promise1, promise2, promise3])
+    .then((response) => {
+      return res.status(201).json(response);
+    })
+    .catch((err) => {
+      return res.status(500).json(err);
+    });
+};
