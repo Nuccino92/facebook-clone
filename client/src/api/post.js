@@ -3,12 +3,12 @@ import { tokenRefreshConfig } from "../config/token";
 
 const url = "http://localhost:8000/posts/";
 const token = localStorage.getItem("token");
+const config = tokenRefreshConfig(token);
 
-export const addPostRequest = (postData) =>
-  axios.post(url, postData, tokenRefreshConfig(token));
+export const addPostRequest = (postData) => axios.post(url, postData, config);
 
 export const getUserPostsRequest = (id, posts) =>
-  axios.post(url + id, posts, tokenRefreshConfig(token));
+  axios.post(url + id, posts, config);
 
 export const updatePostLikesRequest = (id, post, user) =>
   axios({

@@ -4,14 +4,15 @@ import { tokenRefreshConfig } from "../config/token";
 const url = "http://localhost:8000/user/";
 
 const token = localStorage.getItem("token");
+const config = tokenRefreshConfig(token);
 
 export const getUserRequest = async (id) => await axios.get(url + id);
 
 export const getUserFriendsRequest = (id, friends) =>
-  axios.post(url + `friends/${id}`, friends, tokenRefreshConfig(token));
+  axios.post(url + `friends/${id}`, friends, config);
 
 export const getUserTimelineRequest = (id, friends) =>
-  axios.post(url + `timeline/${id}`, friends, tokenRefreshConfig(token));
+  axios.post(url + `timeline/${id}`, friends, config);
 
 export const addLikedPostRequest = (id, post, user) =>
   axios({
@@ -26,10 +27,10 @@ export const addLikedPostRequest = (id, post, user) =>
     },
   });
 
-export const getAllUsers = () => axios.get(url, tokenRefreshConfig(token));
+export const getAllUsers = () => axios.get(url, config);
 
 export const sendFriendRequest = (id, sender, recipient) =>
-  axios(tokenRefreshConfig(token), {
+  axios({
     method: "post",
     url: url + `send-friend-request/${id}`,
     headers: {
@@ -42,7 +43,7 @@ export const sendFriendRequest = (id, sender, recipient) =>
   });
 
 export const acceptFriendRequest = (id, user, acceptedUser) =>
-  axios(tokenRefreshConfig(token), {
+  axios({
     method: "post",
     url: url + `accept-friend-request/${id}`,
     headers: {
@@ -68,7 +69,7 @@ export const rejectFriendRequest = (id, user, rejectedUser) =>
   });
 
 export const removeFromFriendsRequest = (id, friend) =>
-  axios.post(url + `remove-friend/${id}`, friend, tokenRefreshConfig(token));
+  axios.post(url + `remove-friend/${id}`, friend, config);
 
 export const updateUser = (id, data) =>
   axios({
