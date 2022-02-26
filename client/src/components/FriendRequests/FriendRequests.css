@@ -1,6 +1,7 @@
 .FriendRequests {
   padding: 30px;
   width: max-content;
+  min-width: 80%;
   margin: 0 auto;
 }
 
@@ -25,6 +26,7 @@
   border-radius: 8px;
   width: max-content;
   align-self: center;
+  background-color: white;
 }
 
 .friend-request > img {
