@@ -13,7 +13,6 @@ import { getUser } from "../../redux/actions/viewedUser";
 import { getUserTimeline, loadUser } from "../../redux/actions/user";
 
 const Post = ({ post }) => {
-  const url = "http://localhost:8000/";
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -90,7 +89,7 @@ const Post = ({ post }) => {
       <div className="Post-desciption">{post.content}</div>
 
       <div className="Post-picture">
-        <img src={url + post.picture} alt="Post"></img>
+        <img src={post.picture} alt="Post"></img>
       </div>
 
       <div className="Post-stats">

@@ -115,7 +115,7 @@ const ProfileIndex = ({ setSelectedTab }) => {
           <form ref={formRef}>
             <div className="ProfileCreatePost-container">
               <div>
-                <img src={picture} alt="Profile"></img>
+                <img src={user.profile[0].profilePicture} alt="Profile"></img>
                 <input
                   type="text"
                   name="content"
