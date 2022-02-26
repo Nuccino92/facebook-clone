@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 import {
   user_Get,
   userFriends_Post,
@@ -33,19 +34,52 @@ const upload = multer({
 });
 
 let multipleUpload = upload.fields([
-  { name: "profilePicture" },
-  { name: "coverPhoto" },
+  { name: "profilePicture", maxCount: 1 },
+  { name: "coverPhoto", maxCount: 1 },
 ]);
 
 router.get("/:id", user_Get);
 router.get("/", getAllUsers_Get);
-router.post("/timeline/:id", userTimeline_Get);
-router.post("/friends/:id", userFriends_Post);
-router.post("/liked/:id", userAddLikedPosts_Post);
-router.post("/send-friend-request/:id", userSendFriendRequest_Post);
-router.post("/reject-friend-request/:id", rejectFriendRequest_Post);
-router.post("/accept-friend-request/:id", acceptFriendRequest_Post);
-router.post("/remove-friend/:id", removeFriend_Post);
-router.put("/update/:id", multipleUpload, updateUser_Post);
+router.post(
+  "/timeline/:id",
+  passport.authenticate("jwt", { session: false }),
+  userTimeline_Get
+);
+router.post(
+  "/friends/:id",
+  passport.authenticate("jwt", { session: false }),
+  userFriends_Post
+);
+router.post(
+  "/liked/:id",
+  passport.authenticate("jwt", { session: false }),
+  userAddLikedPosts_Post
+);
+router.post(
+  "/send-friend-request/:id",
+  passport.authenticate("jwt", { session: false }),
+  userSendFriendRequest_Post
+);
+router.post(
+  "/reject-friend-request/:id",
+  passport.authenticate("jwt", { session: false }),
+  rejectFriendRequest_Post
+);
+router.post(
+  "/accept-friend-request/:id",
+  passport.authenticate("jwt", { session: false }),
+  acceptFriendRequest_Post
+);
+router.post(
+  "/remove-friend/:id",
+  passport.authenticate("jwt", { session: false }),
+  removeFriend_Post
+);
+router.put(
+  "/update/:id",
+  passport.authenticate("jwt", { session: false }),
+  multipleUpload,
+  updateUser_Post
+);
 
 export default router;

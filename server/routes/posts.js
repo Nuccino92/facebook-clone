@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 import {
   posts_Post,
   getPosts_Post,
@@ -28,8 +29,21 @@ const upload = multer({
   },
 });
 
-router.post("/", upload.single("picture"), posts_Post);
-router.post("/:id", getPosts_Post);
-router.post("/like/:id", updatePostLikes_Post);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("picture"),
+  posts_Post
+);
+router.post(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  getPosts_Post
+);
+router.post(
+  "/like/:id",
+  passport.authenticate("jwt", { session: false }),
+  updatePostLikes_Post
+);
 
 export default router;
