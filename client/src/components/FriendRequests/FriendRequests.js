@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   acceptFriendRequest,
-  getAllUsers,
   getUserRequest,
   rejectFriendRequest,
 } from "../../api/user";
@@ -13,18 +11,6 @@ import "./FriendRequests.css";
 const FriendRequests = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
-
-  const [listOfUsers, setListOfUsers] = useState([]);
-
-  useEffect(() => {
-    const getList = async () => {
-      const res = await getAllUsers();
-      setListOfUsers(res.data);
-    };
-    getList();
-  }, []);
-
-  console.log(listOfUsers);
 
   const handleAcceptFriendRequest = async (e, request) => {
     e.stopPropagation();
@@ -56,7 +42,7 @@ const FriendRequests = () => {
       <h1>Friend Requests</h1>
       <div className="friend-request-grid">
         {user.friendRequests.length === 0 ? (
-          <h2>No new friend requests</h2>
+          <h2 className="">No new friend requests</h2>
         ) : (
           user.friendRequests.map((request, index) => {
             return (
