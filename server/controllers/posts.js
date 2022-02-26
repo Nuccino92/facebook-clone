@@ -2,13 +2,15 @@ import Post from "../models/Post.js";
 import User from "../models/User.js";
 
 export const posts_Post = async (req, res) => {
+  const url = "http://localhost:8000/";
+
   const { user, content } = req.body;
   const { path } = req.file;
 
   const newPost = Post({
     user,
     content,
-    picture: path,
+    picture: url + path,
   });
 
   newPost.save().then(async (response) => {
