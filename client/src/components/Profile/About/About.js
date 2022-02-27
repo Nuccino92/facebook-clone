@@ -1,6 +1,8 @@
 import "./About.css";
 import { BsPersonFill, BsGenderAmbiguous } from "react-icons/bs";
 import { FaBirthdayCake, FaUserFriends } from "react-icons/fa";
+import { BsCheckLg } from "react-icons/bs";
+import { VscChromeClose } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 
 const About = () => {
@@ -45,7 +47,28 @@ const About = () => {
               <FaUserFriends size={20} />
               &#160; Friend Status
             </div>
-            <p>{friends ? "Friends :)" : "Not friends :("}</p>
+            <p>
+              {friends ? (
+                <>
+                  {" "}
+                  Friends{" "}
+                  <BsCheckLg
+                    color="#41EC29"
+                    size={22}
+                    style={{ marginLeft: "10px" }}
+                  />{" "}
+                </>
+              ) : (
+                <>
+                  Not friends{" "}
+                  <VscChromeClose
+                    color="red"
+                    size={22}
+                    style={{ marginLeft: "10px" }}
+                  />{" "}
+                </>
+              )}
+            </p>
           </li>
         )}
       </ul>

@@ -31,9 +31,12 @@
 
 /* user information */
 .About > ul > li > p {
-  text-align: center;
   color: rgb(5, 5, 5);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   word-wrap: break-word;
+  padding: 10px 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  align-content: center;
+  display: flex;
 }

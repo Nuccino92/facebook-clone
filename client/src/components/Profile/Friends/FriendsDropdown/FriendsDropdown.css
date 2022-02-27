@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.FriendsDropdown:hover {
-  filter: brightness(0.96);
-  -webkit-filter: brightness(0.96);
-}
-
 .FriendsDropdown > button {
   cursor: pointer;
   font-weight: 900;
@@ -19,7 +14,7 @@
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
   position: fixed;
-  margin: 75px 0 0 0;
+  margin: 95px 0 0 0;
   background-color: white;
   border-radius: 8px;
 }
@@ -35,4 +30,10 @@
   display: flex;
   align-items: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 8px;
+}
+
+.FriendsDropdown-active > div:hover {
+  background-color: rgb(216, 215, 215);
+  color: blue;
 }
