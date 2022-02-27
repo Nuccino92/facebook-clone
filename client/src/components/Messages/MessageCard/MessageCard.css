@@ -1,0 +1,110 @@
+.MessageCard {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 12px 28px 0, rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 570px;
+  width: 328px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  color: rgb(28, 30, 33);
+  margin-right: 15px;
+}
+
+.MessageCard > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+
+.MessageCard > header > div {
+  display: flex;
+  align-items: center;
+}
+.MessageCard > header > div > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.MessageCard > header > svg {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.MessageCard > header > svg:hover {
+  background-color: rgb(240, 242, 245);
+}
+
+.MessageCard-body {
+  overflow-y: scroll;
+  /* overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity; */
+  height: 100%;
+}
+
+.MessageCard-body > header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 12px 12px;
+}
+
+.MessageCard-body > header > img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.MessageCard-body-content {
+  padding: 0 12px;
+}
+
+.MessageCard > footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+
+.MessageCard > footer > img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.MessageCard > footer > input {
+  border-radius: 20px;
+  background-color: rgb(240, 242, 245);
+  height: 36px;
+  font-size: 15px;
+  padding: 0 12px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.MessageCard > footer > button {
+  cursor: pointer;
+  background-color: rgb(27, 116, 228);
+  color: white;
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 15px;
+  border: none;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.MessageCard > footer > button:active {
+  transform: scale(0.94);
+  -webkit-transform: scale(0.94);
+  -moz-transform: scale(0.94);
+}
