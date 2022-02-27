@@ -12,6 +12,8 @@ import authRoutes from "./routes/auth.js";
 import postsRoutes from "./routes/posts.js";
 import userRoutes from "./routes/user.js";
 import commentsRoutes from "./routes/comments.js";
+import messageRoutes from "./routes/messages.js";
+import conversationRoutes from "./routes/conversations.js";
 
 const app = express();
 
@@ -43,3 +45,5 @@ app.use("/auth", authRoutes);
 app.use("/posts", postsRoutes);
 app.use("/user", userRoutes);
 app.use("/comment", commentsRoutes);
+app.use("/message", messageRoutes);
+app.use("/conversation", conversationRoutes);
