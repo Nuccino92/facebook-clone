@@ -80,3 +80,6 @@ export const updateUser = (id, data) =>
     },
     data,
   });
+
+export const getFriendsInfoRequest = (id, friends) =>
+  axios.post(url + `friends-info/${id}`, friends, tokenRefreshConfig(token));
