@@ -1,0 +1,22 @@
+.MessageIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0, rgba(0, 0, 0, 0.2) 0 12px 28px 0;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.MessageIcon:hover {
+  filter: brightness(0.96);
+  -webkit-filter: brightness(0.96);
+}
+
+.MessageIcon:active {
+  filter: brightness(0.91);
+  -webkit-filter: brightness(0.91);
+}
