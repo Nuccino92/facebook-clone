@@ -6,9 +6,8 @@ import oldest from "./SideNavImages/oldest.png";
 import sendMessage from "./SideNavImages/send-message.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTab, updateTimeline } from "../../../redux/actions/user";
-import { getUserPostsRequest } from "../../../api/post";
-import { GET_TIMELINE } from "../../../redux/actions/types";
+import { updateTab } from "../../../redux/actions/user";
+import { handleSearchCard } from "../../../redux/actions/conversation";
 
 const SideNav = () => {
   const dispatch = useDispatch();
@@ -90,7 +89,7 @@ const SideNav = () => {
         </li>
         <li>
           <img src={sendMessage} alt="Send Message"></img>
-          <p>Send Message</p>
+          <p onClick={() => dispatch(handleSearchCard(true))}>Send Message</p>
         </li>
       </ul>
     </div>
