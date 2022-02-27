@@ -8,20 +8,10 @@ import {
 
 const router = express.Router();
 
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  addComment_Post
-);
-router.post(
-  "/reply",
-  passport.authenticate("jwt", { session: false }),
-  addCommentReply_Post
-);
-router.get(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  comment_Get
-);
+const auth = passport.authenticate("jwt", { session: false });
+
+router.post("/", auth, addComment_Post);
+router.post("/reply", auth, addCommentReply_Post);
+router.get("/:id", auth, comment_Get);
 
 export default router;

@@ -10,6 +10,8 @@ const router = express.Router();
 
 import multer from "multer";
 
+const auth = passport.authenticate("jwt", { session: false });
+
 // define storage for images
 
 const fileStorageEngine = multer.diskStorage({
@@ -29,21 +31,8 @@ const upload = multer({
   },
 });
 
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("picture"),
-  posts_Post
-);
-router.post(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  getPosts_Post
-);
-router.post(
-  "/like/:id",
-  passport.authenticate("jwt", { session: false }),
-  updatePostLikes_Post
-);
+router.post("/", auth, upload.single("picture"), posts_Post);
+router.post("/:id", auth, getPosts_Post);
+router.post("/like/:id", auth, updatePostLikes_Post);
 
 export default router;

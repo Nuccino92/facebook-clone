@@ -11,11 +11,14 @@ import {
   acceptFriendRequest_Post,
   removeFriend_Post,
   updateUser_Post,
+  getFriendsInfo_Post,
 } from "../controllers/user.js";
 
 const router = express.Router();
 
 import multer from "multer";
+
+const auth = passport.authenticate("jwt", { session: false });
 
 const filesStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -40,46 +43,15 @@ let multipleUpload = upload.fields([
 
 router.get("/:id", user_Get);
 router.get("/", getAllUsers_Get);
-router.post(
-  "/timeline/:id",
-  passport.authenticate("jwt", { session: false }),
-  userTimeline_Get
-);
-router.post(
-  "/friends/:id",
-  passport.authenticate("jwt", { session: false }),
-  userFriends_Post
-);
-router.post(
-  "/liked/:id",
-  passport.authenticate("jwt", { session: false }),
-  userAddLikedPosts_Post
-);
-router.post(
-  "/send-friend-request/:id",
-  passport.authenticate("jwt", { session: false }),
-  userSendFriendRequest_Post
-);
-router.post(
-  "/reject-friend-request/:id",
-  passport.authenticate("jwt", { session: false }),
-  rejectFriendRequest_Post
-);
-router.post(
-  "/accept-friend-request/:id",
-  passport.authenticate("jwt", { session: false }),
-  acceptFriendRequest_Post
-);
-router.post(
-  "/remove-friend/:id",
-  passport.authenticate("jwt", { session: false }),
-  removeFriend_Post
-);
-router.put(
-  "/update/:id",
-  passport.authenticate("jwt", { session: false }),
-  multipleUpload,
-  updateUser_Post
-);
+router.post("/timeline/:id", auth, userTimeline_Get);
+router.post("/friends/:id", auth, userFriends_Post);
+router.post("/liked/:id", auth, userAddLikedPosts_Post);
+router.post("/send-friend-request/:id", auth, userSendFriendRequest_Post);
+router.post("/reject-friend-request/:id", auth, rejectFriendRequest_Post);
+router.post("/accept-friend-request/:id", auth, acceptFriendRequest_Post);
+router.post("/remove-friend/:id", auth, removeFriend_Post);
+router.put("/update/:id", auth, multipleUpload, updateUser_Post);
+
+router.post("/friends-info/:id", auth, getFriendsInfo_Post);
 
 export default router;

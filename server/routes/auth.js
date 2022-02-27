@@ -4,6 +4,8 @@ import auth_Get from "../controllers/auth.js";
 
 const router = express.Router();
 
-router.get("/", passport.authenticate("jwt", { session: false }), auth_Get);
+const auth = passport.authenticate("jwt", { session: false });
+
+router.get("/", auth, auth_Get);
 
 export default router;
