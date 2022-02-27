@@ -12,6 +12,11 @@ import {
 } from "../../../api/user";
 import { loadUser } from "../../../redux/actions/user";
 import EditProfile from "./EditProfile/EditProfile";
+import {
+  closeConversation,
+  findConversation,
+  setOtherUser,
+} from "../../../redux/actions/conversation";
 
 const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
   const dispatch = useDispatch();
@@ -41,6 +46,12 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
     await rejectFriendRequest(user._id, user, viewedUser).then(() => {
       dispatch(loadUser());
     });
+  };
+
+  const handleMessages = () => {
+    dispatch(closeConversation());
+    dispatch(setOtherUser(viewedUser));
+    dispatch(findConversation(user._id, viewedUser._id));
   };
 
   useEffect(() => {
@@ -118,7 +129,7 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
               </div>{" "}
               <div className="profile-message-btn-container">
                 <img src={messageButtonPicture} alt="thunder bolt"></img>
-                <button>Message</button>
+                <button onClick={handleMessages}>Message</button>
               </div>
             </div>
           ) : (
@@ -134,7 +145,7 @@ const ProfileUpper = ({ selectedTab, setSelectedTab }) => {
               </Link>
               <div className="profile-message-btn-container">
                 <img src={messageButtonPicture} alt="thunder bolt"></img>
-                <button>Message</button>
+                <button onClick={handleMessages}>Message</button>
               </div>
             </div>
           )}

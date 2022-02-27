@@ -1,9 +1,15 @@
 import "./FriendsDropdown.css";
 import { HiOutlineUserRemove } from "react-icons/hi";
+import { AiOutlineMessage } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromFriendsRequest } from "../../../../api/user";
 import { loadUser } from "../../../../redux/actions/user";
+import {
+  closeConversation,
+  setOtherUser,
+  findConversation,
+} from "../../../../redux/actions/conversation";
 
 const FriendsDropdown = ({ friend }) => {
   const dispatch = useDispatch();
@@ -16,6 +22,13 @@ const FriendsDropdown = ({ friend }) => {
     await removeFromFriendsRequest(user._id, friend).then(() => {
       dispatch(loadUser());
     });
+  };
+
+  const handleMessages = () => {
+    dispatch(closeConversation());
+    dispatch(setOtherUser(friend));
+    dispatch(findConversation(user._id, friend._id));
+    setIsMyDropdownActive(false);
   };
 
   useEffect(() => {
@@ -39,6 +52,10 @@ const FriendsDropdown = ({ friend }) => {
       <button onClick={() => setIsMyDropdownActive(true)}>...</button>
       {isMyDropdownActive && (
         <div ref={dropdownRef} className="FriendsDropdown-active">
+          <div onClick={handleMessages}>
+            <AiOutlineMessage size={20} style={{ marginRight: "10px" }} />
+            Message
+          </div>
           <div
             onClick={() => {
               setIsMyDropdownActive(false);
