@@ -7,7 +7,7 @@ export const user_Get = async (req, res) => {
   await User.findById(id)
     .select("-password")
     .then((response) => {
-      res.status(201).json({ response });
+      res.status(200).json({ response });
     })
     .catch((err) => {
       console.log(err);
@@ -35,7 +35,7 @@ export const userTimeline_Get = async (req, res) => {
 
   await Promise.all(postsArray.map(async (post) => await Post.findById(post)))
     .then((response) => {
-      return res.status(201).json(response);
+      return res.status(200).json(response);
     })
     .catch((err) => {
       return res.status(409).json(err);
@@ -105,7 +105,7 @@ export const getAllUsers_Get = async (req, res) => {
   const filter = {};
   const all = await User.find(filter);
 
-  res.json(all);
+  return res.status(200).json(all);
 };
 
 export const userSendFriendRequest_Post = async (req, res) => {
@@ -307,5 +307,19 @@ export const updateUser_Post = async (req, res) => {
     })
     .catch((err) => {
       return res.status(500).json(err);
+    });
+};
+
+export const getFriendsInfo_Post = async (req, res) => {
+  await Promise.all(
+    req.body.map(
+      async (friend) => await User.findById(friend).select("-password")
+    )
+  )
+    .then((response) => {
+      return res.status(201).json(response);
+    })
+    .catch((err) => {
+      return res.status(400).json({ err });
     });
 };
