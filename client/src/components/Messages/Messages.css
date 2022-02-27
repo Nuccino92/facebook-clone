@@ -1,0 +1,9 @@
+.Messages {
+  z-index: 1000;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+}
