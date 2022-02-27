@@ -4,7 +4,7 @@ export const auth_Get = (req, res) => {
   User.findById(req.user.id)
     .select("-password")
     .then((user) => {
-      res.json(user);
+      res.status(200).json(user);
     });
 };
 

@@ -39,7 +39,7 @@ export const comment_Get = async (req, res) => {
 
   await Comment.findById(id)
     .then((response) => {
-      return res.status(201).json(response);
+      return res.status(200).json(response);
     })
     .catch((err) => {
       return res.status(404).json(err.message);
