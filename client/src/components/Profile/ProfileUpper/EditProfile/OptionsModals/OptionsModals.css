@@ -118,6 +118,10 @@
   .modal-content {
     transform: scale(0.8);
     transform-origin: top;
+    -webkit-transform: 0.8;
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.8);
+    -moz-transform-origin: top;
   }
 }
 
@@ -125,5 +129,9 @@
   .modal-content {
     transform: scale(0.6);
     transform-origin: top;
+    -webkit-transform: 0.6;
+    -webkit-transform-origin: top;
+    -moz-transform: scale(0.6);
+    -moz-transform-origin: top;
   }
 }
