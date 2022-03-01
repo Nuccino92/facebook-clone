@@ -4,6 +4,7 @@ import "./Message.css";
 
 const Message = ({ myMessage, message }) => {
   const { secondUser } = useSelector((state) => state.conversationReducer);
+
   return (
     <div className="Message">
       {myMessage ? (
