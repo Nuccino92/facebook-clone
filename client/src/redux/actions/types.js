@@ -12,8 +12,6 @@ export const UPDATE_TAB = "UPDATE_TAB";
 // errors
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
-//posts
-export const CREATE_POST = "CREATE_POST";
 // viewedUser
 export const GET_VIEWED_USER = "GET_VIEWEDEDUSER";
 export const VIEWED_USER_LOADING = "VIEWED_USER_LOADING";
