@@ -43,8 +43,10 @@ const SideNav = () => {
               src={user.profile[0].profilePicture}
               alt="Profile"
             ></img>
-            <span>{user.profile[0].firstName}&nbsp;</span>
-            <span>{user.profile[0].lastName}</span>
+            <span className="SideNav-username">
+              {user.profile[0].firstName}&nbsp;
+            </span>
+            <span className="SideNav-username">{user.profile[0].lastName}</span>
           </li>
         </Link>
         <Link to={`friends/${user._id}`}>
