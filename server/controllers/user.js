@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const user_Get = async (req, res) => {
   const { id } = req.params;
@@ -270,7 +271,7 @@ export const removeFriend_Post = async (req, res) => {
     });
 };
 
-export const updateUser_Post = async (req, res) => {
+export const updateUser_Put = async (req, res) => {
   const url = "http://localhost:8000/";
 
   const { id } = req.params;
@@ -279,20 +280,25 @@ export const updateUser_Post = async (req, res) => {
   const profilePicture = req.files["profilePicture"];
   const coverPhoto = req.files["coverPhoto"];
 
+  const profilePictureResult =
+    profilePicture !== undefined &&
+    (await cloudinary.uploader.upload(profilePicture[0].path));
+  const coverPhotoResult =
+    coverPhoto !== undefined &&
+    (await cloudinary.uploader.upload(coverPhoto[0].path));
+
   const user = await User.findById(id);
 
-  // console.log(coverPicture[0].path);
-
   const promise1 =
-    profilePicture !== undefined &&
+    profilePictureResult &&
     user.updateOne({
-      $set: { "profile.0.profilePicture": url + profilePicture[0].path },
+      $set: { "profile.0.profilePicture": profilePictureResult.secure_url },
     });
 
   const promise2 =
-    coverPhoto !== undefined &&
+    coverPhotoResult &&
     user.updateOne({
-      $set: { "profile.0.coverPhoto": url + coverPhoto[0].path },
+      $set: { "profile.0.coverPhoto": coverPhotoResult.secure_url },
     });
 
   const promise3 =

@@ -1,16 +1,20 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import cloudinary from "../utils/cloudinary.js";
 
+// create post
 export const posts_Post = async (req, res) => {
   const url = "http://localhost:8000/";
 
   const { user, content } = req.body;
   const { path } = req.file;
 
+  const result = await cloudinary.uploader.upload(path);
+
   const newPost = Post({
     user,
     content,
-    picture: url + path,
+    picture: result.secure_url,
   });
 
   newPost.save().then(async (response) => {
