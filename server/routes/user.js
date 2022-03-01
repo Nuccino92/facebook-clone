@@ -10,7 +10,7 @@ import {
   rejectFriendRequest_Post,
   acceptFriendRequest_Post,
   removeFriend_Post,
-  updateUser_Post,
+  updateUser_Put,
   getFriendsInfo_Post,
 } from "../controllers/user.js";
 
@@ -50,7 +50,7 @@ router.post("/send-friend-request/:id", auth, userSendFriendRequest_Post);
 router.post("/reject-friend-request/:id", auth, rejectFriendRequest_Post);
 router.post("/accept-friend-request/:id", auth, acceptFriendRequest_Post);
 router.post("/remove-friend/:id", auth, removeFriend_Post);
-router.put("/update/:id", auth, multipleUpload, updateUser_Post);
+router.put("/update/:id", auth, multipleUpload, updateUser_Put);
 
 router.post("/friends-info/:id", auth, getFriendsInfo_Post);
 
