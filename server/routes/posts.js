@@ -13,7 +13,6 @@ import multer from "multer";
 const auth = passport.authenticate("jwt", { session: false });
 
 // define storage for images
-
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/images");
