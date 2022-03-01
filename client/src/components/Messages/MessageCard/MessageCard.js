@@ -5,11 +5,13 @@ import Message from "./Message/Message";
 import { useDispatch, useSelector } from "react-redux";
 import { closeConversation } from "../../../redux/actions/conversation";
 import { getMessages, sendMessage } from "../../../api/message";
+import { io } from "socket.io-client";
 
 const MessageCard = () => {
-  const inputRef = useRef(null);
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
   const scrollRef = useRef();
+  const socket = useRef(io("ws://localhost:5000"));
 
   const { user } = useSelector((state) => state.userReducer);
   const { secondUser, activeConversation } = useSelector(
@@ -22,10 +24,24 @@ const MessageCard = () => {
     content: null,
   });
 
+  // holds the socket emitted message
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+
   const [messages, setMessages] = useState([]);
 
   const handleCloseConversation = () => {
     dispatch(closeConversation());
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setMessage((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -45,16 +61,15 @@ const MessageCard = () => {
     const res = await getMessages(activeConversation._id);
     setMessages(res.data);
     inputRef.current.value = "";
-  };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+    const receiverId = activeConversation.users.find(
+      (user) => user !== user._id
+    );
 
-    setMessage((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
+    socket.current.emit("sendMessage", {
+      senderId: user._id,
+      receiverId,
+      content: message.content,
     });
   };
 
@@ -77,6 +92,24 @@ const MessageCard = () => {
       behavior: "smooth",
     });
   }, [messages]);
+
+  // if arrival message and inside correct conversation, update conversation messages
+  useEffect(() => {
+    arrivalMessage &&
+      activeConversation?.users.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [activeConversation, arrivalMessage]);
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:5000");
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        content: data.content,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
 
   return (
     <div className="MessageCard">

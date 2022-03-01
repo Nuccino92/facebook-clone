@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../redux/actions/user";
 import { getAllUsers } from "../../api/user";
 import SearchResult from "./SearchResult/SearchResult";
+import { io } from "socket.io-client";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const inputRef = useRef();
   const dropdownRef = useRef();
+  const socket = useRef(io("ws://localhost:5000"));
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [listOfUsers, setListOfUsers] = useState([]);
@@ -28,13 +30,12 @@ const Nav = () => {
 
   const { user } = useSelector((state) => state.userReducer);
 
-  useEffect(() => {
-    const getList = async () => {
-      const res = await getAllUsers();
-      setListOfUsers(res.data);
-    };
-    getList();
-  }, []);
+  const handleLogout = () => {
+    setProfileMenu(false);
+    dispatch(logOutUser());
+    navigate("/");
+    socket.current.emit("logOut", (users) => console.log(users));
+  };
 
   const handleFilter = (e) => {
     const word = e.target.value;
@@ -55,6 +56,14 @@ const Nav = () => {
       setIsMyInputFocused(false);
     }, 100);
   };
+
+  useEffect(() => {
+    const getList = async () => {
+      const res = await getAllUsers();
+      setListOfUsers(res.data);
+    };
+    getList();
+  }, []);
 
   useEffect(() => {
     isMyInputFocused && inputRef.current.focus();
@@ -252,10 +261,7 @@ const Nav = () => {
                 <li
                   className="profile-menu-third"
                   onClick={() => {
-                    setProfileMenu(false);
-                    // logout user
-                    dispatch(logOutUser());
-                    navigate("/");
+                    handleLogout();
                   }}
                 >
                   <div>

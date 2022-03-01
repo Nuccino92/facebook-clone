@@ -6,7 +6,7 @@ import { getUserFriendsRequest } from "../../../api/user";
 import "./Contacts.css";
 import ContactsCard from "./ContactsCard/ContactsCard";
 
-const Contacts = () => {
+const Contacts = ({ onlineUsers }) => {
   // toggles profile card
   const [displayProfile, setDisplayProfile] = useState(false);
   // gets index to properly render profile card
@@ -36,6 +36,10 @@ const Contacts = () => {
         <div className="contacts-container">
           <h3>Contacts</h3>
           {userFriends.map((user, index) => {
+            // checks if user is online
+            const onlineStatus = onlineUsers.some(
+              (active) => active.userId === user._id
+            );
             return (
               <Link to={`/profile/${user._id}`} key={index}>
                 <li
@@ -49,6 +53,8 @@ const Contacts = () => {
                     />
                   )}
                   <img src={user.profile[0].profilePicture} alt="Profile"></img>
+                  {/* if user is online show this indicator div */}
+                  {onlineStatus && <div className="online-indicator"></div>}
                   <span>
                     {user.profile[0].firstName} {user.profile[0].lastName}
                   </span>
