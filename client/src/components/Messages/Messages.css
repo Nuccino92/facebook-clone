@@ -3,7 +3,31 @@
   position: fixed;
   display: flex;
   bottom: 0;
+  right: 0;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 100%;
+  align-self: flex-end;
+  width: max-content;
+}
+
+@media (max-width: 425px) {
+  .Messages {
+    transform: scale(0.7);
+    transform-origin: bottom right;
+    -webkit-transform: scale(0.7);
+    -webkit-transform-origin: bottom right;
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: bottom right;
+  }
+}
+
+@media (max-width: 325px) {
+  .Messages {
+    transform: scale(0.5);
+    transform-origin: bottom right;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: bottom right;
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: bottom right;
+  }
 }
