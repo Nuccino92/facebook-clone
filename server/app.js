@@ -29,10 +29,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("hello :)");
+});
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>
-    app.listen(process.env.PORT, () => console.log("Server is running"))
+    app.listen(process.env.PORT || 8000, () => console.log("Server is running"))
   )
   .then((server) => {
     const io = new Server(server, {
