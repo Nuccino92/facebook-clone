@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTimeline } from "../../redux/actions/user";
 import Contacts from "./Contacts/Contacts";
@@ -7,18 +7,23 @@ import SideNav from "./SideNav/SideNav";
 import Timeline from "./Timeline/Timeline";
 import { io } from "socket.io-client";
 
+let socket;
+const CONNECTION_PORT = "https://obscure-sierra-17613.herokuapp.com/";
+
 const Homepage = () => {
   const dispatch = useDispatch();
-  const socket = useRef(io("ws://localhost:5000"));
 
   const { user, timelineTab } = useSelector((state) => state.userReducer);
 
   const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:5000");
-    socket.current.emit("addUser", user._id);
-    socket.current.on("getUsers", (users) => {
+    socket = io(CONNECTION_PORT);
+  }, []);
+
+  useEffect(() => {
+    socket.emit("addUser", user._id);
+    socket.on("getUsers", (users) => {
       setOnlineUsers(users);
     });
   }, [user]);

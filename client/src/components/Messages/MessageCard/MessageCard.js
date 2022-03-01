@@ -7,11 +7,13 @@ import { closeConversation } from "../../../redux/actions/conversation";
 import { getMessages, sendMessage } from "../../../api/message";
 import { io } from "socket.io-client";
 
+let socket;
+const CONNECTION_PORT = "https://obscure-sierra-17613.herokuapp.com/";
+
 const MessageCard = () => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
   const scrollRef = useRef();
-  const socket = useRef(io("ws://localhost:5000"));
 
   const { user } = useSelector((state) => state.userReducer);
   const { secondUser, activeConversation } = useSelector(
@@ -101,7 +103,10 @@ const MessageCard = () => {
   }, [activeConversation, arrivalMessage]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:5000");
+    socket = io(CONNECTION_PORT);
+  }, []);
+
+  useEffect(() => {
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,

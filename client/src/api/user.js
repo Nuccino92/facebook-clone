@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "http://localhost:8000/user/";
+const url = "https://obscure-sierra-17613.herokuapp.com/user/";
 
 const token = localStorage.getItem("token");
 const config = tokenRefreshConfig(token);

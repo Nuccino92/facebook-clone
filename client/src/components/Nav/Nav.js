@@ -14,13 +14,15 @@ import { getAllUsers } from "../../api/user";
 import SearchResult from "./SearchResult/SearchResult";
 import { io } from "socket.io-client";
 
+let socket;
+const CONNECTION_PORT = "https://obscure-sierra-17613.herokuapp.com/";
+
 const Nav = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const inputRef = useRef();
   const dropdownRef = useRef();
-  const socket = useRef(io("ws://localhost:5000"));
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [listOfUsers, setListOfUsers] = useState([]);
@@ -34,7 +36,7 @@ const Nav = () => {
     setProfileMenu(false);
     dispatch(logOutUser());
     navigate("/");
-    socket.current.emit("logOut", (users) => console.log(users));
+    socket.emit("logOut", (users) => console.log(users));
   };
 
   const handleFilter = (e) => {
@@ -56,6 +58,10 @@ const Nav = () => {
       setIsMyInputFocused(false);
     }, 100);
   };
+
+  useEffect(() => {
+    socket = io(CONNECTION_PORT);
+  }, []);
 
   useEffect(() => {
     const getList = async () => {
