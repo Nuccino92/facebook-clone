@@ -1,6 +1,5 @@
 .Homepage-body {
   display: flex;
-  justify-content: space-between;
   max-height: 100%;
   height: 93vh;
 }

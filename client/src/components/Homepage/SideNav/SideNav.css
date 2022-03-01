@@ -1,12 +1,25 @@
 .SideNav {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
   flex: 1;
 }
 
 .SideNav > ul {
   width: 70%;
+  width: 360px;
+}
+
+.SideNav-username {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.SideNav > ul > li > p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .SideNav > ul > a > li {
@@ -17,6 +30,7 @@
   padding: 10px 16px;
   width: 100%;
   border-radius: 3px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   font-weight: 500;
 }
@@ -34,6 +48,9 @@
 
 .SideNav > ul > a > li > p {
   padding: 12px 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .SideNav > ul > li {
@@ -61,6 +78,12 @@
 
 .SideNav > ul > li > p {
   padding: 12px 0;
+}
+
+@media (max-width: 1920px) {
+  .SideNav {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 1400px) {
