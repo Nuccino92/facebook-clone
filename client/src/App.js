@@ -11,6 +11,7 @@ import FriendRequests from "./components/FriendRequests/FriendRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/actions/user";
 import NotFound from "./components/ErrorPages/NotFound";
+import Messages from "./components/Messages/Messages";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function App() {
             <Route path="/*" element={<LogIn />} />
           </Routes>
         )}
-        {/* spaces content below fixed header */}
+        {isAuthenticated && <Messages />}
       </div>
     </BrowserRouter>
   );
