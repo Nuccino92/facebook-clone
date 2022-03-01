@@ -33,11 +33,11 @@ app.get("/", (req, res) => {
   res.send("hello :)");
 });
 
+const PORT = process.env.PORT || 8000;
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(process.env.PORT || 8000, () => console.log("Server is running"))
-  )
+  .then(() => app.listen(PORT, () => console.log("Server is running")))
   .then((server) => {
     const io = new Server(server, {
       cors: {
