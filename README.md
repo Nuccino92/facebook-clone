@@ -1,1 +1,1 @@
-Creating a facebook clone using react, redux and express
+Creating a facebook clone using react, redux, express & socket io
