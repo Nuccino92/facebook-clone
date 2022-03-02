@@ -40,6 +40,17 @@ const LogInForm = () => {
     });
   };
 
+  const handleGuestAccount = (e) => {
+    // data for guest account
+    const guestAccountData = {
+      email: "guestaccount@gmail.com",
+      password: "password123",
+    };
+
+    e.preventDefault();
+    dispatch(logInUser(guestAccountData));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(logInUser(userData));
@@ -107,7 +118,9 @@ const LogInForm = () => {
       ></input>
       {error.errors && <FormError message={error.message} location={"login"} />}
       <button className="LogIn-submit-btn">Log In</button>
-      <div className="guest-account-link">Use Guest Account</div>
+      <div className="guest-account-link" onClick={handleGuestAccount}>
+        Use Guest Account
+      </div>
       <div className="LogIn-form-break"></div>
       <Link className="register-link" to="/register">
         <button className="LogIn-register-btn">Create New Account</button>
