@@ -68,7 +68,7 @@ const MessageCard = () => {
       (user) => user !== user._id
     );
 
-    socket.current.emit("sendMessage", {
+    socket.emit("sendMessage", {
       senderId: user._id,
       receiverId,
       content: message.content,
