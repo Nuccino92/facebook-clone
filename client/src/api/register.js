@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const url = "https://obscure-sierra-17613.herokuapp.com/register";
+const url = "https://lit-spire-63005.herokuapp.com/register";
 
 export const createUserRequest = (userData) => axios.post(url, userData);

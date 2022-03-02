@@ -15,7 +15,7 @@ import SearchResult from "./SearchResult/SearchResult";
 import { io } from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "https://obscure-sierra-17613.herokuapp.com/";
+const CONNECTION_PORT = "https://lit-spire-63005.herokuapp.com/";
 
 const Nav = () => {
   const dispatch = useDispatch();

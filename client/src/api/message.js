@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://obscure-sierra-17613.herokuapp.com/message/";
+const url = "https://lit-spire-63005.herokuapp.com/message/";
 
 const token = localStorage.getItem("token");
 const config = tokenRefreshConfig(token);
