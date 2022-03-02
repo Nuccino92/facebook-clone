@@ -107,7 +107,7 @@ const MessageCard = () => {
   }, []);
 
   useEffect(() => {
-    socket.current.on("getMessage", (data) => {
+    socket.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
         content: data.content,
