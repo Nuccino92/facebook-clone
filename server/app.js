@@ -41,7 +41,7 @@ mongoose
   .then((server) => {
     const io = new Server(server, {
       cors: {
-        origin: "facebook-mock-project.netlify.app",
+        origin: "https://facebook-mock-project.netlify.app/",
       },
     });
 
