@@ -13,7 +13,8 @@ export const tokenConfig = (getState) => {
 };
 
 // get token if paged is refreshed
-export const tokenRefreshConfig = (token) => {
+export const tokenRefreshConfig = () => {
+  const token = localStorage.getItem("token");
   const config = {
     headers: {},
   };

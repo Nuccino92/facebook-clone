@@ -3,13 +3,13 @@ import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
 const url = "https://lit-spire-63005.herokuapp.com/comment/";
-const token = localStorage.getItem("token");
-const config = tokenRefreshConfig(token);
 
-export const addCommentRequest = (data) => axios.post(url, data, config);
+export const addCommentRequest = (data) =>
+  axios.post(url, data, tokenRefreshConfig());
 export const addCommentReplyRequest = (data) =>
-  axios.post(url + "reply", data, config);
+  axios.post(url + "reply", data, tokenRefreshConfig());
 
-export const getCommentRequest = (id) => axios.get(url + id, config);
+export const getCommentRequest = (id) =>
+  axios.get(url + id, tokenRefreshConfig());
 export const getCommentAuthorRequest = (id) =>
-  axios.get(url + "user" + id, config);
+  axios.get(url + "user" + id, tokenRefreshConfig());

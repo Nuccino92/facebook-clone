@@ -70,7 +70,7 @@ export const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
   try {
     if (token !== null) {
-      const res = await authRequest(tokenRefreshConfig(token));
+      const res = await authRequest(tokenRefreshConfig());
       dispatch({ type: USER_LOADED, payload: res.data });
     } else {
       const res = await authRequest(tokenConfig(getState));
