@@ -32,11 +32,20 @@ npm install
 * Create a Cloudinary account https://cloudinary.com/
 * Create .env file that contains:
 ```
-MONGOOSE_URI ='XXXXXX' (MongoDB connection string)
-JWT_SECRET = 'XXXXXX' (any JWT secret key)
-CLOUDINARY_CLOUD_NAME='XXXXXX' (cloudinary name)
-CLOUDINARY_API_KEY='XXXXXX' (cloudinary API key)
-CLOUDINARY_API_SECRET='XXXXXX' (cloudinary secret)
+// MongoDB connection string
+MONGOOSE_URI =XXXXXX
+
+// any JWT secret key
+JWT_SECRET = XXXXXX
+
+// cloudinary name
+CLOUDINARY_CLOUD_NAME=XXXXXX
+
+// cloudinary API key
+CLOUDINARY_API_KEY=XXXXXX
+
+// cloudinary secret
+CLOUDINARY_API_SECRET=XXXXXX
 ```
 
 ```
