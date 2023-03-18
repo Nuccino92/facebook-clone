@@ -8,7 +8,7 @@ import Timeline from "./Timeline/Timeline";
 import { io } from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "https://lit-spire-63005.herokuapp.com/";
+const CONNECTION_PORT = "https://facebook-clone-production.up.railway.app/";
 
 const Homepage = () => {
   const dispatch = useDispatch();

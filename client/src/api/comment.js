@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://lit-spire-63005.herokuapp.com/comment/";
+const url = "https://facebook-clone-production.up.railway.app/comment/";
 
 export const addCommentRequest = (data) =>
   axios.post(url, data, tokenRefreshConfig());

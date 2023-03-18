@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://lit-spire-63005.herokuapp.com/posts/";
+const url = "https://facebook-clone-production.up.railway.app/posts/";
 
 export const addPostRequest = (postData) =>
   axios.post(url, postData, tokenRefreshConfig());

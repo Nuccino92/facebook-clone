@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://lit-spire-63005.herokuapp.com/user/";
+const url = "https://facebook-clone-production.up.railway.app/user/";
 
 export const getUserRequest = async (id) => await axios.get(url + id);
 
