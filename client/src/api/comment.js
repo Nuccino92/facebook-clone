@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://facebook-clone-production.up.railway.app/comment/";
+const url = `${process.env.REACT_APP_SERVER_URL}comment/`;
 
 export const addCommentRequest = (data) =>
   axios.post(url, data, tokenRefreshConfig());

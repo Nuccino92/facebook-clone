@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const url = "https://facebook-clone-production.up.railway.app/register";
+const url = `${process.env.REACT_APP_SERVER_URL}register`;
 
 export const createUserRequest = (userData) => axios.post(url, userData);

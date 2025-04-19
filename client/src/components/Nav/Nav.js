@@ -15,7 +15,7 @@ import SearchResult from "./SearchResult/SearchResult";
 import { io } from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "https://facebook-clone-production.up.railway.app/";
+const CONNECTION_PORT = `${process.env.REACT_APP_SERVER_URL}`;
 
 const Nav = () => {
   const dispatch = useDispatch();

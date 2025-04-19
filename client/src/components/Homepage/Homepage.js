@@ -8,7 +8,7 @@ import Timeline from "./Timeline/Timeline";
 import { io } from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "https://facebook-clone-production.up.railway.app/";
+const CONNECTION_PORT = `${process.env.REACT_APP_SERVER_URL}`;
 
 const Homepage = () => {
   const dispatch = useDispatch();

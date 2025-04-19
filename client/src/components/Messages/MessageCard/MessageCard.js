@@ -8,7 +8,7 @@ import { getMessages, sendMessage } from "../../../api/message";
 import { io } from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "https://facebook-clone-production.up.railway.app/";
+const CONNECTION_PORT = `${process.env.REACT_APP_SERVER_URL}`;
 
 const MessageCard = () => {
   const dispatch = useDispatch();

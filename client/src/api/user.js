@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenRefreshConfig } from "../config/token";
 
-const url = "https://facebook-clone-production.up.railway.app/user/";
+const url = `${process.env.REACT_APP_SERVER_URL}user/`;
 
 export const getUserRequest = async (id) => await axios.get(url + id);
 

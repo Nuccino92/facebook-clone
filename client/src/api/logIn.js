@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const url = "https://facebook-clone-production.up.railway.app/log-in";
+const url = `${process.env.REACT_APP_SERVER_URL}log-in`;
 
 export const logInRequest = (userData) => axios.post(url, userData);
