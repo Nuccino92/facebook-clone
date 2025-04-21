@@ -8,10 +8,8 @@ const LogIn = () => {
     <div className="LogIn">
       {" "}
       <div className="LogIn-left">
-        <h1>facebook</h1>
-        <p>
-          Facebook helps you connect and share with the people in your life.
-        </p>
+        <h1>SocialConnect</h1>
+        <p>This is a mock website made for educational purposes.</p>
       </div>
       <div className="LogIn-right">
         <LogInForm />

@@ -116,7 +116,7 @@ const Register = () => {
 
   return (
     <div className="Register">
-      <h1>facebook</h1>
+      <h1>SocialConnect</h1>
       <div className="Register-form-container">
         <h3>Create a new account</h3>
         <p>It's quick and easy.</p>

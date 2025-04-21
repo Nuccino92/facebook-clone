@@ -109,7 +109,7 @@ const Nav = () => {
                   ref={inputRef}
                   onBlur={handleBlur}
                   onFocus={() => setIsMyInputFocused(true)}
-                  placeholder="Search Facebook"
+                  placeholder="Search SocialConnect"
                   type="text"
                   onChange={handleFilter}
                 ></input>
@@ -136,7 +136,10 @@ const Nav = () => {
         // --------------------when searchbar is not focused-----------------------
         <div className="nav-left">
           <Link to="/">
-            <img src={facebookIcon} alt="Facebook icon homepage button"></img>
+            <img
+              src={facebookIcon}
+              alt="SocialConnect icon homepage button"
+            ></img>
           </Link>
 
           <div className="searchbar-container">
@@ -145,7 +148,7 @@ const Nav = () => {
               ref={inputRef}
               onBlur={handleBlur}
               onFocus={() => setIsMyInputFocused(true)}
-              placeholder="Search Facebook"
+              placeholder="Search SocialConnect"
               type="text"
               onChange={handleFilter}
             ></input>

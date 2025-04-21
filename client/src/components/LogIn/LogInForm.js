@@ -72,10 +72,10 @@ const LogInForm = () => {
 
   return location.pathname === "/login" ? (
     <div className="LogInForm-container">
-      <h1 className="LogIn-form-header">facebook</h1>
+      <h1 className="LogIn-form-header">socialConnect</h1>
 
       <form className="LogIn-form" onSubmit={handleSubmit}>
-        <div className="LogIn-form-header">Log in to Facebook</div>
+        <div className="LogIn-form-header">Log in to SocialConnect</div>
         <input
           type="text"
           name="email"

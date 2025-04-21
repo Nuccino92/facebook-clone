@@ -18,8 +18,6 @@ Enter into the client/server directories through terminal respectively.
 
 #### Client Directory (terminal)
 
-- Replace all https://facebook-clone-production.up.railway.app/(keep params) urls with http://localhost:8000/ (keep params)
-
 ```
 npm install
 npm start
